@@ -68,24 +68,33 @@ router.get('/', async (req, res, next) => {
     res.json(resBody)
 })
 
+router.get('/:id', async (req, res) => {
+    const spot = await Spot.findByPk(req.params.id, {
+        include: [{
+            model: SpotImage,
+            attributes: ["spotId", "url", "preview"]
+        },
+         {model: User, attributes: ["id", "firstName", "lastName"], as: "Owner"}]
+    })
+    res.json(spot)
+})
 
-
-// router.post('/', async (req, res, next) => {
-//     const { address, city, state, country, lat, lng, name, description, price} = req.body
-//     const newSpot = await Spot.create({
-//         ownerId: req.params.id,
-//         address,
-//         city,
-//         state,
-//         country,
-//         lat,
-//         lng,
-//         name,
-//         description,
-//         price
-//     })
-//     return res.json(newSpot)
-// })
+router.post('/', requireAuth, async (req, res, next) => {
+    const { address, city, state, country, lat, lng, name, description, price} = req.body
+    const newSpot = await Spot.create({
+        ownerId: req.user.id,
+        address,
+        city,
+        state,
+        country,
+        lat,
+        lng,
+        name,
+        description,
+        price
+    })
+    return res.json(newSpot)
+})
 
 
 
