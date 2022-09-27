@@ -30,6 +30,12 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'Spot',
+    // defaultScope: {
+    //   attributes: {
+    //     const { SpotImage } = require('..models'),
+    //     include: SpotImages.url,
+    //     attributes: ['id', ownerId, address, city, state, country, lat, lng, name, description, price, createdAt, updatedAt, ]
+    // }
   });
   return Spot;
 };
