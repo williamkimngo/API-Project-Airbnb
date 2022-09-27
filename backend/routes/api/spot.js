@@ -106,11 +106,29 @@ router.get('/:id', async (req, res) => {
     const spot = await Spot.findByPk(req.params.id, {
         include: [{
             model: SpotImage,
-            attributes: ["spotId", "url", "preview"]
+            attributes: ["id", "url", "preview"]
         },
          {model: User, attributes: ["id", "firstName", "lastName"], as: "Owner"}]
     })
-    res.json(spot)
+    if (!spot) {
+        res.status(404)
+        res.json({
+            "message": "Spot couldn't be found",
+            "statusCode": 404
+          })
+    } else {
+    const reviewData = await Review.findAll({
+        where: {
+           spotId: spot.id
+        },
+        attributes: [[sequelize.fn('AVG', sequelize.col('stars')), 'avgRating'],
+                    [sequelize.fn('COUNT', sequelize.col('id')), 'numReviews']],
+        raw: true
+     });
+     spot.dataValues.numReviews = reviewData[0].numReviews;
+     spot.dataValues.avgStarRating = reviewData[0].avgRating;
+        res.json(spot)
+    }
 })
 
 //Create Spot
@@ -131,7 +149,6 @@ router.post('/', requireAuth, async (req, res, next) => {
     })
     res.status(201)
     return res.json(newSpot)
-
 
 
 })
