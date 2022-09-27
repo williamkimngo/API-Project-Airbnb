@@ -5,31 +5,31 @@ module.exports = {
     return queryInterface.bulkInsert("Bookings", [
       {
         spotId: 1,
-        useriD: 1,
+        userId: 1,
         startDate: new Date('December 12, 2022'),
         endDate: new Date('December 14, 2022')
       },
       {
         spotId: 2,
-        useriD: 2,
+        userId: 2,
         startDate: new Date('December 20, 2022'),
         endDate: new Date('December 22, 2022')
       },
       {
         spotId: 3,
-        useriD: 3,
+        userId: 3,
         startDate: new Date('December 16, 2022'),
         endDate: new Date('December 18, 2022')
       },
       {
         spotId: 4,
-        useriD: 4,
+        userId: 4,
         startDate: new Date('December 23, 2022'),
         endDate: new Date('December 26, 2022')
       },
       {
         spotId: 5,
-        useriD: 5,
+        userId: 5,
         startDate: new Date('December 27, 2022'),
         endDate: new Date('December 30, 2022')
       }
