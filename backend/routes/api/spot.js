@@ -5,6 +5,7 @@ const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
 const { Model } = require('sequelize');
 const user = require('../../db/models/user');
+const spot = require('../../db/models/spot');
 const router = express.Router();
 
 
@@ -69,6 +70,36 @@ router.get('/', async (req, res, next) => {
     }
     res.json(resBody)
 })
+//get all spots owned by current user
+
+router.get('/current', requireAuth, async(req, res, next) => {
+    const userId = req.user.id
+    let userSpots = {}
+    userSpots = await Spot.findAll({
+        where: {
+            ownerId: userId
+        },
+        raw: true
+    })
+    for (const spot of userSpots) {
+        const avg = await Review.findAll({
+            where: { spotId: spot.id},
+            attributes: [[sequelize.fn('AVG', sequelize.col('stars')), 'average']],
+            raw: true
+        })
+        spot.avgRating = (Number(avg[0].average))
+    }
+    for (const spot of userSpots) {
+        const image = await SpotImage.findAll({
+            where: {spotId: spot.id, preview: true},
+            attributes: ['url'],
+            raw: true
+        })
+        spot.previewImage = image[0].url
+    }
+    res.json(userSpots)
+})
+
 
 //get spot by spotId
 router.get('/:id', async (req, res) => {
@@ -85,7 +116,7 @@ router.get('/:id', async (req, res) => {
 //Create Spot
 router.post('/', requireAuth, async (req, res, next) => {
     const { address, city, state, country, lat, lng, name, description, price} = req.body
-    
+
     const newSpot = await Spot.create({
         ownerId: req.user.id,
         address,
@@ -128,11 +159,39 @@ router.post('/:id/images', requireAuth, async (req, res, next) => {
     res.json(ele)
 }),
 
+router.put('/:id', requireAuth, async(req, res, next) => {
+    const updatedSpot = await Spot.findByPk(req.params.id)
+    const {address, city, state, country, lat, lng, name, description, price} = req.body
+    if (!updatedSpot) {
+        res.status(404)
+        res.json({
+            "message": "Spot couldn't be found",
+            "statusCode": 404
+          })
+    } else {
+        updatedSpot.set({
+            address, city, state, country, lat, lng, name, description, price
+        })
+        await updatedSpot.save()
+        res.json(updatedSpot)
+    }
+})
 
-
-
-
-
+router.delete('/:id', requireAuth, async(req, res, next) => {
+    const deletedSpot = await Spot.findByPk(req.params.id)
+    if(!deletedSpot){
+        res.status(404)
+        res.json({
+            "message": "Spot couldn't be found",
+            "statusCode": 404
+          })
+    }
+    await deletedSpot.destroy()
+    res.json({
+        "message": "Successfully deleted",
+        "statusCode": 200
+      })
+})
 
 
 
