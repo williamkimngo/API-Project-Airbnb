@@ -1,24 +1,35 @@
 'use strict';
 
 module.exports = {
-  async up (queryInterface, Sequelize) {
-    /**
-     * Add seed commands here.
-     *
-     * Example:
-     * await queryInterface.bulkInsert('People', [{
-     *   name: 'John Doe',
-     *   isBetaMember: false
-     * }], {});
-    */
+  up: async (queryInterface, Sequelize) => {
+    return queryInterface.bulkInsert("ReviewImages", [
+      {
+        reviewId: 1,
+        url: "orange.com",
+      },
+      {
+        reviewId: 2,
+        url: "blue.com",
+      },
+      {
+        reviewId: 3,
+        url: "grey.com",
+      },
+      {
+        reviewId: 4,
+        url: "purple.com",
+      },
+      {
+        reviewId: 5,
+        url: "violet.com",
+      }
+    ])
   },
 
-  async down (queryInterface, Sequelize) {
-    /**
-     * Add commands to revert seed here.
-     *
-     * Example:
-     * await queryInterface.bulkDelete('People', null, {});
-     */
+  down: async (queryInterface, Sequelize) => {
+    const Op = Sequelize.Op;
+    return queryInterface.bulkDelete('ReviewImages', {
+      reviewId: { [Op.in]: [1, 2, 3, 4, 5] }
+    }, {});
   }
 };

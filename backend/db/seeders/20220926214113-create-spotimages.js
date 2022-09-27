@@ -1,7 +1,34 @@
 'use strict';
 
 module.exports = {
-  async up (queryInterface, Sequelize) {
+  up: async (queryInterface, Sequelize) => {
+    return queryInterface.bulkInsert("SpotImages", [
+      {
+        spotId: 1,
+        url: "brown.com",
+        preview: true
+      },
+      {
+        spotId: 2,
+        url: "maroon.com",
+        preview: true
+      },
+      {
+        spotId: 3,
+        url: "gold.com",
+        preview: true
+      },
+      {
+        spotId: 4,
+        url: "teal.com",
+        preview: true
+      },
+      {
+        spotId: 5,
+        url:"yellow.com",
+        preview: true
+      },
+    ])
     /**
      * Add seed commands here.
      *
@@ -13,12 +40,10 @@ module.exports = {
     */
   },
 
-  async down (queryInterface, Sequelize) {
-    /**
-     * Add commands to revert seed here.
-     *
-     * Example:
-     * await queryInterface.bulkDelete('People', null, {});
-     */
+  down: async (queryInterface, Sequelize) => {
+    const Op = Sequelize.Op;
+    return queryInterface.bulkDelete('SpotImages', {
+      spotId: { [Op.in]: [1, 2, 3, 4, 5] }
+    }, {});
   }
 };
