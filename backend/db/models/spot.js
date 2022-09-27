@@ -30,6 +30,16 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'Spot',
+    defaultScope: {
+      attributes: {
+        exclude: ["createdAt", "updatedAt"]
+      }
+    },
+    scopes: {
+      newImage: {
+        attributes: { exclude: ["createdAt", "updatedAt"]}
+      }
+    }
     // defaultScope: {
     //   attributes: {
     //     const { SpotImage } = require('..models'),
