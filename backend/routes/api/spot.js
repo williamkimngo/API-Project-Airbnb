@@ -6,6 +6,7 @@ const { handleValidationErrors } = require('../../utils/validation');
 const { Model } = require('sequelize');
 const user = require('../../db/models/user');
 const spot = require('../../db/models/spot');
+const {Op} = require('sequelize');
 const router = express.Router();
 
 const validateSpot = [
@@ -47,6 +48,61 @@ const validateSpot = [
       .withMessage('Price per day is required and must be a number.'),
     handleValidationErrors
   ];
+
+  const validateReview = [
+    check('review')
+      .exists({ checkFalsy: true })
+      .notEmpty()
+      .withMessage('Review text is required.'),
+    check('stars')
+      .exists({ checkFalsy: true })
+      .notEmpty()
+      .isInt({gt: 0, lt: 6})
+      .withMessage('Stars must be an integer from 1 to 5.'),
+    handleValidationErrors
+  ];
+
+//create review for Spot
+router.post('/:id/reviews', requireAuth, validateReview, async(req, res, next) => {
+    const spot = await Spot.findByPk(req.params.id)
+    const userId = req.user.id
+    const {review, stars} = req.body
+    if(!spot){
+        res.status(404)
+        res.json({
+            "message": "Spot couldn't be found",
+            "statusCode": 404
+          })
+    } else {
+        const oldReview = await Review.findAll({
+            where: {
+                [Op.and]: [
+                    {spotId: spot.id},
+                    {userId: userId}
+                ]
+            }
+        });
+        if(oldReview.length) {
+            res.status(403)
+            res.json({
+                "message": "User already has a review for this spot",
+                "statusCode": 403
+              })
+        } else {
+            let newReview = await Review.create({
+                userId,
+                spotId: spot.id,
+                review,
+                stars
+            })
+            res.status(201)
+            res.json(newReview)
+        }
+
+    }
+})
+
+
 
 //get all spots owned by current user
 router.get('/current', requireAuth, async (req, res, next) => {

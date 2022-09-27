@@ -3,6 +3,7 @@ const router = require('express').Router();
 const sessionRouter = require('./session.js');
 const usersRouter = require('./users.js');
 const spotsRouter = require('./spot.js');
+const reviewsRouter = require('./review.js')
 const { requireAuth } = require('../../utils/auth.js');
 
 router.get('/test', requireAuth, (req, res) => {
@@ -14,6 +15,8 @@ router.use('/session', sessionRouter);
 router.use('/users', usersRouter);
 
 router.use('/spots', spotsRouter)
+
+router.use('/review', reviewsRouter)
 
 // router.use('/spots', spotsRouter)
 
