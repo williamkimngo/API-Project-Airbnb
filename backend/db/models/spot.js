@@ -12,7 +12,7 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       Spot.hasMany(models.spotImage, {foreignKey: 'spotId'})
-      Spot.hasMany(models.Review), {foreignKey: 'spotId'}
+      Spot.hasMany(models.Review, {foreignKey: 'spotId'})
       Spot.belongsTo(models.User, {foreignKey: "ownerId"})
     }
   }
@@ -26,9 +26,7 @@ module.exports = (sequelize, DataTypes) => {
     lng: DataTypes.DECIMAL,
     name: DataTypes.STRING,
     description: DataTypes.STRING,
-    price: DataTypes.DECIMAL,
-    createdAt: DataTypes.DATE,
-    updatedAt: DataTypes.DATE
+    price: DataTypes.DECIMAL
   }, {
     sequelize,
     modelName: 'Spot',
