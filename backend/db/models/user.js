@@ -6,8 +6,8 @@ const bcrypt = require('bcryptjs');
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
     toSafeObject() {
-      const { id, username, email } = this; // context will be the User instance
-      return { id, username, email };
+      const { id, firstName, lastName, username, email } = this; // context will be the User instance
+      return { id, firstName, lastName, username, email };
     }
     validatePassword(password) {
       return bcrypt.compareSync(password, this.hashedPassword.toString());
@@ -26,7 +26,7 @@ module.exports = (sequelize, DataTypes) => {
         }
       });
       if (user && user.validatePassword(password)) {
-        return await User.scope('currentUser').findByPk(user.id);
+        return await User.scope('signUpUserNoDates').findByPk(user.id);
       }
     }
     static async signup({ firstName, lastName, username, email, password }) {
@@ -38,7 +38,7 @@ module.exports = (sequelize, DataTypes) => {
         email,
         hashedPassword
       });
-      return await User.scope('currentUser').findByPk(user.id);
+      return await User.scope('signUpUserNoDates').findByPk(user.id);
     }
     /**
      * Helper method for defining associations.
@@ -56,10 +56,8 @@ module.exports = (sequelize, DataTypes) => {
     username: {
       type: DataTypes.STRING,
       allowNull: false,
-      unique: true,
       validate: {
-        min: 4,
-        max: 30,
+        len: [4, 30],
         isNotEmail(value) {
           if (Validator.isEmail(value)) {
             throw new Error("Cannot be an email.");
@@ -76,10 +74,8 @@ module.exports = (sequelize, DataTypes) => {
     email: {
       type: DataTypes.STRING,
       allowNull: false,
-      unique: true,
       validate: {
-        min: 3,
-        max: 256,
+        len: [3, 256],
         isEmail: true
       }
     },
@@ -106,6 +102,9 @@ module.exports = (sequelize, DataTypes) => {
       },
       loginUser: {
         attributes: {}
+      },
+      signUpUserNoDates: {
+        attributes: { exclude: ['hashedPassword', 'createdAt', 'updatedAt']}
       }
     }
   }
