@@ -23,6 +23,7 @@ const validateReview = [
     handleValidationErrors
 ];
 
+//add img to review based on reviewId
 router.post('/:id/images', requireAuth, async (req, res, next) => {
     const currentReview = await Review.findByPk(req.params.id)
     const { url } = req.body
@@ -101,7 +102,23 @@ router.get('/current', requireAuth, async (req, res, next) => {
 })
 
 
-
+router.put('/:reviewId', validateReview, requireAuth, async(req, res, next) => {
+    const updatedReview = await Review.findByPk(req.params.reviewId)
+    const { review, stars } = req.body
+    if(!updatedReview) {
+        res.status(404)
+        res.json({
+            "message": "Review couldn't be found",
+            "statusCode": 404
+          })
+    } else {
+        updatedReview.set({
+            review, stars
+        })
+        await updatedReview.save()
+        res.json(updatedReview)
+    }
+})
 
 
 

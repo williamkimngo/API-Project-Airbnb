@@ -102,6 +102,7 @@ router.post('/:id/reviews', validateReview, requireAuth,  async(req, res, next) 
     }
 })
 
+//Get all Review by Spot's ID
 router.get('/:spotId/reviews', async(req, res, next) => {
     const { spotId } = req.params
     const currentSpot = await Spot.findByPk(spotId)
