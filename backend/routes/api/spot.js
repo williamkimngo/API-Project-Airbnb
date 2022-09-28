@@ -102,6 +102,33 @@ router.post('/:id/reviews', validateReview, requireAuth,  async(req, res, next) 
     }
 })
 
+router.get('/:spotId/reviews', async(req, res, next) => {
+    const { spotId } = req.params
+    const currentSpot = await Spot.findByPk(spotId)
+    const allReviews = await Review.findAll({
+        where: {
+            spotId: spotId
+        },
+        include: [
+            {
+                model: User,
+                attributes: ['id', "firstName", "lastName"]
+            },
+            {
+                model: ReviewImage,
+                attributes: ["id", "url"]
+            }
+        ]
+    })
+    if(!currentSpot){
+        res.status(404)
+        res.json({
+            "message": "Spot couldn't be found",
+            "statusCode": 404
+          })
+    }
+    res.json({Reviews: allReviews})
+})
 
 
 //get all spots owned by current user
