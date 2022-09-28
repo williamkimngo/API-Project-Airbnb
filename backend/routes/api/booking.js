@@ -10,7 +10,7 @@ const { Op } = require('sequelize');
 const router = express.Router();
 
 
-
+//get all booking of current user
 
 router.get('/current', requireAuth, async(req, res, next) => {
     let userBooking = []

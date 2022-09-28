@@ -348,6 +348,45 @@ router.post('/:spotId/bookings', requireAuth, async(req, res, next) => {
     return res.json(newBooking)
 })
 
+
+//get all booking for spot based on spot id
+router.get('/:spotId/bookings', requireAuth, async(req, res, next) => {
+
+    const currentSpot = await Spot.findByPk(req.params.spotId)
+    console.log(currentSpot.ownerId)
+    if(!currentSpot){
+        res.status(404)
+        res.json({
+            "message": "Spot couldn't be found",
+            "statusCode": 404
+          })
+    } else if(currentSpot.ownerId === req.user.id) { //if owner owns spot, this comes first due to else if condition
+        const ownerBooking = await Booking.findAll({
+            where: {
+                spotId: currentSpot.id
+            },
+            include: {
+                model: User,
+                attributes: ["id", "firstName", "lastName"]
+            }
+        })
+        res.json({Bookings: ownerBooking})
+    } else { //no owner of spot
+        const currentBooking = await Booking.findAll({
+            where: {
+                spotId: currentSpot.id
+            },
+            attributes: ["spotId", "startDate", "endDate"]
+        })
+        res.json({Bookings: currentBooking})
+    }
+})
+
+
+
+
+
+
 // delete
 router.delete('/:id', requireAuth, async (req, res, next) => {
     const deletedSpot = await Spot.findByPk(req.params.id)
