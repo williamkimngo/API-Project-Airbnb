@@ -12,7 +12,36 @@ const router = express.Router();
 
 
 
+router.get('/current', requireAuth, async(req, res, next) => {
+    let userBooking = []
+    const currentBooking = await Booking.findAll({
+        where: {
+            userId: req.user.id
+        },
+        include: {
+            model: Spot,
+            attributes: {
+                exclude: ["description", "createdAt", "updatedAt"]
+            }
+        }
+    })
 
+    for (const booking of currentBooking) {
+        const img = await SpotImage.findOne({
+            where: {
+                spotId: booking.spotId,
+                preview: true
+            },
+            attributes: ['url'],
+            raw: true
+        })
+        let currentImg = booking.toJSON()
+        currentImg.Spot.previewImage = img.url
+        userBooking.push(currentImg)
+    }
+    res.json({Bookings: userBooking})
+
+})
 
 
 
