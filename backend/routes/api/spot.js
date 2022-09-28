@@ -158,7 +158,7 @@ router.get('/current', requireAuth, async (req, res, next) => {
         })
         spot.previewImage = image[0].url
     }
-    res.json({Spots: userSpots)
+    res.json({Spots: userSpots})
 })
 
 //get spot by spotId
