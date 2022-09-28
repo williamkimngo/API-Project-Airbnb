@@ -212,8 +212,63 @@ router.get('/:id', async (req, res) => {
 })
 //get all spots
 router.get('/', async (req, res, next) => {
+
+    let { size, page } = req.query
+    let paginatination = {}
+
+
+    page = parseInt(page)
+    size = parseInt(size)
+
+    //page query
+    if (!page || isNaN(page)) {
+        page = 1
+    } else if(page < 1){
+        errors.page = "Page must be greater than or equal to 1"
+    }
+
+    if(!size || isNaN(size)){
+        size = 20
+    } else if(size < 1){
+        errors.size = "Size must be greater than or equal to 1"
+    }
+    // if(!maxLat || isNaN(maxLat) || maxLat <= minLat){
+    //     errors.maxLat = "Maximum latitude is invalid"
+    // }
+    // if(!minLat || isNaN(minLat) || minLat >= maxLat){
+    //     errors.minLat = "Minimum latitude is invalid"
+    // }
+    // if(!minLng || isNaN(minLng) || minLng >= maxLng){
+    //     errors.minLng = "Minimum longitude is invalid"
+    // }
+    // if(!maxLng || isNaN(maxLng) || maxLng <= minLng) {
+    //     errors.maxLng = "Maximum longitude is invalid"
+    // }
+    // if(!minPrice || isNaN(minPrice) || minPrice < 0 || minPrice >= maxPrice){
+    //     errors.minPrice = "Minimum price must be greater than or equal to 0"
+    // }
+    // if(!maxPrice || isNaN(maxPrice) || maxPrice < 0 || maxPrice <= minPrice){
+    //     errors.maxPrice = "Maximum price must be greater than or equal to 0"
+    // }
+    // if(Object.keys(errors).length) {
+    //     res.status(400)
+    //     let errors = {
+    //         "message": "Validation Error",
+    //         "statusCode": 400,
+    //         errors
+    //     }
+    //     return res.json(errors)
+    // }
+    if(page >= 1 && size >= 1){
+        paginatination.limit = size
+        paginatination.offset = size * (page - 1)
+    }
+
+
     let allSpots = []
-    const spots = await Spot.findAll()
+    const spots = await Spot.findAll({
+        ...paginatination
+    })
 
     for (const spot of spots) {
         const avg = await Review.findAll({
@@ -235,7 +290,7 @@ router.get('/', async (req, res, next) => {
         allSpot.previewImage = image.url
         allSpots.push(allSpot)
     }
-    res.json({ Spots: allSpots })
+    res.json({ Spots: allSpots, page: page, size: size })
 })
 
 
