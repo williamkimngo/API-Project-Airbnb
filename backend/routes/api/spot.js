@@ -293,15 +293,13 @@ router.post('/:spotId/bookings', requireAuth, async(req, res, next) => {
             "statusCode": 404
           })
     }
-        const currentBooking = await Booking.findAll({
+        const currentBooking = await Booking.findAll({ //return array
             where: {
                 spotId: currentSpot.id
             }
         })
         const currentEndDate = new Date(endDate).getTime() //converts enddate/startdate to date object and getTIme converts to seconds
         const currentStartDate = new Date(startDate).getTime()
-        console.log(currentEndDate)
-        console.log(currentStartDate)
     if((currentEndDate <= currentStartDate)){
         res.status(400)
         res.json({
@@ -353,7 +351,6 @@ router.post('/:spotId/bookings', requireAuth, async(req, res, next) => {
 router.get('/:spotId/bookings', requireAuth, async(req, res, next) => {
 
     const currentSpot = await Spot.findByPk(req.params.spotId)
-    console.log(currentSpot.ownerId)
     if(!currentSpot){
         res.status(404)
         res.json({
