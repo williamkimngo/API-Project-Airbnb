@@ -72,7 +72,9 @@ router.put('/:bookingId', requireAuth, async(req, res, next) => {
     const { startDate, endDate } = req.body
     const currentEndDate = new Date(endDate).getTime()
     const currentStartDate = new Date(startDate).getTime()
+
     const currentBooking = await Booking.findByPk(req.params.bookingId) //return object
+    console.log(currentBooking)
     if (!currentBooking){
         res.status(404)
         res.json({
@@ -80,6 +82,8 @@ router.put('/:bookingId', requireAuth, async(req, res, next) => {
             "statusCode": 404
           })
     }
+    console.log(currentEndDate)
+    console.log(currentStartDate)
     if((currentEndDate <= currentStartDate)){
         res.status(400)
         res.json({
@@ -100,7 +104,7 @@ router.put('/:bookingId', requireAuth, async(req, res, next) => {
                      "statusCode": 403,
                      "errors": {
                        "startDate": "Start date conflicts with an existing booking",
-                       "endDate": "End date conflicts with an existing booking"
+                       "endDate": "End date conflicts with an existing booking",
                      }
                    })
              }
