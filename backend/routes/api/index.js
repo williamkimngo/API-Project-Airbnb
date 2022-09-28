@@ -16,7 +16,7 @@ router.use('/users', usersRouter);
 
 router.use('/spots', spotsRouter)
 
-router.use('/review', reviewsRouter)
+router.use('/reviews', reviewsRouter)
 
 // router.use('/spots', spotsRouter)
 

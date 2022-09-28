@@ -63,7 +63,7 @@ const validateSpot = [
   ];
 
 //create review for Spot
-router.post('/:id/reviews', requireAuth, validateReview, async(req, res, next) => {
+router.post('/:id/reviews', validateReview, requireAuth,  async(req, res, next) => {
     const spot = await Spot.findByPk(req.params.id)
     const userId = req.user.id
     const {review, stars} = req.body
@@ -164,28 +164,30 @@ router.get('/:id', async (req, res) => {
 })
 //get all spots
 router.get('/', async (req, res, next) => {
-    let resBody = {}
-    resBody.Spots = await Spot.findAll({
-        raw: true
-    })
+    let allSpots = []
+    const spots = await Spot.findAll()
 
-    for (const spot of resBody.Spots) {
+    for (const spot of spots) {
         const avg = await Review.findAll({
             where: { spotId: spot.id },
             attributes: [[sequelize.fn('AVG', sequelize.col('stars')), 'average']],
             raw: true
         })
-        spot.avgRating = (Number(avg[0].average))
-    }
-    for (const spot of resBody.Spots) {
-        const image = await SpotImage.findAll({
-            where: { spotId: spot.id, preview: true },
+        const image = await SpotImage.findOne({
+            where: {
+                spotId: spot.id,
+                [Op.or]: [{preview: true}, {preview: false}]
+            },
             attributes: ['url'],
             raw: true
         })
-        spot.previewImage = image[0].url
+
+        let allSpot = spot.toJSON()
+        allSpot.avgRating = (Number(avg[0].average))
+        allSpot.previewImage = image.url
+        allSpots.push(allSpot)
     }
-    res.json(resBody)
+    res.json({Spots: allSpots})
 })
 
 

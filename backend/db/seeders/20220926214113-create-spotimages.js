@@ -11,7 +11,7 @@ module.exports = {
       {
         spotId: 2,
         url: "maroon.com",
-        preview: true
+        preview: false
       },
       {
         spotId: 3,
