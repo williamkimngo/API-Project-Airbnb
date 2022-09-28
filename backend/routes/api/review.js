@@ -23,6 +23,24 @@ const validateReview = [
     handleValidationErrors
 ];
 
+//delete review
+
+router.delete('/:reviewId', requireAuth, async(req, res, next) => {
+    const currentReview = await Review.findByPk(req.params.reviewId)
+    if(!currentReview) {
+        res.status(404)
+        res.json({
+            "message": "Review couldn't be found",
+            "statusCode": 404
+          })
+    } else {
+        await currentReview.destroy()
+        res.json({
+            "message": "Successfully deleted",
+            "statusCode": 200
+          })
+    }
+})
 //add img to review based on reviewId
 router.post('/:id/images', requireAuth, async (req, res, next) => {
     const currentReview = await Review.findByPk(req.params.id)

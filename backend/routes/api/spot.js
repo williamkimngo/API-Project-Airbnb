@@ -62,6 +62,26 @@ const validateReview = [
     handleValidationErrors
 ];
 
+//delete spot
+
+router.delete('/:spotId', requireAuth, async(req, res, next) => {
+    const currentSpot = await Spot.findByPk(req.params.spotId)
+    if(!currentSpot){
+        res.status(404)
+        res.json({
+            "message": "Spot couldn't be found",
+            "statusCode": 404
+          })
+    } else {
+        await currentSpot.destroy()
+        res.json({
+            "message": "Successfully deleted",
+            "statusCode": 200
+          })
+    }
+})
+
+
 //create review for Spot
 router.post('/:id/reviews', validateReview, requireAuth, async (req, res, next) => {
     const spot = await Spot.findByPk(req.params.id)
