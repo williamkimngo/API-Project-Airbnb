@@ -286,7 +286,18 @@ router.get('/', async (req, res, next) => {
         })
 
         let allSpot = spot.toJSON()
-        allSpot.avgRating = (Number(avg[0].average))
+
+        // let number = (parseFloat(`${avg[0].average}`));
+
+
+         let numberWithDecimal = parseFloat(`${avg[0].average}`)
+        let newNumber = (parseFloat(numberWithDecimal).toFixed(1))
+
+         console.log(avg)
+         console.log(numberWithDecimal)
+         console.log(newNumber)
+
+        allSpot.avgRating = newNumber
         allSpot.previewImage = image.url
         allSpots.push(allSpot)
     }
