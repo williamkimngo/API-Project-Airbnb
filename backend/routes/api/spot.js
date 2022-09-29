@@ -274,8 +274,10 @@ router.get('/', async (req, res, next) => {
         const avg = await Review.findAll({
             where: { spotId: spot.id },
             attributes: [[sequelize.fn('AVG', sequelize.col('stars')), 'average']],
+            // attributes: [[sequelize.fn('AVG', sequelize.col('stars')), 'average']],
             raw: true
         })
+        console.log(avg)
         const image = await SpotImage.findOne({
             where: {
                 spotId: spot.id,
@@ -284,16 +286,9 @@ router.get('/', async (req, res, next) => {
             attributes: ['url'],
             raw: true
         })
-
         let allSpot = spot.toJSON()
-
-        // let number = (parseFloat(`${avg[0].average}`));
-
-
          let numberWithDecimal = parseFloat(`${avg[0].average}`)
         let newNumber = (parseFloat(numberWithDecimal).toFixed(1))
-
-         console.log(avg)
          console.log(numberWithDecimal)
          console.log(newNumber)
 
