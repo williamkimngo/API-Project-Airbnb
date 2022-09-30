@@ -168,7 +168,15 @@ router.get('/current', requireAuth, async (req, res, next) => {
             attributes: [[sequelize.fn('AVG', sequelize.col('stars')), 'average']],
             raw: true
         })
-        spot.avgRating = (Number(avg[0].average))
+
+        let numberWithDecimal = parseFloat(`${avg[0].average}`)
+        let newNumber = (parseFloat(numberWithDecimal).toFixed(1))
+        if (newNumber == "NaN"){
+            spot.avgRating = "There is no Rating attached to this user"
+        } else {
+        spot.avgRating = newNumber
+        }
+
     }
     for (const spot of userSpots) {
         const image = await SpotImage.findAll({
@@ -274,7 +282,6 @@ router.get('/', async (req, res, next) => {
         const avg = await Review.findAll({
             where: { spotId: spot.id },
             attributes: [[sequelize.fn('AVG', sequelize.col('stars')), 'average']],
-            // attributes: [[sequelize.fn('AVG', sequelize.col('stars')), 'average']],
             raw: true
         })
         console.log(avg)
