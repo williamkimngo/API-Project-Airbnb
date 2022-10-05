@@ -202,7 +202,7 @@ router.get('/:id', async (req, res) => {
         res.status(404)
         res.json({
             "message": "Spot couldn't be found",
-            "statusCode": 404
+            "statusCode": 404   
         })
     } else {
         const reviewData = await Review.findAll({
