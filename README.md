@@ -1,5 +1,5 @@
 # BallBnB
-![image]()
+<!-- ![image]() -->
 
 
 ***
@@ -32,7 +32,7 @@ Psuedo code of the specific features that will be applied and demonstrates the s
 ## Built With
 
 JAVASCRIPT
-HTML
+HTML5
 CSS
 NODE.JS
 EXPRESS.JS
