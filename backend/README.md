@@ -1,4 +1,4 @@
-# API-Project-Airbnb
+# BallBnB BackEnd
 #
 
 ## Database Schema Design
