@@ -23,20 +23,18 @@ Attached is the image of the SQLite3 database schema
 
 [FEATURE LIST](https://github.com/williamkimngo/API-Project-Airbnb/wiki/FEATURE-LIST)
 
-[REDUX STORE SHAPE]
-<!-- <li><a>Database Schema</a></li>
-<li><a>Feature List</a></li>
-<li><a>FrontEnd Routes</a></li> -->
+Details of specific feature functionality of the application
 
-### Built With
+[REDUX STORE SHAPE](https://github.com/williamkimngo/API-Project-Airbnb/wiki/REDUX-STORE-SHAPE)
 
-* [![Next][Next.js]][Next-url]
-* [![React][React.js]][React-url]
-* [![Vue][Vue.js]][Vue-url]
-* [![Angular][Angular.io]][Angular-url]
-* [![Svelte][Svelte.dev]][Svelte-url]
-* [![Laravel][Laravel.com]][Laravel-url]
-* [![Bootstrap][Bootstrap.com]][Bootstrap-url]
-* [![JQuery][JQuery.com]][JQuery-url]
+Psuedo code of the specific features that will be applied and demonstrates the state of the Redux Store.
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+## Built With
+
+JAVASCRIPT
+HTML
+CSS
+NODE.JS
+EXPRESS.JS
+REACT
+REDUX
