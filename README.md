@@ -1,5 +1,5 @@
 # BallBnB
-![image](https://raw.githubusercontent.com/williamkimngo/API-Project-Airbnb/main/assets/ballbnb2.png)
+![image](https://raw.githubusercontent.com/williamkimngo/API-Project-Airbnb/main/assets/ballbnb3.png)
 
 ***
 ### AirBnB Clone
