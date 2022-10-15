@@ -202,7 +202,7 @@ router.get('/:id', async (req, res) => {
         res.status(404)
         res.json({
             "message": "Spot couldn't be found",
-            "statusCode": 404   
+            "statusCode": 404
         })
     } else {
         const reviewData = await Review.findAll({
@@ -300,7 +300,7 @@ router.get('/', async (req, res, next) => {
          console.log(newNumber)
 
         allSpot.avgRating = newNumber
-        allSpot.previewImage = image.url
+        // allSpot.previewImage = image.url
         allSpots.push(allSpot)
     }
     res.json({ Spots: allSpots, page: page, size: size })

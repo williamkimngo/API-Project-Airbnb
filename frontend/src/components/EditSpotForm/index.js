@@ -1,25 +1,32 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useHistory, useParams } from "react-router-dom"
-import { actionUpdateSpot } from "../../store/spots"
+import { actionUpdateSpot, getSpots } from "../../store/spots"
 
 
-const EditSpotForm = () => {
+const EditSpotForm = ({spots}) => {
     const dispatch = useDispatch()
     const history = useHistory()
     const {spotId} = useParams()
-    const spotsObj = useSelector(state => state.spots.allSpots)
-    const specificSpot = spotsObj[spotId]
-
-    const [address, setAddress] = useState(specificSpot.address)
-    const [city, setCity] = useState(specificSpot.city);
-    const [state, setState] = useState(specificSpot.state);
-    const [country, setCountry] = useState(specificSpot.country);
-    const [lat, setLat] = useState(specificSpot.lat);
-    const [lng, setLng] = useState(specificSpot.lng);
-    const [name, setName] = useState(specificSpot.name);
-    const [description, setDescription] = useState(specificSpot.description);
-    const [price, setPrice] = useState(specificSpot.price);
+   //  const pokemon = useSelector(state => state.pokemon[pokemonId]);
+    useEffect(() => {
+      dispatch(getSpots())
+    }, [dispatch])
+    console.log("THIS is SPOTID", spotId)
+    const targetSpot = useSelector(state => state.spots.allSpots[spotId])
+    
+    console.log("THIS IS SPOTSOBJ", targetSpot)
+   //  const targetSpot = targetSpot.spotId
+   // console.log("This is specific spot", targetSpot)
+    const [address, setAddress] = useState(targetSpot.address)
+    const [city, setCity] = useState(targetSpot.city);
+    const [state, setState] = useState(targetSpot.state);
+    const [country, setCountry] = useState(targetSpot.country);
+    const [lat, setLat] = useState(targetSpot.lat);
+    const [lng, setLng] = useState(targetSpot.lng);
+    const [name, setName] = useState(targetSpot.name);
+    const [description, setDescription] = useState(targetSpot.description);
+    const [price, setPrice] = useState(targetSpot.price);
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -36,7 +43,7 @@ const EditSpotForm = () => {
             price
         }
 
-        let editedSpot = dispatch(actionUpdateSpot(payload, specificSpot.id))
+        let editedSpot = dispatch(actionUpdateSpot(payload, targetSpot.id))
         if(editedSpot){
             history.push('/')
         }
