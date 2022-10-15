@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux"
 import { useHistory } from "react-router-dom"
 import { actionAddSpot } from "../../store/spots"
 
-
+//NEED TO DO ERROR VALIDATIONS!!!
 const CreateSpotForm = () => {
     const dispatch = useDispatch()
     const history = useHistory()
@@ -123,7 +123,7 @@ const CreateSpotForm = () => {
             type='number'
             value={price}
             onChange={e => setPrice(Number(e.target.value))}
-      
+
             />
          </label>
 
