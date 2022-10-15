@@ -7,12 +7,14 @@ import Navigation from "./components/Navigation";
 import AllSpots from './components/Spots'
 import CreateSpotForm from "./components/CreateSpotForm";
 import EditSpotForm from "./components/EditSpotForm";
+import { getSpots } from "./store/spots";
 
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
   useEffect(() => {
     dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
+    dispatch(getSpots()) //need to edit. 
   }, [dispatch]);
 
   return (

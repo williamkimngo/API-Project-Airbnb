@@ -8,25 +8,25 @@ const EditSpotForm = ({spots}) => {
     const dispatch = useDispatch()
     const history = useHistory()
     const {spotId} = useParams()
-   //  const pokemon = useSelector(state => state.pokemon[pokemonId]);
-    useEffect(() => {
-      dispatch(getSpots())
-    }, [dispatch])
+
     console.log("THIS is SPOTID", spotId)
     const targetSpot = useSelector(state => state.spots.allSpots[spotId])
-    
-    console.log("THIS IS SPOTSOBJ", targetSpot)
+    console.log("THIS IS targetSpot", targetSpot)
+   //  const specificSpot = targetSpot[spotId]
+   //  console.log("THIS IS SPECFIC", specificSpot)
    //  const targetSpot = targetSpot.spotId
    // console.log("This is specific spot", targetSpot)
-    const [address, setAddress] = useState(targetSpot.address)
-    const [city, setCity] = useState(targetSpot.city);
-    const [state, setState] = useState(targetSpot.state);
-    const [country, setCountry] = useState(targetSpot.country);
-    const [lat, setLat] = useState(targetSpot.lat);
-    const [lng, setLng] = useState(targetSpot.lng);
-    const [name, setName] = useState(targetSpot.name);
-    const [description, setDescription] = useState(targetSpot.description);
-    const [price, setPrice] = useState(targetSpot.price);
+   // console.log("BLAH ADDRESS", targetSpot.address)
+
+    const [address, setAddress] = useState(targetSpot?.address)
+    const [city, setCity] = useState(targetSpot?.city);
+    const [state, setState] = useState(targetSpot?.state);
+    const [country, setCountry] = useState(targetSpot?.country);
+    const [lat, setLat] = useState(targetSpot?.lat);
+    const [lng, setLng] = useState(targetSpot?.lng);
+    const [name, setName] = useState(targetSpot?.name);
+    const [description, setDescription] = useState(targetSpot?.description);
+    const [price, setPrice] = useState(targetSpot?.price);
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -50,7 +50,7 @@ const EditSpotForm = ({spots}) => {
     }
     return (
         <form className='Create-Spot-Form' onSubmit={handleSubmit}>
-        <h2>Create a Spot</h2>
+        <h2>Edit a Spot</h2>
         <label>
            Address
            <input
