@@ -1,12 +1,12 @@
-import { useState } from "react"
-import { useDispatch } from "react-redux"
+import { useState, useEffect } from "react"
+import { useDispatch, useSelector } from "react-redux"
 import { useHistory } from "react-router-dom"
 import { actionAddSpot } from "../../store/spots"
 
-//NEED TO DO ERROR VALIDATIONS!!!
 const CreateSpotForm = () => {
     const dispatch = useDispatch()
     const history = useHistory()
+    const sessionUser = useSelector(state => state.session.user)
     const [address, setAddress] = useState('')
     const [city, setCity] = useState("");
     const [state, setState] = useState("");
@@ -16,10 +16,35 @@ const CreateSpotForm = () => {
     const [name, setName] = useState("");
     const [description, setDescription] = useState("");
     const [price, setPrice] = useState(0);
+    const [url, setUrl] = useState("");
+    const [errors, setErrors] = useState([]);
+    const [validationErrors, setValidationErrors] = useState([]);
 
-    const handleSubmit = (e) => {
+    useEffect(() => {
+      let errors = [];
+
+      if (!url.includes('.com') && !url.includes('.jpg') && !url.includes('.png') && !url.includes('.jpeg')) {
+        errors.push('please provide a valide image URL!')
+      }
+      if (!(Number(price) > 0)) {
+        errors.push('please provide a valide price!')
+      }
+      if (!(Number(lat) > -90) && !(Number(lat) < 90)) {
+        errors.push('please provide a valide latitude!')
+      }
+      if (!(Number(lng) > -180) && !(Number(lng) < 180)) {
+        errors.push('please provide a valide Longitude!')
+      }
+      setValidationErrors(errors)
+    }, [url, price, lat, lng])
+
+    const handleSubmit = async (e) => {
         e.preventDefault()
-
+        if (validationErrors.length) {
+         return
+         }
+         setErrors([]);
+         setValidationErrors([]);
         const payload = {
             address,
             city,
@@ -32,7 +57,7 @@ const CreateSpotForm = () => {
             price
         }
 
-        let createdSpot = dispatch(actionAddSpot(payload))
+        let createdSpot = await dispatch(actionAddSpot(payload))
         if(createdSpot){
             history.push('/')
         }

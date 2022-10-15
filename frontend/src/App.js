@@ -7,6 +7,8 @@ import Navigation from "./components/Navigation";
 import AllSpots from './components/Spots'
 import CreateSpotForm from "./components/CreateSpotForm";
 import EditSpotForm from "./components/EditSpotForm";
+import SpotDetail from "./components/SpotDetail";
+import OwnerSpots from "./components/OwnerSpots";
 import { getSpots } from "./store/spots";
 
 function App() {
@@ -14,7 +16,7 @@ function App() {
   const [isLoaded, setIsLoaded] = useState(false);
   useEffect(() => {
     dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
-    dispatch(getSpots()) //need to edit. 
+    dispatch(getSpots()) //need to edit.
   }, [dispatch]);
 
   return (
@@ -27,6 +29,9 @@ function App() {
           </Route>
           <Route path={'/spots/new'} component={CreateSpotForm}/>
           <Route path={'/'} exact component={AllSpots}/>
+          <Route path={'/spots'} exact component={AllSpots}/>
+          <Route path={'/spots/:spotId'} exact component={SpotDetail}/>
+          <Route path={'/current'} exact component={OwnerSpots}/>
           <Route path={'/spots/:spotId/edit'} component={EditSpotForm}/>
         </Switch>
       )}
