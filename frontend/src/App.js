@@ -20,6 +20,7 @@ function App() {
           <Route path="/signup">
             <SignupFormPage />
           </Route>
+          <Route path={'/'} exact component={allSpots}/>
         </Switch>
       )}
     </>
