@@ -1,12 +1,19 @@
 import React, { useState } from "react";
 import * as sessionActions from "../../store/session";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import {Redirect} from 'react-router-dom'
 
 function LoginForm() {
   const dispatch = useDispatch();
+  const sessionUser = useSelector(state => state.session.user)
   const [credential, setCredential] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState([]);
+
+
+  if(sessionUser) return (
+    <Redirect to="/" />
+  );
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -20,7 +27,7 @@ function LoginForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className="login-form-container" onSubmit={handleSubmit}>
       <ul>
         {errors.map((error, idx) => (
           <li key={idx}>{error}</li>
@@ -45,6 +52,14 @@ function LoginForm() {
         />
       </label>
       <button type="submit">Log In</button>
+      <button
+      onClick={() => dispatch(sessionActions.login({
+        credential: "Demo-lition",
+        password: "password"
+      }))}
+    >
+      Demo User
+      </button>
     </form>
   );
 }
