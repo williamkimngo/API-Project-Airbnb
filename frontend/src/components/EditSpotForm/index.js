@@ -4,14 +4,14 @@ import { useHistory, useParams } from "react-router-dom"
 import { actionDeleteSpot, actionUpdateSpot, getOneSpot } from "../../store/spots"
 
 
-const EditSpotForm = ({spots}) => {
+const EditSpotForm = () => {
     const dispatch = useDispatch()
     const sessionUser = useSelector(state => state.session.user)
     const history = useHistory()
     const {spotId} = useParams()
-    console.log("THIS is SPOTID", spotId)
+   //  console.log("THIS is SPOTID", spotId)
     const targetSpot = useSelector(state => state.spots.allSpots[spotId])
-    console.log("THIS IS targetSpot", targetSpot)
+   //  console.log("THIS IS targetSpot", targetSpot)
    //  const specificSpot = targetSpot[spotId]
    //  console.log("THIS IS SPECFIC", specificSpot)
    //  const targetSpot = targetSpot.spotId
@@ -27,26 +27,26 @@ const EditSpotForm = ({spots}) => {
     const [description, setDescription] = useState(targetSpot?.description);
     const [price, setPrice] = useState(targetSpot?.price);
     const [errors, setErrors] = useState([])
-    const [validationErrors, setValidationErrors] = useState([])
+   //  const [validationErrors, setValidationErrors] = useState([])
    useEffect(() => {
       dispatch(getOneSpot(spotId))
    }, [spotId, dispatch])
 
-   useEffect(()=> {
-      let errors = [];
+   // useEffect(()=> {
+   //    let errors = [];
 
-        if (!(Number(price) > 0)) {
-            errors.push('please provide a valide price!')
-        }
-        if (!(Number(lat) > -90) && !(Number(lat) < 90)) {
-            errors.push('please provide a valide latitude!')
-        }
-        if (!(Number(lng) > -180) && !(Number(lng) < 180)) {
-            errors.push('please provide a valide Longitude!')
-        }
-        // console.log(typeof price)
-        setValidationErrors(errors)
-    }, [price, lat, lng])
+   //      if (!(Number(price) > 0)) {
+   //          errors.push('please provide a valide price!')
+   //      }
+   //      if (!(Number(lat) > -90) && !(Number(lat) < 90)) {
+   //          errors.push('please provide a valide latitude!')
+   //      }
+   //      if (!(Number(lng) > -180) && !(Number(lng) < 180)) {
+   //          errors.push('please provide a valide Longitude!')
+   //      }
+   //      // console.log(typeof price)
+   //      setValidationErrors(errors)
+   //  }, [price, lat, lng])
     const handleSubmit = async (e) => {
         e.preventDefault()
 
@@ -64,20 +64,18 @@ const EditSpotForm = ({spots}) => {
         }
 
         let editedSpot = await dispatch(actionUpdateSpot(payload, spotId))
-        if (validationErrors.length || errors.length){
-         return
-        }
-        setErrors([])
-        if(editedSpot){
-            history.push(`/spots/${spotId}`)
+        .catch(async (res) => {
+         const data = await res.json();
+         if (data && data.errors) {
+            setErrors(data.errors)
+         }
+         });
+
+        if(editedSpot && !errors.length){
+            history.push('/current')
         }
     }
 
-    const handleDelete = async (e) => {
-      e.preventDefault()
-      let deletedSpot = await dispatch(actionDeleteSpot(spotId))
-      history.push('/')
-    }
     return (
       <div>
         <form className='Edit-Spot-Form' onSubmit={handleSubmit}>
@@ -174,8 +172,6 @@ const EditSpotForm = ({spots}) => {
 
         <button type="submit">Edit Spot</button>
      </form>
-
-   <button onClick={handleDelete}>DELETE THIS SPOT!</button>
    </div>
 
     )

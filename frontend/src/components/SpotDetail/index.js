@@ -1,13 +1,13 @@
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { useParams } from "react-router-dom"
+import { useParams, NavLink } from "react-router-dom"
 import { getOneSpot } from "../../store/spots"
 
 const SpotDetail = () => {
     const dispatch = useDispatch()
     const { spotId } = useParams()
     const sessionUser = useSelector(state => state.session.user)
-    let currentSpot = useSelector(state => state.spots[spotId])
+    let currentSpot = useSelector(state => state.spots.specificSpot)
 
     useEffect(() => {
         dispatch(getOneSpot(spotId))
@@ -16,6 +16,7 @@ const SpotDetail = () => {
     if(!currentSpot){
         return null
     }
+
     return (
         <div className="Spot-Detail-container">
             <h1>{currentSpot.name}</h1>
@@ -27,7 +28,7 @@ const SpotDetail = () => {
                 {currentSpot.city}, {currentSpot.state}, {currentSpot.country}
             </div>
             <div className="Spot-detail-description-container">
-                <h2 className="spot-detail-name">{currentSpot.name} hosted by {currentSpot.Owner.firstName}</h2>
+                <h2 className="spot-detail-name">{currentSpot.name} hosted by {currentSpot.Owner?.firstName}</h2>
 
             </div>
             <div className="spot-detail-name">{currentSpot.description}</div>

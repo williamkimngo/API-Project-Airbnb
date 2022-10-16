@@ -57,7 +57,7 @@ export const getOneSpot = (spotId) => async dispatch => {
     if(res.ok){
         const currentSpot = await res.json()
         dispatch(loadOneSpot(currentSpot))
-        return currentSpot
+        return res
     }
 }
 
@@ -98,7 +98,8 @@ export const actionDeleteSpot = (spotId) => async dispatch => {
 }
 
 const initialState = {
-    allSpots: {}
+    allSpots: {},
+    specificSpot: {}
 }
 const spotsReducer = (state = initialState, action) => {
     switch(action.type){
@@ -108,9 +109,9 @@ const spotsReducer = (state = initialState, action) => {
             return newState
         }
         case GET_ONE_SPOT: {
-            const oneState = {...state}
-            oneState[action.spot.id] = action.spot
-            return oneState
+            const oneState = {...state, allSpots: {...state.allSpots}};
+            oneState.specificSpot = action.spot;
+            return oneState;
 
         }
         case ADD_SPOT: {
