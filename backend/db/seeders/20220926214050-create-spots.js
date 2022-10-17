@@ -62,7 +62,67 @@ module.exports = {
         name: "Lincoln Financial Field",
         description: "Chase Center is an indoor arena in the Mission Bay neighborhood of San Francisco, California. The building is the home venue for the Golden State Warriors of the National Basketball Association.",
         price: 2500
-      }
+      },
+      {
+        ownerId: 1,
+        address: "3900 W Manchester Blvd",
+        city: "Inglewood",
+        state: "California",
+        country: "United States of America",
+        lat: 33.95,
+        lng: 118.34,
+        name: "The Kia Forum",
+        description: "Kia Forum is a multi-purpose indoor arena in Inglewood, California, United States, adjacent to Los Angeles",
+        price: 1500
+      },
+      {
+        ownerId: 2,
+        address: "601 Biscayne Blvd",
+        city: "Miami",
+        state: "Florida",
+        country: "United States of America",
+        lat: 25.78,
+        lng: 80.18,
+        name: "FTX Arena",
+        description: "The FTX Arena is a multi-purpose arena located in Miami, Florida, along Biscayne Bay",
+        price: 1800
+      },
+      {
+        ownerId: 3,
+        address: "7000 S Coliseum Way",
+        city: "Oakland",
+        state: "California",
+        country: "United States of America",
+        lat: 37.75,
+        lng: 122.20,
+        name: "Oracle Arena",
+        description: "Oracle Arena is an indoor arena located in Oakland, California, United States",
+        price: 1800
+      },
+      {
+        ownerId: 4,
+        address: "1 Patriot Pl",
+        city: "Foxborough",
+        state: "Massachusetts",
+        country: "United States of America",
+        lat: 42.09,
+        lng: 71.26,
+        name: "Gillette Stadium",
+        description: "Gillette Stadium is a multi-purpose stadium located in the town of Foxborough, Massachusetts, which is 22 miles southwest of downtown Boston. It serves as the home stadium and administrative offices for both the New England Patriots of the National Football League and the New England Revolution of Major League Soccer. ",
+        price: 1400
+      },
+      {
+        ownerId: 5,
+        address: "1185 Asp Ave",
+        city: "Norman",
+        state: "Oklahoma",
+        country: "United States of America",
+        lat: 35.20,
+        lng: 97.44,
+        name: "Oklahoma Memorial Stadium",
+        description: "Oklahoma Memorial Stadium is the football stadium on the campus of the University of Oklahoma in Norman, Oklahoma. It serves as the home of the Oklahoma Sooners football team. ",
+        price: 1100
+      },
     ])
   },
 

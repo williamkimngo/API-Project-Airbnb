@@ -28,6 +28,31 @@ module.exports = {
         url:"yellow.com",
         preview: true
       },
+      {
+        spotId: 6,
+        url:"abc.com",
+        preview: true
+      },
+      {
+        spotId: 7,
+        url:"cba.com",
+        preview: true
+      },
+      {
+        spotId: 8,
+        url:"cab.com",
+        preview: true
+      },
+      {
+        spotId: 9,
+        url:"pow.com",
+        preview: true
+      },
+      {
+        spotId: 10,
+        url:"cat.com",
+        preview: true
+      },
     ])
     /**
      * Add seed commands here.

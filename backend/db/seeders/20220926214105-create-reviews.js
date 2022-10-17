@@ -63,6 +63,66 @@ module.exports = {
         review: "No complaints. Standard Football stadium",
         stars: 4
       },
+      {
+        spotId: 6,
+        userId: 3,
+        review: "Old arena, no wonder the Lakers don't play here anymore. ",
+        stars: 2
+      },
+      {
+        spotId: 6,
+        userId: 4,
+        review: "Okay arena, nothing special, needs renovations",
+        stars: 3
+      },
+      {
+        spotId: 7,
+        userId: 1,
+        review: "Beautiful arena, very modern, great city.",
+        stars: 5
+      },
+      {
+        spotId: 7,
+        userId: 3,
+        review: "No complaints. Standard Arena",
+        stars: 4
+      },
+      {
+        spotId: 8,
+        userId: 1,
+        review: "Warriors moved out of this arena for a reason",
+        stars: 2
+      },
+      {
+        spotId: 8,
+        userId: 2,
+        review: "I have one amazing memory at this arena, winning the NBA finals but happy to never have to come back here again. ",
+        stars: 3
+      },
+      {
+        spotId: 9,
+        userId: 3,
+        review: "No complaints. Standard Football stadium. Very Cold during football season.",
+        stars: 4
+      },
+      {
+        spotId: 9,
+        userId: 5,
+        review: "Great stadium to play for, the fans are amazing.",
+        stars: 5
+      },
+      {
+        spotId: 10,
+        userId: 4,
+        review: "No complaints. Standard Football stadium",
+        stars: 3
+      },
+      {
+        spotId: 10,
+        userId: 2,
+        review: "Spacious arena, always enjoy a football game here",
+        stars: 4
+      },
     ])
   },
 

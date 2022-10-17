@@ -33,6 +33,36 @@ module.exports = {
         startDate: new Date('December 27, 2022'),
         endDate: new Date('December 30, 2022')
       }
+      {
+        spotId: 6,
+        userId: 1,
+        startDate: new Date('December 21, 2022'),
+        endDate: new Date('December 25, 2022')
+      },
+      {
+        spotId: 7,
+        userId: 2,
+        startDate: new Date('December 26, 2022'),
+        endDate: new Date('December 30, 2022')
+      },
+      {
+        spotId: 8,
+        userId: 3,
+        startDate: new Date('December 15, 2022'),
+        endDate: new Date('December 17, 2022')
+      },
+      {
+        spotId: 9,
+        userId: 4,
+        startDate: new Date('December 15, 2022'),
+        endDate: new Date('December 19, 2022')
+      },
+      {
+        spotId: 10,
+        userId: 5,
+        startDate: new Date('December 14, 2022'),
+        endDate: new Date('December 21, 2022')
+      }
     ])
     /**
      * Add seed commands here.
