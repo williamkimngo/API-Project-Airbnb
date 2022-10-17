@@ -1,6 +1,7 @@
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useParams, NavLink } from "react-router-dom"
+import { actionGetSpotReview } from "../../store/reviews"
 import { getOneSpot } from "../../store/spots"
 
 const SpotDetail = () => {
@@ -8,13 +9,23 @@ const SpotDetail = () => {
     const { spotId } = useParams()
     const sessionUser = useSelector(state => state.session.user)
     let currentSpot = useSelector(state => state.spots.specificSpot)
+    const spotReview = useSelector(state => Object.values(state.reviews.spot))
 
     useEffect(() => {
         dispatch(getOneSpot(spotId))
+        dispatch(actionGetSpotReview(spotId))
     }, [dispatch, spotId])
 
-    if(!currentSpot){
+    if(!currentSpot || !spotReview){
         return null
+    }
+
+    let allowCreate = false
+    if(sessionUser){
+        let ownerReview = spotReview.find(review => review.userId === sessionUser.id)
+        if((sessionUser.id !==currentSpot.ownerId) && !ownerReview){
+            allowCreate = true
+        }
     }
 
     return (
@@ -43,6 +54,27 @@ const SpotDetail = () => {
                     <span> {currentSpot.avgStarRating} · {currentSpot.numReviews} reviews</span>
                 </span>
             </div>
+            <div>
+                <div className="price-line-container">
+                    <span>
+                        <span>${currentSpot.price}</span>
+                        <span> x3 nights</span>
+                    </span>
+                    <span>${currentSpot.price * 3}</span>
+                </div>
+                <div className="price-line-container">
+                    <span>Cleaning Fee</span>
+                    <span>${currentSpot.price / 5}</span>
+                </div>
+                <div className="price-line-container">
+                    <span>Service Fee</span>
+                    <span>${currentSpot.price / 10}</span>
+                </div>
+                <div className="price-line-container">
+                    <span>Total before taxes</span>
+                    <span>${(currentSpot.price * 3) + (currentSpot.price / 5) + (currentSpot.price / 10)}</span>
+                </div>
+            </div>
             <div className="spot-detail-review-container"></div>
             <div>
                 <h2>
@@ -51,6 +83,16 @@ const SpotDetail = () => {
                 <span> · </span>
                 <span> {currentSpot.numReviews} reviews </span>
                 </h2>
+                {allowCreate && <NavLink to={`/spots/${spotId}/reviews/new`}> Leave a Review</NavLink>}
+                {spotReview.map(review => (
+                    <div className='single-review-container' key={review.id}>
+                        <div className='review-name'>{review?.User?.firstName || "You Just posted"}</div>
+                        <div className='review-date'>{review?.createdAt.slice(0, 7)}</div>
+                        <div className='review-text'>{review.review}</div>
+                        <div>{review.stars} star</div>
+                        </div>
+
+                ))}
 
             </div>
             <div></div>
