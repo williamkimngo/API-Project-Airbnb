@@ -108,7 +108,7 @@ module.exports = {
         lat: 42.09,
         lng: 71.26,
         name: "Gillette Stadium",
-        description: "Gillette Stadium is a multi-purpose stadium located in the town of Foxborough, Massachusetts, which is 22 miles southwest of downtown Boston. It serves as the home stadium and administrative offices for both the New England Patriots of the National Football League and the New England Revolution of Major League Soccer. ",
+        description: "Gillette Stadium is a multi-purpose stadium located in the town of Foxborough, Massachusetts, which is 22 miles southwest of downtown Boston. It serves as the home stadium for the New England Patriots. ",
         price: 1400
       },
       {
