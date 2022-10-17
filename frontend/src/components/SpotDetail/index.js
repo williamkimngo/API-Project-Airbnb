@@ -1,6 +1,7 @@
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useParams, NavLink } from "react-router-dom"
+import { actionGetSpotReview } from "../../store/reviews"
 import { getOneSpot } from "../../store/spots"
 
 const SpotDetail = () => {
@@ -8,13 +9,23 @@ const SpotDetail = () => {
     const { spotId } = useParams()
     const sessionUser = useSelector(state => state.session.user)
     let currentSpot = useSelector(state => state.spots.specificSpot)
+    const spotReview = useSelector(state => Object.values(state.reviews.spot))
 
     useEffect(() => {
         dispatch(getOneSpot(spotId))
+        dispatch(actionGetSpotReview(spotId))
     }, [dispatch, spotId])
 
-    if(!currentSpot){
+    if(!currentSpot || !spotReview){
         return null
+    }
+
+    let allowCreate = false
+    if(sessionUser){
+        let ownerReview = spotReview.find(review => review.userId === sessionUser.id)
+        if((sessionUser.id !==specificSpot.ownerId) && !ownerReview){
+            allowCreate = true
+        }
     }
 
     return (
