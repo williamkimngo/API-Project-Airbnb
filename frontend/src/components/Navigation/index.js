@@ -23,13 +23,24 @@ function Navigation({ isLoaded }){
   }
 
   return (
+    <div className='navigation-bar'>
     <ul>
       <li>
-        <NavLink exact to="/">Home</NavLink>
-        <NavLink to={'/spots/new'}>Become a Host</NavLink>
+        <NavLink exact to="/">
+          <img src='https://i.imgur.com/pcQ7lcp.png' className='home-logo'></img>
+          </NavLink>
+          </li>
+
+          <div className='nav-bar-right-side'>
+            <li>
+        <NavLink className='host-spot' to={'/spots/new'}>Become a Host</NavLink>
+        </li>
+        <li>
         {isLoaded && sessionLinks}
       </li>
+      </div>
     </ul>
+    </div>
   );
 }
 

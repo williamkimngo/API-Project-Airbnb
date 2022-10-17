@@ -23,7 +23,7 @@ const SpotDetail = () => {
     let allowCreate = false
     if(sessionUser){
         let ownerReview = spotReview.find(review => review.userId === sessionUser.id)
-        if((sessionUser.id !==specificSpot.ownerId) && !ownerReview){
+        if((sessionUser.id !==currentSpot.ownerId) && !ownerReview){
             allowCreate = true
         }
     }
@@ -54,6 +54,27 @@ const SpotDetail = () => {
                     <span> {currentSpot.avgStarRating} · {currentSpot.numReviews} reviews</span>
                 </span>
             </div>
+            <div>
+                <div className="price-line-container">
+                    <span>
+                        <span>${currentSpot.price}</span>
+                        <span> x3 nights</span>
+                    </span>
+                    <span>${currentSpot.price * 3}</span>
+                </div>
+                <div className="price-line-container">
+                    <span>Cleaning Fee</span>
+                    <span>${currentSpot.price / 5}</span>
+                </div>
+                <div className="price-line-container">
+                    <span>Service Fee</span>
+                    <span>${currentSpot.price / 10}</span>
+                </div>
+                <div className="price-line-container">
+                    <span>Total before taxes</span>
+                    <span>${(currentSpot.price * 3) + (currentSpot.price / 5) + (currentSpot.price / 10)}</span>
+                </div>
+            </div>
             <div className="spot-detail-review-container"></div>
             <div>
                 <h2>
@@ -62,6 +83,16 @@ const SpotDetail = () => {
                 <span> · </span>
                 <span> {currentSpot.numReviews} reviews </span>
                 </h2>
+                {allowCreate && <NavLink to={`/spots/${spotId}/reviews/new`}> Leave a Review</NavLink>}
+                {spotReview.map(review => (
+                    <div className='single-review-container' key={review.id}>
+                        <div className='review-name'>{review?.User?.firstName || "You Just posted"}</div>
+                        <div className='review-date'>{review?.createdAt.slice(0, 7)}</div>
+                        <div className='review-text'>{review.review}</div>
+                        <div>{review.stars} star</div>
+                        </div>
+
+                ))}
 
             </div>
             <div></div>
