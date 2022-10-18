@@ -11,7 +11,7 @@ const SpotDetail = () => {
     let currentSpot = useSelector(state => state.spots.specificSpot)
     let currentSpotArr = Object.values(currentSpot)
 
-    console.log("CURRRENT SPOT!!!!!!", currentSpot)
+    // console.log("CURRRENT SPOT!!!!!!", currentSpot)
     const spotReview = useSelector(state => Object.values(state.reviews.spot))
     // let imgSpot = useSelector(state => state.spots.allSpots[spotId])
     useEffect(() => {
@@ -30,7 +30,7 @@ const SpotDetail = () => {
             allowCreate = true
         }
     }
-    console.log("IMAGEPLS!!!!", currentSpot.SpotImages)
+    // console.log("IMAGEPLS!!!!", currentSpot.SpotImages)
     // let extraImagesArr = specificSpot.SpotImages?.slice(1);
     if(!currentSpotArr.length){
         return null

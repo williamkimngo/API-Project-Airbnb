@@ -2,6 +2,7 @@ import { useState, useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useHistory } from "react-router-dom"
 import { actionAddSpot, actionAddImageUrl } from "../../store/spots"
+import SpotDetail from "../SpotDetail"
 
 const CreateSpotForm = () => {
    const dispatch = useDispatch()
@@ -16,10 +17,18 @@ const CreateSpotForm = () => {
    const [name, setName] = useState("");
    const [description, setDescription] = useState("");
    const [price, setPrice] = useState(0);
+   const [url, setUrl] = useState("")
    const [img, setImg] = useState("")
    const [errors, setErrors] = useState([]);
    const [validationErrors, setValidationErrors] = useState([]);
 
+   // useEffect(() => {
+   //    let errors = []
+   //    if (!url.includes('.com') && !url.includes('.jpg') && !url.includes('.png') && !url.includes('.jpeg')) {
+   //       errors.push('please provide a valide image URL!')
+   //     }
+   //     setValidationErrors(errors)
+   // }, [url])
    const handleSubmit = async (e) => {
       console.log("IMAGWEEEE", img)
       e.preventDefault()
@@ -29,6 +38,7 @@ const CreateSpotForm = () => {
       setErrors([]);
       setValidationErrors([]);
       const payload = {
+
          address,
          city,
          state,
@@ -43,13 +53,15 @@ const CreateSpotForm = () => {
          url: img,
          preview: true
       }
-
-      let createdSpot = dispatch(actionAddSpot(payload))
+      // console.log("PAYLOADSPOT!", payload)
+      let createdSpot = await dispatch(actionAddSpot(payload))
          .catch(async (res) => {
             const data = await res.json();
             if (data && data.errors) setErrors(data.errors);
          });
-         console.log("PAYLOAD!!!!", payloadImg)
+         // console.log("PAYLOAD!!!!", payloadImg)
+         // console.log("CREATESDSPOT", createdSpot)
+         // console.log("CREATEDSPOTID!!!!", createdSpot.id)
 
       if(createdSpot){
          let newImg = await dispatch(actionAddImageUrl(payloadImg, createdSpot.id)).catch(async (res) => {
