@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useHistory, useParams } from "react-router-dom"
-import { actionDeleteSpot, actionUpdateSpot, getOneSpot } from "../../store/spots"
+import {actionUpdateSpot, getOneSpot } from "../../store/spots"
 
 
 const EditSpotForm = () => {
@@ -80,6 +80,9 @@ const EditSpotForm = () => {
       <div>
         <form className='Edit-Spot-Form' onSubmit={handleSubmit}>
         <h2>Edit a Spot</h2>
+        <ul>
+        {errors.map((error, idx) => <li key={idx}>{error}</li>)}
+        </ul>
         <label>
            Address
            <input

@@ -24,7 +24,7 @@ function Navigation({ isLoaded }){
 
   return (
     <div className='navigation-bar'>
-    <ul>
+    <ul className='Navigation-List'>
       <li>
         <NavLink exact to="/">
           <img src='https://i.imgur.com/pcQ7lcp.png' className='home-logo'></img>

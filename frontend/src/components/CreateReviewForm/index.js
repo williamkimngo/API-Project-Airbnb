@@ -107,3 +107,5 @@ const CreateReviewForm = () => {
         </div>
     )
 }
+
+export default CreateReviewForm

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import * as sessionActions from "../../store/session";
 import { useDispatch, useSelector } from "react-redux";
 import {Redirect} from 'react-router-dom'
+import './LoginForm.css'
 
 function LoginForm() {
   const dispatch = useDispatch();
@@ -27,6 +28,9 @@ function LoginForm() {
   };
 
   return (
+    <div className="login-modal">
+      <h1 id='Log-In'>Log In</h1>
+      <h2 id="login-welcome"> Welcome to Ballbnb</h2>
     <form className="login-form-container" onSubmit={handleSubmit}>
       <ul>
         {errors.map((error, idx) => (
@@ -34,8 +38,9 @@ function LoginForm() {
         ))}
       </ul>
       <label>
-        Username or Email
         <input
+          className="login-input"
+          placeholder="Username or Email"
           type="text"
           value={credential}
           onChange={(e) => setCredential(e.target.value)}
@@ -43,16 +48,17 @@ function LoginForm() {
         />
       </label>
       <label>
-        Password
         <input
+          className="login-input"
+          placeholder="Password"
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
         />
       </label>
-      <button type="submit">Log In</button>
-      <button
+      <button className="log-in-button" type="submit">Log In</button>
+      <button className="Demo-user-button"
       onClick={() => dispatch(sessionActions.login({
         credential: "Demo-lition",
         password: "password"
@@ -61,6 +67,7 @@ function LoginForm() {
       Demo User
       </button>
     </form>
+    </div>
   );
 }
 

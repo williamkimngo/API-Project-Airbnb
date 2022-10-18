@@ -1,0 +1,114 @@
+.navigation-bar {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    margin: 0px;
+}
+
+.Navigation-List{
+    position: relative;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    height: 40px;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+.nav-bar-right-side{
+    display: flex;
+    align-items: center;
+}
+
+.host-spot{
+    position: relative;
+    text-decoration: none;
+    color: black;
+    font-weight: 550;
+    box-sizing: border-box;
+    padding: 10px;
+    border: 25px;
+    letter-spacing: 0.1px;
+    margin: 5px;
+}
+.host-spot:hover{
+    background-color: rgba(164, 159, 159, 0.1);
+    border-radius: 60px;
+}
+
+.profile-button{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    position: relative;
+    background-color: white;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    height: 30px;
+    width: 55px;
+    border-radius: 28px;
+}
+
+.profile-button:hover{
+    cursor: pointer;
+    box-shadow: 0px 3px 5px rgba(171, 166, 166, 0.5);
+}
+
+.fas.fa-bars {
+    line-height: 10px;
+    padding-left: 15px;
+    padding-right: 8px;
+    font-size: 11px;
+ }
+
+ .fas.fa-user-circle {
+    font-size: 21px;
+    color: rgba(0, 0, 0, 0.5);
+ }
+
+ .profile-dropdown {
+    position: absolute;
+    right: 0px;
+    top: 50px;
+    width: 167px;
+    height: 150px;
+    list-style: none;
+    background-color: white;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    align-content: flex-start;
+    justify-content: space-between;
+    padding-left: 0px;
+    padding-right: 5px;
+    padding-bottom: 15px;
+    font-size: 12px;
+    font-weight: 200;
+    color:rgb(0, 0, 0);
+ }
+.profile-dropdown li{
+    height: 50px;
+    padding-left: 15px;
+    padding-top: 15px;
+}
+
+.dropdown-button-account{
+    color: black;
+    text-decoration: none;
+    font-weight: normal;
+ }
+ .dropdown-button-account:hover,
+.dropdown-button-logout:hover {
+    background-color: rgba(0, 0, 0, 0.03);
+    cursor: pointer;
+ }
+
+.dropdown-button-account,
+.logout-button{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    background: none;
+    border: none;
+    font-size: 12px;
+    padding: 0px;
+}
