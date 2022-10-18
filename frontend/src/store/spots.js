@@ -2,10 +2,11 @@ import {csrfFetch} from './csrf'
 
 const GET_SPOTS = 'spots/getSpots'
 const ADD_SPOT = 'spots/allSpot'
-const DELETE_SPOT = '/spots/deleteSpot'
-const GET_ONE_SPOT = '/spots/getOneSpot'
-const CURRENT_USER_SPOT = '/spots/userCurrentSpot'
+const DELETE_SPOT = 'spots/deleteSpot'
+const GET_ONE_SPOT = 'spots/getOneSpot'
+const CURRENT_USER_SPOT = 'spots/userCurrentSpot'
 const ADD_IMAGE_URL = 'spots/addImageUrl';
+const LOAD_CURRENT_USER_SPOTS = 'spots/current'
 
 
 const loadSpots = (spots) => {
@@ -107,6 +108,15 @@ export const actionDeleteSpot = (spotId) => async dispatch => {
     }
 }
 
+export const getCurrentUserSpots = () => async dispatch => {
+    const res = await csrfFetch (`/api/spots/current`)
+    if(res.ok){
+        const userSpot = await res.json()
+        dispatch(loadCurrentUserSpot(userSpot))
+        return userSpot
+    }
+}
+
 export const actionAddImageUrl = (data, id) => async (dispatch) => {
     console.log("DATA!!!!", data)
     const response = await csrfFetch(`/api/spots/${id}/images`, {
@@ -149,13 +159,17 @@ const spotsReducer = (state = initialState, action) => {
             delete delSpot.allSpots[action.spotId]
             return delSpot
         }
+        case LOAD_CURRENT_USER_SPOTS:
+            const curSpot = {...state, allSpots: {...state.allSpots}}
+            action.spots.Spots.forEach(spot => curSpot.allSpots[spot.id] = spot)
+            return curSpot
         case ADD_IMAGE_URL: {
             const imgState = {...state, allSpots: {...state.allSpots}, specificSpot: {...state.specificSpot}};
             imgState.allSpots[action.spotId].previewImage = action.singleImg.url;
             imgState.specificSpot.SpotImages.push(action.singleImg)
-
             return imgState;
         }
+
         default:
         return state
     }

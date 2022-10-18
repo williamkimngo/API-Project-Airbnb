@@ -9,13 +9,15 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       spotId: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        onDelete: 'CASCADE'
       },
       userId: {
         type: Sequelize.INTEGER
       },
       review: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false
       },
       stars: {
         type: Sequelize.INTEGER
