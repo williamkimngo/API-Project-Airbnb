@@ -4,7 +4,6 @@ const GET_SPOTS = 'spots/getSpots'
 const ADD_SPOT = 'spots/allSpot'
 const DELETE_SPOT = 'spots/deleteSpot'
 const GET_ONE_SPOT = 'spots/getOneSpot'
-const CURRENT_USER_SPOT = 'spots/userCurrentSpot'
 const ADD_IMAGE_URL = 'spots/addImageUrl';
 const LOAD_CURRENT_USER_SPOTS = 'spots/current'
 
@@ -25,7 +24,7 @@ const loadOneSpot = (spot) => {
 
 export const loadCurrentUserSpot = (spots) => {
     return {
-        type: CURRENT_USER_SPOT,
+        type: LOAD_CURRENT_USER_SPOTS,
         spots
     };
 }
@@ -112,7 +111,9 @@ export const getCurrentUserSpots = () => async dispatch => {
     const res = await csrfFetch (`/api/spots/current`)
     if(res.ok){
         const userSpot = await res.json()
+        // console.log("USERSPOT!!!!!!!!", userSpot)
         dispatch(loadCurrentUserSpot(userSpot))
+        // console.log("USERSPOT!!!!!!!!", userSpot)
         return userSpot
     }
 }
@@ -124,7 +125,7 @@ export const actionAddImageUrl = (data, id) => async (dispatch) => {
        headers: {'Content-Type': 'application/json'},
        body: JSON.stringify(data)
     });
-    console.log("RESPONSE!!!!", response)
+    console.log("RESPONSEimgURL!!!!", response)
     if(response.ok){
        const img = await response.json();
        dispatch(addImageUrl(id, data));
@@ -160,7 +161,7 @@ const spotsReducer = (state = initialState, action) => {
             return delSpot
         }
         case LOAD_CURRENT_USER_SPOTS:
-            const curSpot = {...state, allSpots: {...state.allSpots}}
+            const curSpot = {state, allSpots: {}}
             action.spots.Spots.forEach(spot => curSpot.allSpots[spot.id] = spot)
             return curSpot
         case ADD_IMAGE_URL: {

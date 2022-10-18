@@ -12,7 +12,7 @@ const OwnerSpots = () => {
     const userReviews = useSelector(state => Object.values(state.reviews.user))
 
     useEffect(() => {
-        dispatch(getSpots())
+        // dispatch(getSpots())
         dispatch(actionGetUserReview())
         dispatch(getCurrentUserSpots())
     }, [dispatch])
@@ -22,8 +22,10 @@ const OwnerSpots = () => {
     if(!Object.keys(sessionUser).length){
         return null
     }
-    const spots = allSpots.filter(spot => spot.ownerId === sessionUser.id)
-    console.log("SPOTS!!!!!!!!!", spots)
+
+    // console.log("ALLSPOTS!!!!!", allSpots)
+    // const spots = allSpots.filter(spot => spot.ownerId === sessionUser.id)
+    // console.log("SPOTS!!!!!!!!!", spots)
     // if (spots.length === 0) {
     //     return null
     // }
@@ -32,7 +34,7 @@ const OwnerSpots = () => {
             <h1>{sessionUser.username}</h1>
             <h2>Current Listings</h2>
             <ul>
-                {spots?.map(spot => (
+                {allSpots?.map(spot => (
                     <li key={spot.id}>
                     <NavLink key={spot.id} to={`/spots/${spot.id}`}>{spot.name}</NavLink>
                     <img className="current-spot-img" src={spot.previewImage} alt='Loading'/>

@@ -30,7 +30,7 @@ function ProfileButton({ user }) {
     dispatch(sessionActions.logout());
     history.push('/')
   };
-
+  // console.log("USER!!!!!", user)
   return (
     <>
       <button className="profile-button" onClick={openMenu}>
