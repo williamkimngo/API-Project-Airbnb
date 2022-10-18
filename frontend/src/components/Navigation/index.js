@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import LoginFormModal from '../LoginFormModal';
+import NoUserButton from './NoUserButton';
 import './Navigation.css';
 
 function Navigation({ isLoaded }){
@@ -15,31 +16,29 @@ function Navigation({ isLoaded }){
     );
   } else {
     sessionLinks = (
-      <>
-        <LoginFormModal />
-        <NavLink to="/signup">Sign Up</NavLink>
-      </>
+      <NoUserButton/>
     );
   }
 
   return (
-    <div className='navigation-bar'>
-    <ul className='Navigation-List'>
+    <div className='nav-bar'>
+    <ul className="nav-list">
       <li>
         <NavLink exact to="/">
-          <img src='https://i.imgur.com/pcQ7lcp.png' className='home-logo'></img>
+          <img src='https://i.imgur.com/pcQ7lcp.png' alt='logo' className='home-logo'></img>
           </NavLink>
           </li>
 
-          <div className='nav-bar-right-side'>
-            <li>
-        <NavLink className='host-spot' to={'/spots/new'}>Become a Host</NavLink>
-        </li>
-        <li>
-        {isLoaded && sessionLinks}
-      </li>
-      </div>
-    </ul>
+          <div className='right-nav-items'>
+          <li>
+            <NavLink className="host-a-spot" to='/spots/new'>Host a Spot</NavLink>
+          </li>
+
+          <li>
+            {isLoaded && sessionLinks}
+          </li>
+        </div>
+      </ul>
     </div>
   );
 }
