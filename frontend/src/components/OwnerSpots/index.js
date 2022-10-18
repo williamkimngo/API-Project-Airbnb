@@ -13,11 +13,17 @@ const OwnerSpots = () => {
 
     useEffect(() => {
         dispatch(getSpots())
-        dispatch(actionGetUserReview)
+        dispatch(actionGetUserReview())
     }, [dispatch])
-
+    if(!allSpots.length){
+        return null
+    }
+    if(!Object.keys(sessionUser).length){
+        return null
+    }
     const spots = allSpots.filter(spot => spot.ownerId === sessionUser.id)
-    // if (!spots) {
+    console.log("SPOTS!!!!!!!!!", spots)
+    // if (spots.length === 0) {
     //     return null
     // }
     return (

@@ -10,6 +10,7 @@ import EditSpotForm from "./components/EditSpotForm";
 import SpotDetail from "./components/SpotDetail";
 import OwnerSpots from "./components/OwnerSpots";
 import { getSpots } from "./store/spots";
+import CreateReviewForm from "./components/CreateReviewForm";
 
 function App() {
   const dispatch = useDispatch();
@@ -33,6 +34,7 @@ function App() {
           <Route path={'/spots/:spotId'} exact component={SpotDetail}/>
           <Route path={'/current'} exact component={OwnerSpots}/>
           <Route path={'/spots/:spotId/edit'} component={EditSpotForm}/>
+          <Route path={'/spots/:spotId/reviews/new'}component={CreateReviewForm}/>
         </Switch>
       )}
     </>

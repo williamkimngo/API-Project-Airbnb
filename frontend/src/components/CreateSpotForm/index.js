@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useHistory } from "react-router-dom"
-import { actionAddSpot } from "../../store/spots"
+import { actionAddSpot, actionAddImageUrl } from "../../store/spots"
 
 const CreateSpotForm = () => {
    const dispatch = useDispatch()
@@ -16,10 +16,12 @@ const CreateSpotForm = () => {
    const [name, setName] = useState("");
    const [description, setDescription] = useState("");
    const [price, setPrice] = useState(0);
+   const [img, setImg] = useState("")
    const [errors, setErrors] = useState([]);
    const [validationErrors, setValidationErrors] = useState([]);
 
    const handleSubmit = async (e) => {
+      console.log("IMAGWEEEE", img)
       e.preventDefault()
       if (validationErrors.length) {
          return
@@ -37,12 +39,26 @@ const CreateSpotForm = () => {
          description,
          price
       }
+      const payloadImg = {
+         url: img,
+         preview: true
+      }
 
       let createdSpot = dispatch(actionAddSpot(payload))
          .catch(async (res) => {
             const data = await res.json();
             if (data && data.errors) setErrors(data.errors);
          });
+         console.log("PAYLOAD!!!!", payloadImg)
+
+      if(createdSpot){
+         let newImg = await dispatch(actionAddImageUrl(payloadImg, createdSpot.id)).catch(async (res) => {
+            const data = await res.json();
+            if (data && data.errors) setErrors(data.errors)
+          })
+      }
+
+
       if (createdSpot && !errors.length) {
          history.push('/current');
       }
@@ -55,16 +71,18 @@ const CreateSpotForm = () => {
             {errors.map((error, idx) => <li key={idx}>{error}</li>)}
          </ul>
          <label>
-            Address
+
             <input
+            placeholder="Address"
             type='text'
             value={address}
             onChange={(e) => setAddress(e.target.value)}
             />
          </label>
          <label>
-            City
+
             <input
+              placeholder="City"
                type='text'
                value={city}
                onChange={e => setCity(e.target.value)}
@@ -73,8 +91,8 @@ const CreateSpotForm = () => {
          </label>
 
          <label>
-            State
             <input
+              placeholder="State"
                type='text'
                value={state}
                onChange={e => setState(e.target.value)}
@@ -83,8 +101,9 @@ const CreateSpotForm = () => {
          </label>
 
          <label>
-            Country
+
             <input
+              placeholder="Country"
                type='text'
                value={country}
                onChange={e => setCountry(e.target.value)}
@@ -93,8 +112,8 @@ const CreateSpotForm = () => {
          </label>
 
          <label>
-            Latitude
             <input
+              placeholder="Latitude"
                type='number'
                value={lat}
                onChange={e => setLat(Number(e.target.value))}
@@ -103,8 +122,8 @@ const CreateSpotForm = () => {
          </label>
 
          <label>
-            Longitude
             <input
+              placeholder="Longitude"
                type='number'
                value={lng}
                onChange={e => setLng(Number(e.target.value))}
@@ -113,8 +132,9 @@ const CreateSpotForm = () => {
          </label>
 
          <label>
-            Name
+
             <input
+            placeholder="Name"
                type='text'
                value={name}
                onChange={e => setName(e.target.value)}
@@ -123,8 +143,9 @@ const CreateSpotForm = () => {
          </label>
 
          <label>
-            Description
+
             <textarea
+            placeholder="Description"
                type='text'
                value={description}
                onChange={e => setDescription(e.target.value)}
@@ -133,12 +154,21 @@ const CreateSpotForm = () => {
          </label>
 
          <label>
-            Price
+
             <input
+            placeholder="Price"
                type='number'
                value={price}
                onChange={e => setPrice(Number(e.target.value))}
 
+            />
+         </label>
+         <label>
+            <input
+             placeholder="Image URL"
+             type='text'
+             value={img}
+             onChange={e => setImg(e.target.value)}
             />
          </label>
 

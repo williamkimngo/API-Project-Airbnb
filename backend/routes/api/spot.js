@@ -285,7 +285,7 @@ router.get('/', async (req, res, next) => {
             raw: true
         })
         console.log(avg)
-        const image = await SpotImage.findOne({
+        const image = await SpotImage.findAll({
             where: {
                 spotId: spot.id,
                 [Op.or]: [{ preview: true }, { preview: false }]
@@ -294,13 +294,13 @@ router.get('/', async (req, res, next) => {
             raw: true
         })
         let allSpot = spot.toJSON()
-         let numberWithDecimal = parseFloat(`${avg[0].average}`)
-        let newNumber = (parseFloat(numberWithDecimal).toFixed(1))
-         console.log(numberWithDecimal)
-         console.log(newNumber)
+        //  let numberWithDecimal = parseFloat(`${avg[0].average}`)
+        // let newNumber = (parseFloat(numberWithDecimal).toFixed(1))
+        //  console.log(numberWithDecimal)
+        //  console.log(newNumber)
 
-        allSpot.avgRating = newNumber
-        // allSpot.previewImage = image.url
+        allSpot.avgRating = (Number(avg[0].average))
+        allSpot.previewImage = image.length > 0 ? image[0].url : ""
         allSpots.push(allSpot)
     }
     res.json({ Spots: allSpots, page: page, size: size })
