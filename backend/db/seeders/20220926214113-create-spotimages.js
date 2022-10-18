@@ -5,52 +5,52 @@ module.exports = {
     return queryInterface.bulkInsert("SpotImages", [
       {
         spotId: 1,
-        url: "brown.com",
+        url: "https://i.imgur.com/hEvsJvp.png",
         preview: true
       },
       {
         spotId: 2,
-        url: "maroon.com",
+        url: "https://i.imgur.com/iH1M6AG.png",
         preview: false
       },
       {
         spotId: 3,
-        url: "gold.com",
+        url: "https://i.imgur.com/RRtoFVe.png",
         preview: true
       },
       {
         spotId: 4,
-        url: "teal.com",
+        url: "https://i.imgur.com/FAU1S9x.png",
         preview: true
       },
       {
         spotId: 5,
-        url:"yellow.com",
+        url:"https://i.imgur.com/WskGlc6.png",
         preview: true
       },
       {
         spotId: 6,
-        url:"abc.com",
+        url:"https://i.imgur.com/HfNOswA.png",
         preview: true
       },
       {
         spotId: 7,
-        url:"cba.com",
+        url:"https://i.imgur.com/PIPURcI.png",
         preview: true
       },
       {
         spotId: 8,
-        url:"cab.com",
+        url:"https://i.imgur.com/oNHBwTb.png",
         preview: true
       },
       {
         spotId: 9,
-        url:"pow.com",
+        url:"https://i.imgur.com/yaCVbKn.png",
         preview: true
       },
       {
         spotId: 10,
-        url:"cat.com",
+        url:"https://i.imgur.com/dvtTSuj.jpg",
         preview: true
       },
     ])
