@@ -9,8 +9,11 @@ const SpotDetail = () => {
     const { spotId } = useParams()
     const sessionUser = useSelector(state => state.session.user)
     let currentSpot = useSelector(state => state.spots.specificSpot)
+    let currentSpotArr = Object.values(currentSpot)
+
+    console.log("CURRRENT SPOT!!!!!!", currentSpot)
     const spotReview = useSelector(state => Object.values(state.reviews.spot))
-    let imgSpot = useSelector(state => state.spots.allSpots[spotId])
+    // let imgSpot = useSelector(state => state.spots.allSpots[spotId])
     useEffect(() => {
         dispatch(getOneSpot(spotId))
         dispatch(actionGetSpotReview(spotId))
@@ -27,8 +30,11 @@ const SpotDetail = () => {
             allowCreate = true
         }
     }
+    console.log("IMAGEPLS!!!!", currentSpot.SpotImages)
     // let extraImagesArr = specificSpot.SpotImages?.slice(1);
-
+    if(!currentSpotArr.length){
+        return null
+    }
     return (
         <div className="Spot-Detail-container">
             <h1>{currentSpot.name}</h1>
@@ -40,7 +46,8 @@ const SpotDetail = () => {
                 {currentSpot.city}, {currentSpot.state}, {currentSpot.country}
             </div>
             <div className="img-container">
-                <img className="first-img" src={imgSpot.previewImage} alt='SpotImage'/>
+
+                <img className="first-img" src={currentSpot?.SpotImages[0].url} alt='SpotImage'/>
             </div>
             <div className="Spot-detail-description-container">
                 <h2 className="spot-detail-name">{currentSpot.name} hosted by {currentSpot.Owner?.firstName}</h2>
