@@ -1,7 +1,7 @@
 import {csrfFetch} from './csrf'
 
 const GET_SPOTS = 'spots/getSpots'
-const ADD_SPOT = 'spots/allSpot'
+const ADD_SPOT = 'spots/addSpot'
 const DELETE_SPOT = 'spots/deleteSpot'
 const GET_ONE_SPOT = 'spots/getOneSpot'
 const ADD_IMAGE_URL = 'spots/addImageUrl';
@@ -72,15 +72,19 @@ export const getOneSpot = (spotId) => async dispatch => {
 }
 
 export const actionAddSpot = (data) => async dispatch => {
-    const res = await csrfFetch('/api/spots/', {
+    // console.log("DATATHUNKADD", data)
+    const res = await csrfFetch('/api/spots', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify(data)
     })
+    // console.log("RESADDTHUNK", res)
     if(res.ok){
+
         const newSpot = await res.json()
+        // console.log("NEWSPOTADD", newSpot)
         dispatch(addSpot(newSpot))
-        return res
+        return newSpot
     }
 }
 
@@ -119,17 +123,17 @@ export const getCurrentUserSpots = () => async dispatch => {
 }
 
 export const actionAddImageUrl = (data, id) => async (dispatch) => {
-    console.log("DATA!!!!", data)
-    const response = await csrfFetch(`/api/spots/${id}/images`, {
+    // console.log("DATAimgurl!!!!", data)
+    const res = await csrfFetch(`/api/spots/${id}/images`, {
        method: 'POST',
        headers: {'Content-Type': 'application/json'},
        body: JSON.stringify(data)
     });
-    console.log("RESPONSEimgURL!!!!", response)
-    if(response.ok){
-       const img = await response.json();
+    // console.log("RESPONSEimgURL!!!!", res)
+    if(res.ok){
+       const img = await res.json();
        dispatch(addImageUrl(id, data));
-       console.log("IMGGGGGGGGG", img)
+    //    console.log("IMGGGGGGGGG", img)
     }
 }
 
@@ -167,7 +171,6 @@ const spotsReducer = (state = initialState, action) => {
         case ADD_IMAGE_URL: {
             const imgState = {...state, allSpots: {...state.allSpots}, specificSpot: {...state.specificSpot}};
             imgState.allSpots[action.spotId].previewImage = action.singleImg.url;
-            imgState.specificSpot.SpotImages.push(action.singleImg)
             return imgState;
         }
 

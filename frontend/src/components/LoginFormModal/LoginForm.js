@@ -31,7 +31,8 @@ function LoginForm() {
     <div className="login-modal">
       <h1 id='Log-In'>Log In</h1>
       <h2 id="login-welcome"> Welcome to Ballbnb</h2>
-    <form className="login-form-container" onSubmit={handleSubmit}>
+    <form className="login-form-container" onClick={e => e.stopPropagation()} onSubmit={handleSubmit}>
+      <h2>Welcome to Ballbnb</h2>
       <ul>
         {errors.map((error, idx) => (
           <li key={idx}>{error}</li>
