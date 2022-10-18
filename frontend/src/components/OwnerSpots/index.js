@@ -3,7 +3,7 @@ import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { Link, NavLink } from "react-router-dom"
 import { actionDeleteReview, actionGetUserReview } from "../../store/reviews"
-import { actionDeleteSpot, getSpots } from "../../store/spots"
+import { actionDeleteSpot, getCurrentUserSpots, getSpots } from "../../store/spots"
 
 const OwnerSpots = () => {
     const dispatch = useDispatch()
@@ -14,6 +14,7 @@ const OwnerSpots = () => {
     useEffect(() => {
         dispatch(getSpots())
         dispatch(actionGetUserReview())
+        dispatch(getCurrentUserSpots())
     }, [dispatch])
     if(!allSpots.length){
         return null
@@ -34,6 +35,7 @@ const OwnerSpots = () => {
                 {spots?.map(spot => (
                     <li key={spot.id}>
                     <NavLink key={spot.id} to={`/spots/${spot.id}`}>{spot.name}</NavLink>
+                    <img className="current-spot-img" src={spot.previewImage} alt='Loading'/>
                     <Link to={`/spots/${spot.id}/edit`}>Edit Listing</Link>
                     <button onClick={() => dispatch(actionDeleteSpot(spot.id))}>Delete Button</button>
                  </li>
