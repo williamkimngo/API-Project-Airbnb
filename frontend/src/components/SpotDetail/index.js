@@ -35,12 +35,24 @@ const SpotDetail = () => {
     if(!currentSpotArr.length){
         return null
     }
+    let avgRatingTwoDec;
+    // console.log(currentSpot.avgStarRating.toString().split(""))
+    if(currentSpot.avgStarRating === 0){
+        avgRatingTwoDec = "No Reviews present for this listing"
+    } else if(Number.isInteger(currentSpot.avgStarRating)){
+        avgRatingTwoDec = `${currentSpot.avgStarRating}.0`
+    } else if(currentSpot.avgStarRating.toString().split("").slice(2).length === 1){
+        // let ratingArray = currentSpot.avgStarRating.toString().split("")
+        avgRatingTwoDec = currentSpot.avgStarRating
+    } else {
+        avgRatingTwoDec = parseFloat(currentSpot.avgStarRating).toFixed(2)
+    }
     return (
         <div className="Spot-Detail-container">
             <h1>{currentSpot.name}</h1>
             <div className="title-container">
                 <span> &#9733; </span>
-                <span> {currentSpot.avgStarRating} </span>
+                <span> {avgRatingTwoDec} </span>
                 <span> · </span>
                 <span> {currentSpot.numReviews} reviews </span>
                 {currentSpot.city}, {currentSpot.state}, {currentSpot.country}
@@ -62,7 +74,7 @@ const SpotDetail = () => {
                 </span>
                 <span className="price-with-review-top-right">
                     <span id='next-to-right'> &#9733; </span>
-                    <span> {currentSpot.avgStarRating} · {currentSpot.numReviews} reviews</span>
+                    <span> {avgRatingTwoDec} · {currentSpot.numReviews} reviews</span>
                 </span>
             </div>
             <div>
@@ -90,7 +102,7 @@ const SpotDetail = () => {
             <div>
                 <h2>
                 <span> &#9733; </span>
-                <span> {currentSpot.avgStarRating} </span>
+                <span> {avgRatingTwoDec} </span>
                 <span> · </span>
                 <span> {currentSpot.numReviews} reviews </span>
                 </h2>

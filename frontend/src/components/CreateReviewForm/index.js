@@ -23,6 +23,7 @@ const CreateReviewForm = () => {
             const data = await res.json()
             if (data && data.errors) setErrors(data.errors);
         })
+        console.log("NEWREVIEW COMPONENT!!!!", newReview)
         if(newReview && !errors.length){
             history.push(`/spots/${spotId}`)
         }
