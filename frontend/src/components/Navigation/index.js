@@ -31,7 +31,7 @@ function Navigation({ isLoaded }){
 
           <div className='right-nav-items'>
           <li>
-            <NavLink className="host-a-spot" to='/spots/new'>Host a Spot</NavLink>
+            <NavLink className="host-spot" to='/spots/new'>Become a Host</NavLink>
           </li>
 
           <li>

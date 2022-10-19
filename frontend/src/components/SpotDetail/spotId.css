@@ -1,0 +1,126 @@
+.header{
+    font-size: 15px;
+    font-family: Helvetica;
+}
+
+.title-container {
+    font-size: 14px;
+    margin-bottom: 25px;
+    margin-top: -10px;
+}
+
+
+.first-img{
+    height: 500px;
+    width: 1000px;
+    border-radius: 14px;
+}
+
+.spot-detail-name{
+    font-size: 23px;
+    margin-top: 20px;
+    padding-bottom: 20px;
+    width: 550px;
+    font-weight: 500px;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+
+}
+
+.big-middle-div{
+    display: flex;
+    flex-direction: row;
+}
+.spot-detail-description-left{
+    width: 550px;
+    margin: 0;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-top: 1px solid rgba(0,0,0,0.1);
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+}
+
+.Right-Container{
+    
+
+    padding: 24px;
+    height: 190px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    border: 1px solid rgba(0,0,0,0.1);
+    border-radius: 12px;
+    box-shadow: 0px 4px 15px rgba(0,0,0,0.2);
+}
+
+.spot-detail-price-container{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 24px;
+}
+
+.spot-detail-price{
+    font-size: 20px;
+    font-weight: 600;
+}
+
+#next-to-right{
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.info-title{
+    padding-bottom: 10px;
+    padding: 5px;
+}
+
+.info-title p {
+    color:gray;
+    padding-left: 22px;
+    width: 540px;
+}
+
+.price-line-container{
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 20px;
+    font-size: 12px;
+}
+.left-price{
+    text-decoration: underline;
+}
+.right-price{
+    text-decoration: none;
+}
+
+.total-price-line-container{
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 20px;
+    font-size: 12px;
+    margin-top: 10px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(0,0,0,0.1);
+}
+
+.spot-detail-review-container{
+    border-top: 1px solid rgba(0,0,0,0.1);
+}
+.single-review-container{
+    display: flex;
+    flex-direction: column;
+    width: 600px;
+    font-size: 15px;
+    padding: 10px;
+
+    list-style: none;
+}
+
+.review-link{
+    padding-left: 10px;
+    font-size: 20px;
+}
+
+.review-link:hover{
+    font-weight: bold;
+}

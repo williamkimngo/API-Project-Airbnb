@@ -1,0 +1,40 @@
+.Owner-spot-container h1 {
+    font-family: helvetica;
+    font-size: 30px;
+    padding-top: 20px;
+}
+
+.info-name{
+    font-weight: bold;
+}
+
+
+.current-listings {
+    list-style: none;
+    padding: 0px;
+    display: flex;
+    flex-direction: column;
+
+    list-style: none;
+}
+
+.delete-button {
+    width: 150px;
+    height: 20px;
+    border-radius: 10px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    color: white;
+    background-color: rgba(220, 16, 98);
+    border: none;
+    font-size: 16px;
+}
+
+.current-reviews {
+    list-style: none;
+    padding: 0px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    list-style: none;
+}

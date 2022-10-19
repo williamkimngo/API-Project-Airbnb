@@ -1,4 +1,5 @@
 import React from 'react';
+import './spotCard.css'
 
 const SpotCard = (spot) => {
     const { id, city, state, name, price, avgRating, previewImage } = spot.spot;
@@ -23,7 +24,7 @@ const SpotCard = (spot) => {
             <div className="spot-card-text">{name}</div>
             <div>
                 <span className="spot-card-price">{` $${Math.round(price)} `}</span>
-                <span>per night</span>
+                <span className='spot-card-night'>night</span>
             </div>
         </a>
 

@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 // import { NavLink } from 'react-router-dom';
 import { getSpots } from '../../store/spots';
 import SpotCard from '../SpotCard';
+import './allspot.css'
 
 const AllSpots = () => {
     const dispatch = useDispatch()
@@ -17,10 +18,9 @@ const AllSpots = () => {
     }
 return (
     <div className='all-spots'>
-        <h1>AllSpots</h1>
-        <ul>
+        <ul className='all-spots-container'>
             {spotsList.map(spot => (
-                <li key={spot.id}>
+                <li className='all-spots-list' key={spot.id}>
                 <SpotCard key={spot.id} spot={spot}/>
              </li>
             ))}
