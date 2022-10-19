@@ -1,9 +1,4 @@
-.home-logo {
-    height: 60px;
-    width: 145px;
- }
-
- .nav-bar {
+.nav-bar {
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
     margin: 0px;
     width: 100%;
@@ -26,12 +21,13 @@
     align-items: center;
  }
 
- .host-a-spot{
+ .host-spot{
     position: relative;
     font-size: 14px;
     text-decoration: none;
     color: black;
     font-weight: 600;
+    font-family: M;
     line-height: 18px;
     height: 42px;
     box-sizing: border-box;
@@ -41,7 +37,7 @@
     letter-spacing: 0.5px;
  }
 
- .host-a-spot:hover {
+ .host-spot:hover {
     background-color: rgba(0, 0, 0, 0.03);
  }
 

@@ -10,7 +10,8 @@ const SpotDetail = () => {
     const { spotId } = useParams()
     const sessionUser = useSelector(state => state.session.user)
     let currentSpot = useSelector(state => state.spots.specificSpot)
-    let currentSpotArr = Object.values(currentSpot)
+    // console.log(currentSpot)
+    // let currentSpotArr = Object.values(currentSpot)
 
     // console.log("CURRRENT SPOT!!!!!!", currentSpot)
     const spotReview = useSelector(state => Object.values(state.reviews.spot))
@@ -33,7 +34,7 @@ const SpotDetail = () => {
     }
     // console.log("IMAGEPLS!!!!", currentSpot.SpotImages)
     // let extraImagesArr = specificSpot.SpotImages?.slice(1);
-    if(!currentSpotArr.length){
+    if(!(Object.values(currentSpot).length)){
         return null
     }
     let avgRatingTwoDec;
