@@ -2,6 +2,7 @@ import { useState } from "react"
 import { useDispatch } from "react-redux"
 import { useHistory, useParams } from "react-router-dom"
 import { actionCreateReview } from "../../store/reviews"
+import './ReviewForm.css';
 
 
 const CreateReviewForm = () => {
@@ -33,21 +34,25 @@ const CreateReviewForm = () => {
     return (
         <div>
             <form className="review-form-container" onSubmit={handleSubmit}>
+                <div className="review-header">
                 <h2>Create a Review</h2>
+                </div>
                 <ul>
                 {errors.map((error, idx) => <li key={idx}>{error}</li>)}
                 </ul>
                 <label>
-            Review
             <textarea
             type='text'
             value={review}
             onChange={(e) => setReview(e.target.value)}
+            placeholder="Enter your review here"
+            required
             />
          </label>
 
+        <div className="star-click">
          <label>
-            rating
+            
             <label>
             <input
                type="radio"
@@ -56,7 +61,7 @@ const CreateReviewForm = () => {
                onChange={(e) => setRating(parseInt(e.target.value))}
                 checked={rating === 1 ? true: false}
             />
-            1
+                 ★
             </label>
 
             <label>
@@ -67,7 +72,7 @@ const CreateReviewForm = () => {
                onChange={(e) => setRating(parseInt(e.target.value))}
                 checked={rating === 2 ? true: false}
             />
-            2
+             ★★
             </label>
 
             <label>
@@ -78,7 +83,7 @@ const CreateReviewForm = () => {
                onChange={(e) => setRating(parseInt(e.target.value))}
                 checked={rating === 3 ? true: false}
             />
-            3
+             ★★★
             </label>
 
             <label>
@@ -89,7 +94,7 @@ const CreateReviewForm = () => {
                onChange={(e) => setRating(parseInt(e.target.value))}
                 checked={rating === 4 ? true: false}
             />
-            4
+             ★★★★
             </label>
 
             <label>
@@ -100,10 +105,11 @@ const CreateReviewForm = () => {
                onChange={(e) => setRating(parseInt(e.target.value))}
                 checked={rating === 5 ? true: false}
             />
-            5
+              ★★★★★
             </label>
          </label>
-         <button type="submit">Submit Review</button>
+         </div>
+         <button className="submit-button" type="submit">Submit Review</button>
             </form>
         </div>
     )

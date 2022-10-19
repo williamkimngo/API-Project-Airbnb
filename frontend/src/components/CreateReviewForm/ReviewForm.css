@@ -1,0 +1,60 @@
+.review-form-container {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-items: center;
+    align-items: center;
+    width: 320px;
+    height: auto;
+    margin: auto;
+ }
+
+ .review-header {
+    padding-bottom: 5px;
+    margin-bottom: 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    width: 320px;
+    display: flex;
+    justify-content: center;
+ }
+
+ .submit-button {
+    width: 320px;
+    height: 48px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    color: white;
+    background-color: rgba(220, 16, 98);
+    border: none;
+    font-size: 16px;
+ }
+
+ .submit-button:hover{
+    cursor: pointer;
+ }
+
+ .review-form-container textarea {
+    width: 320px;
+    height: 52px;
+    border: 1px solid rgba(0, 0, 0, 0.4);
+    border-radius: 10px;
+    font-family: 'Helvetica';
+    font-size: 16px;
+    font-weight: 400;
+    margin-bottom: 15px;
+    padding-left: 15px;
+    resize: none;
+ }
+
+ .star-click {
+    margin-bottom: 15px;
+ }
+
+ .star-click input:hover {
+    cursor: pointer;
+ }
+
+ .star-click label {
+    font-size: 13.8px;
+    padding-right: 7px;
+ }
