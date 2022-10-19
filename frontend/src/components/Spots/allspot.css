@@ -1,0 +1,23 @@
+.all-spots{
+    padding: 0px 40px
+
+}
+.all-spots-container{
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    height: 100%;
+    padding: 10px;
+    overflow: hidden;
+    font-size: 20px;
+    text-decoration: none;
+    margin: 15px;
+    justify-content: center;
+    max-width: 1500px;
+    
+}
+
+.all-spots-list{
+    padding: 12px;
+    text-decoration: none;
+}
