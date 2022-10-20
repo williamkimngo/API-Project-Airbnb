@@ -48,13 +48,16 @@ const OwnerSpots = () => {
                 {allSpots?.map(spot => (
 
                     <li key={spot.id}>
+                        <div className="Spot-card-owner">
                         <SpotCard key={spot.id} spot={spot}/>
 
 
 
-                    <div className="edit-link"> <Link to={`/spots/${spot.id}/edit`}>Edit Listing</Link> </div>
+                    <button className="delete-button">
+                     <Link className="edit" to={`/spots/${spot.id}/edit`}>Edit Listing</Link></button>
 
                     <button className="delete-button" onClick={() => dispatch(actionDeleteSpot(spot.id))}>Delete Listing</button>
+                    </div>
                  </li>
                 ))}
             </ul>
