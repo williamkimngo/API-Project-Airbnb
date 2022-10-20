@@ -5,7 +5,7 @@
 
 BallBnB is a full stack application clone, inspired by [AirBnB](https://www.airbnb.com/). BallBnB can be used to discover Football Stadiums or Basketball Arenas that are availiable as rentals across the United States of America for any event. This application is ideal for those planning large-scale events.
 
-Visit [BallBnB](https://api-airbnb-project.herokuapp.com/) to book/plan your next event!
+Visit [BallBnB](https://ballbnb-project.herokuapp.com/) to book/plan your next event!
 
 ***
 
