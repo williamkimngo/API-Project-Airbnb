@@ -76,6 +76,7 @@ const SpotDetail = () => {
               <h2 className="spot-detail-name">{currentSpot.name} hosted by {currentSpot.Owner?.firstName}</h2>
               <div className="extra-info">
                 <div>
+                    
                     <div className="info-title">🚪Self Check in
                     <p>Check yourself in with the lockbox.</p>
                     </div>

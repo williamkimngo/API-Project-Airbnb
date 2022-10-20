@@ -10,15 +10,15 @@ import SpotCard from "../SpotCard"
 const OwnerSpots = () => {
     const dispatch = useDispatch()
     const allSpots = useSelector(state => Object.values(state.spots.allSpots))
-    
+
     const sessionUser = useSelector(state => state.session.user)
     const userReviews = useSelector(state => Object.values(state.reviews.user))
 
 
     useEffect(() => {
-        // dispatch(getSpots())
+        dispatch(getSpots())
         dispatch(actionGetUserReview())
-        dispatch(getCurrentUserSpots())
+        // dispatch(getCurrentUserSpots())
     }, [dispatch])
     if(!allSpots.length){
         return null
@@ -31,12 +31,12 @@ const OwnerSpots = () => {
     }
 
     // console.log("ALLSPOTS!!!!!", allSpots)
-    // const spots = allSpots.filter(spot => spot.ownerId === sessionUser.id)
+    const spots = allSpots.filter(spot => spot.ownerId === sessionUser.id)
     // console.log("SPOTS!!!!!!!!!", spots)
     // <img className="current-spot-img" src={spot.previewImage} alt='Loading'/>
-    // if (spots.length === 0) {
-    //     return null
-    // }
+    if (spots.length === 0) {
+        return null
+    }
     console.log("ALLSPOTS!!",allSpots)
     return (
         <div className="Owner-spot-container">
@@ -50,7 +50,7 @@ const OwnerSpots = () => {
             <h2>Current Listings</h2>
             <ul className="current-listings">
 
-                {allSpots?.map(spot => (
+                {spots?.map(spot => (
 
                     <li key={spot.id}>
                         <div className="Spot-card-owner">
@@ -69,7 +69,7 @@ const OwnerSpots = () => {
             <h2>Your Current Reviews</h2>
             <ul className="current-reviews">
                 {userReviews.map(review => (
-                    <li key={review.id}>{review.stars}★<Link to={`/spots/${review.spotId}`}>{review.spotId}</Link>
+                    <li key={review.id}>{review.stars}★<Link to={`/spots/${review.spotId}`}>{allSpots[review.spotId].name}</Link>
                     <div>{review.review}</div>
                     <div>
                     <button className="delete-button" onClick={() => dispatch(actionDeleteReview(review.id))} > Delete Review</button></div>
