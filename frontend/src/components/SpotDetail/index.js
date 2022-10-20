@@ -147,10 +147,12 @@ const SpotDetail = () => {
                     <div className='single-review-container' key={review.id}>
 
                         <div className="review-group"><i className="fas fa-user-circle" />
-                        <div className="review-name">{review?.User?.firstName}{review.userId === sessionUser.id ?
+                        <div className="review-name">{review?.User?.firstName}
+                        <div className="review-date"> {review?.createdAt.slice(0,7)}
+                        {review.userId === sessionUser.id ?
                             <button className="delete-detail-button" onClick={() => (dispatch(actionDeleteReview(review.id)), dispatch(getOneSpot(spotId)))} > Delete Review</button>:null
                     }
-                        <div className="review-date"> {review?.createdAt.slice(0,7)}</div></div>
+                        </div></div>
                         </div>
                         <div className='review-text'>{review.review}</div>
                         <div>{review.stars} &#9733;</div>
