@@ -68,8 +68,8 @@ const OwnerSpots = () => {
             </ul>
             <h2>Your Current Reviews</h2>
             <ul className="current-reviews">
-                {userReviews.map(review => (
-                    <li key={review.id}>{review.stars}★<Link className="link" to={`/spots/${review.spotId}`}>{allSpots[review.spotId].name}</Link>
+                {userReviews?.map(review => (
+                    <li key={review.id}>{review.stars}★<Link className="link" to={`/spots/${review.spotId}`}>{allSpots[review.spotId]?.name}</Link>
                     <div className="review">{review.review}</div>
                     <div className="del-button">
                     <button className="delete-button" onClick={() => dispatch(actionDeleteReview(review.id))} > Delete Review</button></div>
