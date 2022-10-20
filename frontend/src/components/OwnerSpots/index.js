@@ -1,7 +1,7 @@
 import React from "react"
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { Link } from "react-router-dom"
+import { Link, useParams } from "react-router-dom"
 import { actionDeleteReview, actionGetUserReview } from "../../store/reviews"
 import { actionDeleteSpot, getCurrentUserSpots, getSpots } from "../../store/spots"
 import './ownerSpot.css'
@@ -10,6 +10,7 @@ import SpotCard from "../SpotCard"
 const OwnerSpots = () => {
     const dispatch = useDispatch()
     const allSpots = useSelector(state => Object.values(state.spots.allSpots))
+    
     const sessionUser = useSelector(state => state.session.user)
     const userReviews = useSelector(state => Object.values(state.reviews.user))
 
@@ -25,6 +26,9 @@ const OwnerSpots = () => {
     if(!Object.keys(sessionUser).length){
         return null
     }
+    if(!userReviews.length){
+        return null
+    }
 
     // console.log("ALLSPOTS!!!!!", allSpots)
     // const spots = allSpots.filter(spot => spot.ownerId === sessionUser.id)
@@ -33,6 +37,7 @@ const OwnerSpots = () => {
     // if (spots.length === 0) {
     //     return null
     // }
+    console.log("ALLSPOTS!!",allSpots)
     return (
         <div className="Owner-spot-container">
             <h1>Account</h1>
@@ -64,7 +69,8 @@ const OwnerSpots = () => {
             <h2>Your Current Reviews</h2>
             <ul className="current-reviews">
                 {userReviews.map(review => (
-                    <li key={review.id}>{review.review}{review.rating}
+                    <li key={review.id}>{review.stars}★<Link to={`/spots/${review.spotId}`}>{review.spotId}</Link>
+                    <div>{review.review}</div>
                     <div>
                     <button className="delete-button" onClick={() => dispatch(actionDeleteReview(review.id))} > Delete Review</button></div>
                     </li>

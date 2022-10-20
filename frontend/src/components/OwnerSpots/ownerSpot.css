@@ -8,13 +8,15 @@
     font-weight: bold;
 }
 
+.info{
+    padding-left: 10px;
+}
 
 .current-listings {
     list-style: none;
     padding: 0px;
     display: flex;
     flex-direction: row;
-
     list-style: none;
 }
 
@@ -33,7 +35,7 @@
 
 .current-reviews {
     list-style: none;
-    padding: 0px;
+    padding: 10px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -42,9 +44,14 @@
 
 .Spot-card-owner {
     padding: 13px;
+
 }
 
 .edit{
     color: white;
     text-decoration: none;
+}
+
+.Owner-spot-container h1, h2{
+    padding-left: 10px;
 }
