@@ -28,16 +28,15 @@ const validateSpot = [
         .withMessage('Country is required.'),
     check('name')
         .exists({ checkFalsy: true })
-        .isLength({ max: 50 })
-        .withMessage('Name must be less than 50 characters.'),
+        .isLength({ min: 1, max: 50 })
+        .withMessage('Name must exist and be less than 50 characters.'),
     check('description')
         .exists({ checkFalsy: true })
-        .notEmpty()
         .withMessage('Description is required.'),
     check('price')
         .exists({ checkFalsy: true })
-        .isNumeric()
-        .withMessage('Price per day is required and must be a number.'),
+        .isInt({min: 1})
+        .withMessage('Price per day is required and must be greater than 0.'),
     handleValidationErrors
 ];
 

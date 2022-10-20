@@ -43,7 +43,7 @@ const SpotDetail = () => {
         avgRatingTwoDec = "No Reviews present for this listing"
     } else if(Number.isInteger(currentSpot.avgStarRating)){
         avgRatingTwoDec = `${currentSpot.avgStarRating}.0`
-    } else if(currentSpot.avgStarRating.toString().split("").slice(2).length === 1){
+    } else if(currentSpot?.avgStarRating?.toString().split("").slice(2).length === 1){
         // let ratingArray = currentSpot.avgStarRating.toString().split("")
         avgRatingTwoDec = currentSpot.avgStarRating
     } else {
@@ -76,7 +76,7 @@ const SpotDetail = () => {
               <h2 className="spot-detail-name">{currentSpot.name} hosted by {currentSpot.Owner?.firstName}</h2>
               <div className="extra-info">
                 <div>
-                    
+
                     <div className="info-title">🚪Self Check in
                     <p>Check yourself in with the lockbox.</p>
                     </div>
