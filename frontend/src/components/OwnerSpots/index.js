@@ -34,10 +34,10 @@ const OwnerSpots = () => {
     const spots = allSpots.filter(spot => spot.ownerId === sessionUser.id)
     // console.log("SPOTS!!!!!!!!!", spots)
     // <img className="current-spot-img" src={spot.previewImage} alt='Loading'/>
-    if (spots.length === 0) {
+    if (!spots.length) {
         return null
     }
-    console.log("ALLSPOTS!!",allSpots)
+    // console.log("ALLSPOTS!!",allSpots)
     return (
         <div className="Owner-spot-container">
             <h1>Account</h1>
