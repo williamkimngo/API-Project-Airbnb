@@ -1,7 +1,8 @@
 import { useState } from "react"
 import { useDispatch } from "react-redux"
 import { useHistory, useParams } from "react-router-dom"
-import { actionCreateReview } from "../../store/reviews"
+import { actionCreateReview, actionGetSpotReview } from "../../store/reviews"
+import { getOneSpot } from "../../store/spots";
 import './ReviewForm.css';
 
 
@@ -13,19 +14,24 @@ const CreateReviewForm = () => {
     const [stars, setStars] = useState(1)
     const [errors, setErrors] = useState([])
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault()
         const payload = {
             review, stars
         }
 
-        let newReview = dispatch(actionCreateReview(payload, spotId))
+        let newReview = await dispatch(actionCreateReview(payload, spotId))
             .catch(async (res) => {
             const data = await res.json()
             if (data && data.errors) setErrors(data.errors);
+
         })
 
-        if(newReview && !errors.length){
+        if(newReview){
+            setTimeout(() => {
+            dispatch(getOneSpot(spotId))
+            dispatch(actionGetSpotReview(spotId))
+            }, 500);
             history.push(`/spots/${spotId}`)
         }
     }
@@ -46,7 +52,6 @@ const CreateReviewForm = () => {
             value={review}
             onChange={(e) => setReview(e.target.value)}
             placeholder="Enter your review here"
-            required
             />
          </label>
 

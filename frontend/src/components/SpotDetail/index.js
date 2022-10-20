@@ -1,7 +1,7 @@
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useParams, NavLink } from "react-router-dom"
-import { actionGetSpotReview } from "../../store/reviews"
+import { actionGetSpotReview, actionDeleteReview } from "../../store/reviews"
 import { getOneSpot } from "../../store/spots"
 import './spotId.css';
 
@@ -10,16 +10,20 @@ const SpotDetail = () => {
     const { spotId } = useParams()
     const sessionUser = useSelector(state => state.session.user)
     let currentSpot = useSelector(state => state.spots.specificSpot)
+    let avgRatingSpot = useSelector(state => state.spots.specificSpot.avgStarRating)
+    // let spotRating = useSelector(state => state.specificSpot.avg)
     // console.log(currentSpot)
     // let currentSpotArr = Object.values(currentSpot)
 
     // console.log("CURRRENT SPOT!!!!!!", currentSpot)
-    const spotReview = useSelector(state => Object.values(state.reviews.spot))
+    const spotReviewObj = useSelector(state => (state.reviews.spot))
     // let imgSpot = useSelector(state => state.spots.allSpots[spotId])
     useEffect(() => {
         dispatch(getOneSpot(spotId))
         dispatch(actionGetSpotReview(spotId))
-    }, [dispatch, spotId])
+    }, [dispatch, spotId, avgRatingSpot])
+
+    let spotReview = Object.values(spotReviewObj)
 
     if(!currentSpot || !spotReview){
         return null
@@ -143,8 +147,10 @@ const SpotDetail = () => {
                     <div className='single-review-container' key={review.id}>
 
                         <div className="review-group"><i className="fas fa-user-circle" />
-                        <div className="review-name">{review?.User?.firstName || "You Just posted"}
-                        <div className="review-date"> {review?.createdAt.slice(0, 9)}</div></div>
+                        <div className="review-name">{review?.User?.firstName}{review.userId === sessionUser.id ?
+                            <button className="delete-detail-button" onClick={() => (dispatch(actionDeleteReview(review.id)), dispatch(getOneSpot(spotId)))} > Delete Review</button>:null
+                    }
+                        <div className="review-date"> {review?.createdAt.slice(0,7)}</div></div>
                         </div>
                         <div className='review-text'>{review.review}</div>
                         <div>{review.stars} &#9733;</div>

@@ -9,20 +9,17 @@ const spot = require('../../db/models/spot');
 const router = express.Router();
 
 
-
 const validateReview = [
     check('review')
-        .exists({ checkFalsy: true })
-        .notEmpty()
-        .withMessage('Review text is required.'),
+      .exists({ checkFalsy: true })
+      .isLength({min: 1, max: 255})
+      .withMessage('Review text is required. Character Limit: 255'),
     check('stars')
-        .exists({ checkFalsy: true })
-        .notEmpty()
-        .isInt({ gt: 0, lt: 6 })
-        .withMessage('Stars must be an integer from 1 to 5.'),
+      .exists({ checkFalsy: true })
+      .isInt({gt: 0, lt: 6})
+      .withMessage('Stars must be an integer from 1 to 5.'),
     handleValidationErrors
 ];
-
 //delete review
 
 router.delete('/:reviewId', requireAuth, async(req, res, next) => {

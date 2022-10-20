@@ -20,23 +20,23 @@
     padding-top: 10px;
     font-weight: bold;
     font-size: 14px;
-    font-family: Helvetica;
+
 }
 
 .spot-card-text {
     color: gray;
     font-size: 14px;
-    font-family: Helvetica;
+
 }
 
 .spot-card-price {
     color: black;
     font-weight: bold;
      font-size: 14px;
-    font-family: Helvetica;
+
 }
 
 .spot-card-night {
     font-size: 14px;
-    font-family: Helvetica;
+   
 }

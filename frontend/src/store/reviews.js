@@ -41,7 +41,7 @@ export const actionGetSpotReview = (spotId) => async dispatch => {
    if(res.ok){
       const currentReview = await res.json();
       dispatch(getSpotReviews(currentReview));
-      return res;
+      return currentReview;
    }
 }
 
@@ -51,6 +51,7 @@ export const actionCreateReview = (data, spotId) => async dispatch => {
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify(data)
    });
+   // console.log("RESTHUNKCREATE", res)
 
    if(res.ok){
       const newReview = await res.json();
@@ -78,7 +79,10 @@ export const actionGetUserReview = () => async (dispatch) => {
    }
 }
 
-const initialState = {spot: {}, user: {}};
+const initialState = {
+   spot: {},
+   user: {}
+};
 const reviewsReducer = (state = initialState, action) => {
    switch(action.type){
       case GET_SPOT_REVIEW: {

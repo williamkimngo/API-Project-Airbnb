@@ -52,3 +52,7 @@
     font-size: 16px;
     cursor: pointer;
 }
+
+.error-list{
+    list-style: none;
+}

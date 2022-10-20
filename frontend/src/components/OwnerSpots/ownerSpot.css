@@ -43,6 +43,7 @@
 
 .review{
     padding-top: 10px;
+    width: 85vw;
 }
 .del-button{
     border-bottom: 1px solid rgba(0,0,0,0.5);
@@ -55,6 +56,7 @@
     flex-direction: column;
     justify-content: space-between;
     list-style: none;
+
 
 }
 
