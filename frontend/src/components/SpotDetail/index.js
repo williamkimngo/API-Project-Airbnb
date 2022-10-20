@@ -49,6 +49,7 @@ const SpotDetail = () => {
     } else {
         avgRatingTwoDec = parseFloat(currentSpot.avgStarRating).toFixed(2)
     }
+    // <div className='review-name'>{review?.createdAt.slice(0, 9)}</div>
     return (
         <div className="Spot-Detail-container">
             <div className="header">
@@ -75,6 +76,7 @@ const SpotDetail = () => {
               <h2 className="spot-detail-name">{currentSpot.name} hosted by {currentSpot.Owner?.firstName}</h2>
               <div className="extra-info">
                 <div>
+                    
                     <div className="info-title">🚪Self Check in
                     <p>Check yourself in with the lockbox.</p>
                     </div>
@@ -139,8 +141,11 @@ const SpotDetail = () => {
                 {allowCreate && <NavLink to={`/spots/${spotId}/reviews/new`}> Leave a Review</NavLink>}</div>
                 {spotReview.map(review => (
                     <div className='single-review-container' key={review.id}>
-                        <div className='review-name'>{review?.User?.firstName || "You Just posted"}</div>
-                        <div className='review-date'>{review?.createdAt.slice(0, 9)}</div>
+
+                        <div className="review-group"><i className="fas fa-user-circle" />
+                        <div className="review-name">{review?.User?.firstName || "You Just posted"}
+                        <div className="review-date"> {review?.createdAt.slice(0, 9)}</div></div>
+                        </div>
                         <div className='review-text'>{review.review}</div>
                         <div>{review.stars} &#9733;</div>
                         </div>

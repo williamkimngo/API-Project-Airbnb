@@ -165,7 +165,7 @@ const spotsReducer = (state = initialState, action) => {
             return delSpot
         }
         case LOAD_CURRENT_USER_SPOTS:
-            const curSpot = {state, allSpots: {}}
+            const curSpot = {...state, allSpots: {}}
             action.spots.Spots.forEach(spot => curSpot.allSpots[spot.id] = spot)
             return curSpot
         case ADD_IMAGE_URL: {
