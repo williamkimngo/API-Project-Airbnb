@@ -1,7 +1,7 @@
 import React from "react"
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { Link, useParams } from "react-router-dom"
+import { Link, NavLink } from "react-router-dom"
 import { actionDeleteReview, actionGetUserReview } from "../../store/reviews"
 import { actionDeleteSpot, getCurrentUserSpots, getSpots } from "../../store/spots"
 import './ownerSpot.css'
@@ -26,33 +26,39 @@ const OwnerSpots = () => {
     if(!Object.keys(sessionUser).length){
         return null
     }
-    if(!userReviews.length){
-        return null
-    }
+    // if(!userReviews.length){
+    //     return null
+    // }
+
 
     // console.log("ALLSPOTS!!!!!", allSpots)
-    const spots = allSpots.filter(spot => spot.ownerId === sessionUser.id)
+    const spots = allSpots?.filter(spot => spot.ownerId === sessionUser.id)
+    let noOwnedSpots = false;
+    let noOwnedReviews = false;
+
+    if(spots.length === 0) noOwnedSpots = true;
+    if(noOwnedReviews.length === 0) noOwnedReviews = true;
     // console.log("SPOTS!!!!!!!!!", spots)
     // <img className="current-spot-img" src={spot.previewImage} alt='Loading'/>
-    if (!spots.length) {
-        return null
-    }
+
     // console.log("ALLSPOTS!!",allSpots)
+    console.log("SESSIONUSEWR!!!", sessionUser)
     return (
         <div className="Owner-spot-container">
             <h1>Account</h1>
             <div className="info">
-            <span className="info-name">{sessionUser.firstName}</span>
-            <span className="info-name"> {sessionUser.lastName},</span>
-            <span> {sessionUser.email} </span>
+            <span className="info-name">{sessionUser?.firstName}</span>
+            <span className="info-name"> {sessionUser?.lastName},</span>
+            <span> {sessionUser?.email} </span>
             </div>
 
             <h2>Current Listings</h2>
+            {spots.length < 1 && (<h4 className="not-owned">You currently do not own any spots.</h4>)}
             <ul className="current-listings">
 
                 {spots?.map(spot => (
 
-                    <li key={spot.id}>
+                    <li key={spot?.id}>
                         <div className="Spot-card-owner">
                         <SpotCard key={spot.id} spot={spot}/>
 
@@ -67,6 +73,7 @@ const OwnerSpots = () => {
                 ))}
             </ul>
             <h2>Your Current Reviews</h2>
+            {userReviews < 1 && <h4>You currently do not have any reviews.</h4>}
             <ul className="current-reviews">
                 {userReviews?.map(review => (
                     <li key={review.id}>{review.stars}★<Link className="link" to={`/spots/${review.spotId}`}>{allSpots[review.spotId]?.name}</Link>

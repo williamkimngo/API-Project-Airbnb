@@ -10,7 +10,7 @@ module.exports = {
       },
       spotId: {
         type: Sequelize.INTEGER,
-        onDelete: 'CASCADE'
+        onDelete: "SET NULL"
       },
       userId: {
         type: Sequelize.INTEGER
