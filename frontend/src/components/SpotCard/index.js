@@ -7,6 +7,17 @@ const SpotCard = (spot) => {
     // console.log('!!!!!!!!!!!!!!spotcard',id)
     if (!spot) { return null }
 
+    let twoDecAvgRating
+
+    if(avgRating === 0){
+        twoDecAvgRating = "No Reviews"
+    } else if(Number.isInteger(avgRating)){
+        twoDecAvgRating = `${avgRating}.0`
+    } else if(avgRating?.toString().split("").slice(2).length === 1){
+        twoDecAvgRating = avgRating
+    } else {
+        twoDecAvgRating = parseFloat(avgRating).toFixed(2)
+    }
     return (
 
         <a className="spot-card" href={`/spots/${id}`}>
@@ -17,7 +28,7 @@ const SpotCard = (spot) => {
                 <span>{`${city}, ${state}`}</span>
                 <span id="spot-card-rating">
                     <i className="fa-solid fa-star" id='star-before-stars'></i>
-                    <span>{avgRating}</span>
+                    <span>{twoDecAvgRating}</span>
                 </span>
 
             </div >

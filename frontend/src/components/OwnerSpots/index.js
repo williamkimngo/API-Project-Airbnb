@@ -42,7 +42,7 @@ const OwnerSpots = () => {
     // <img className="current-spot-img" src={spot.previewImage} alt='Loading'/>
 
     // console.log("ALLSPOTS!!",allSpots)
-    console.log("SESSIONUSEWR!!!", sessionUser)
+    // console.log("SESSIONUSEWR!!!", sessionUser)
     return (
         <div className="Owner-spot-container">
             <h1>Account</h1>
@@ -76,7 +76,7 @@ const OwnerSpots = () => {
             {userReviews < 1 && <h4>You currently do not have any reviews.</h4>}
             <ul className="current-reviews">
                 {userReviews?.map(review => (
-                    <li key={review.id}>{review.stars}★<Link className="link" to={`/spots/${review.spotId}`}>{allSpots[review.spotId]?.name}</Link>
+                    <li className="review-li" key={review.id}>{review.stars}★<Link className="link" to={`/spots/${review.spotId}`}>{allSpots[review.spotId]?.name}</Link>
                     <div className="review">{review.review}</div>
                     <div className="del-button">
                     <button className="delete-button" onClick={() => dispatch(actionDeleteReview(review.id))} > Delete Review</button></div>
