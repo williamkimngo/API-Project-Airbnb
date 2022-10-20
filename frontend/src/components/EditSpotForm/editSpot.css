@@ -1,0 +1,64 @@
+.Edit-Spot.Container{
+    display: flex;
+    flex-direction: column;
+
+
+}
+.Edit-Spot-Form{
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+    align-items: center;
+}
+
+.Edit-Spot-Form h2 {
+    padding-top: 80px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    width: 600px;
+    display: flex;
+    justify-content: center;
+}
+
+.Edit-Spot-Form input {
+    height: 40px;
+    width: 550px;
+    border: 1px solid rgba(0, 0, 0, 0.4);
+   border-radius: 12px;
+   font-size: 16px;
+   font-weight: 400;
+   margin-bottom: 15px;
+   padding-left: 10px;
+}
+
+.Edit-Spot-Form textarea {
+    width: 550px;
+    height: 40px;
+    border: 1px solid rgba(0, 0, 0, 0.4);
+   border-radius: 12px;
+   font-size: 16px;
+   font-weight: 400;
+   margin-bottom: 15px;
+   padding-left: 10px;
+   resize: none;
+}
+
+.Edit-Spot-Form button:hover{
+    cursor: pointer;
+}
+
+.Edit-Spot-Form button {
+    width: 550px;
+    height: 30px;
+    border-radius: 10px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    color: white;
+    background-color: rgba(220, 16, 98);
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.title {
+    color: rgba(123, 103, 103, 0.6)
+}

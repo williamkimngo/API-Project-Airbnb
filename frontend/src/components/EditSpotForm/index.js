@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useHistory, useParams } from "react-router-dom"
 import {actionUpdateSpot, getOneSpot } from "../../store/spots"
+import './editSpot.css'
 
 
 const EditSpotForm = () => {
@@ -77,24 +78,27 @@ const EditSpotForm = () => {
     }
 
     return (
-      <div>
+      <div className="Edit-Spot-Container">
         <form className='Edit-Spot-Form' onSubmit={handleSubmit}>
         <h2>Edit a Spot</h2>
         <ul>
         {errors.map((error, idx) => <li key={idx}>{error}</li>)}
         </ul>
-        <label>
-           Address
+        <label><div className="title">
+         Address
+        </div>
+
            <input
            type='text'
            value={address}
            onChange={(e) => setAddress(e.target.value)}
+           placeholder="Address"
 
            />
         </label>
 
-        <label>
-           City
+        <label><div className="title">
+           City</div>
            <input
            type='text'
            value={city}
@@ -103,8 +107,8 @@ const EditSpotForm = () => {
            />
         </label>
 
-        <label>
-           State
+        <label><div className="title">
+           State</div>
            <input
            type='text'
            value={state}
@@ -113,8 +117,8 @@ const EditSpotForm = () => {
            />
         </label>
 
-        <label>
-           Country
+        <label><div className="title">
+           Country</div>
            <input
            type='text'
            value={country}
@@ -123,28 +127,8 @@ const EditSpotForm = () => {
            />
         </label>
 
-        <label>
-           Latitude
-           <input
-           type='number'
-           value={lat}
-           onChange={(e) => setLat(Number(e.target.value))}
-
-           />
-        </label>
-
-        <label>
-           Longitude
-           <input
-           type='number'
-           value={lng}
-           onChange={(e) => setLng(Number(e.target.value))}
-
-           />
-        </label>
-
-        <label>
-           Name
+        <label><div  className="title">
+           Name</div>
            <input
            type='text'
            value={name}
@@ -153,8 +137,8 @@ const EditSpotForm = () => {
            />
         </label>
 
-        <label>
-           Description
+        <label><div className="title">
+           Description</div>
            <textarea
            type='text'
            value={description}
@@ -163,8 +147,8 @@ const EditSpotForm = () => {
            />
         </label>
 
-        <label>
-           Price
+        <label><div className="title">
+           Price</div>
            <input
            type='number'
            value={price}

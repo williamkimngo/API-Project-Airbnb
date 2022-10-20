@@ -10,13 +10,13 @@ const CreateReviewForm = () => {
     const {spotId} = useParams()
     const history = useHistory()
     const [review, setReview] = useState("")
-    const [rating, setRating] = useState(1)
+    const [stars, setStars] = useState(1)
     const [errors, setErrors] = useState([])
 
     const handleSubmit = (e) => {
         e.preventDefault()
         const payload = {
-            review, rating
+            review, stars
         }
 
         let newReview = dispatch(actionCreateReview(payload, spotId))
@@ -24,7 +24,7 @@ const CreateReviewForm = () => {
             const data = await res.json()
             if (data && data.errors) setErrors(data.errors);
         })
-    
+
         if(newReview && !errors.length){
             history.push(`/spots/${spotId}`)
         }
@@ -56,10 +56,10 @@ const CreateReviewForm = () => {
             <label>
             <input
                type="radio"
-               value="1"
-               name="rating"
-               onChange={(e) => setRating(parseInt(e.target.value))}
-                checked={rating === 1 ? true: false}
+               value= {1}
+               name="stars"
+               onChange={(e) => setStars(parseInt(e.target.value))}
+                checked={stars === 1 ? true: false}
             />
                  ★
             </label>
@@ -67,10 +67,10 @@ const CreateReviewForm = () => {
             <label>
             <input
                type="radio"
-               value="2"
-               name="rating"
-               onChange={(e) => setRating(parseInt(e.target.value))}
-                checked={rating === 2 ? true: false}
+               value= {2}
+               name="stars"
+               onChange={(e) => setStars(parseInt(e.target.value))}
+                checked={stars === 2 ? true: false}
             />
              ★★
             </label>
@@ -78,10 +78,10 @@ const CreateReviewForm = () => {
             <label>
             <input
                type="radio"
-               value="3"
-               name="rating"
-               onChange={(e) => setRating(parseInt(e.target.value))}
-                checked={rating === 3 ? true: false}
+               value= {3}
+               name="stars"
+               onChange={(e) => setStars(parseInt(e.target.value))}
+                checked={stars === 3 ? true: false}
             />
              ★★★
             </label>
@@ -89,10 +89,10 @@ const CreateReviewForm = () => {
             <label>
             <input
                type="radio"
-               value="4"
-               name="rating"
-               onChange={(e) => setRating(parseInt(e.target.value))}
-                checked={rating === 4 ? true: false}
+               value= {4}
+               name="stars"
+               onChange={(e) => setStars(parseInt(e.target.value))}
+                checked={stars === 4 ? true: false}
             />
              ★★★★
             </label>
@@ -100,10 +100,10 @@ const CreateReviewForm = () => {
             <label>
             <input
                type="radio"
-               value="5"
-               name="rating"
-               onChange={(e) => setRating(parseInt(e.target.value))}
-                checked={rating === 5 ? true: false}
+               value= {5}
+               name="stars"
+               onChange={(e) => setStars(parseInt(e.target.value))}
+                checked={stars === 5 ? true: false}
             />
               ★★★★★
             </label>

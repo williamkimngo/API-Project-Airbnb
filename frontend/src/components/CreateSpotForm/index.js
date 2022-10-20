@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { useHistory } from "react-router-dom"
 import { actionAddSpot, actionAddImageUrl } from "../../store/spots"
 import SpotDetail from "../SpotDetail"
+import './createForm.css'
 
 const CreateSpotForm = () => {
    const dispatch = useDispatch()
@@ -12,8 +13,6 @@ const CreateSpotForm = () => {
    const [city, setCity] = useState("");
    const [state, setState] = useState("");
    const [country, setCountry] = useState("");
-   const [lat, setLat] = useState(0);
-   const [lng, setLng] = useState(0);
    const [name, setName] = useState("");
    const [description, setDescription] = useState("");
    const [price, setPrice] = useState(0);
@@ -43,8 +42,6 @@ const CreateSpotForm = () => {
          city,
          state,
          country,
-         lat,
-         lng,
          name,
          description,
          price
@@ -76,10 +73,11 @@ const CreateSpotForm = () => {
       }
    }
    return (
-      <form className="Create-Spot-Form-container" onSubmit={handleSubmit}>
+      <div  className="Create-Spot-Form-container">
+      <form className="form-wrap" onSubmit={handleSubmit}>
          <h2>Create a Spot</h2>
-         {!sessionUser && <span>Please login or signup to host your Stadium.</span>}
-         <ul>
+         {!sessionUser && <span className="no-user-error">Please login or signup to host your Stadium.</span>}
+         <ul className="error-list">
             {errors.map((error, idx) => <li key={idx}>{error}</li>)}
          </ul>
          <label>
@@ -122,27 +120,6 @@ const CreateSpotForm = () => {
 
             />
          </label>
-
-         <label>
-            <input
-              placeholder="Latitude"
-               type='number'
-               value={lat}
-               onChange={e => setLat(Number(e.target.value))}
-
-            />
-         </label>
-
-         <label>
-            <input
-              placeholder="Longitude"
-               type='number'
-               value={lng}
-               onChange={e => setLng(Number(e.target.value))}
-
-            />
-         </label>
-
          <label>
 
             <input
@@ -187,6 +164,7 @@ const CreateSpotForm = () => {
          <button type="submit" disabled={sessionUser ? false: true}>Create Spot</button>
 
       </form>
+      </div>
    )
 }
 
