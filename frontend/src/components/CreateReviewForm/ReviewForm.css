@@ -59,3 +59,8 @@
     font-size: 13.8px;
     padding-right: 7px;
  }
+
+ .error-list{
+   list-style: none;
+   color: red;
+ }

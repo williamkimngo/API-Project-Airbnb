@@ -37,7 +37,7 @@ function SignupFormPage() {
         </div>
       <form onClick={(e) => e.stopPropagation()} onSubmit={handleSubmit} className='signup-form-wrapper'>
         <h2>Welcome to Ballbnb</h2>
-        <ul>
+        <ul className="error-list">
           {errors.map((error, idx) => <li key={idx}>{error}</li>)}
         </ul>
         <label>
@@ -45,7 +45,7 @@ function SignupFormPage() {
             type="text"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            required
+
             placeholder="Email"
           />
         </label>
@@ -54,7 +54,7 @@ function SignupFormPage() {
             type="text"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
-            required
+
             placeholder="Username"
           />
         </label>
@@ -63,7 +63,7 @@ function SignupFormPage() {
             type="text"
             value={firstName}
             onChange={(e) => setFirstName(e.target.value)}
-            required
+
             placeholder="First Name"
           />
         </label>
@@ -71,7 +71,7 @@ function SignupFormPage() {
           <input
             value={lastName}
             onChange={(e) => setLastName(e.target.value)}
-            required
+
             placeholder="Last Name"
           />
         </label>
@@ -80,7 +80,7 @@ function SignupFormPage() {
             type='password'
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            required
+
             placeholder="Password"
           />
         </label>
@@ -89,7 +89,7 @@ function SignupFormPage() {
             type='password'
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
-            required
+
             placeholder="Confirm Password"
           />
         </label>

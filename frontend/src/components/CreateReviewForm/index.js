@@ -43,7 +43,7 @@ const CreateReviewForm = () => {
                 <div className="review-header">
                 <h2>Create a Review</h2>
                 </div>
-                <ul>
+                <ul className="error-list">
                 {errors.map((error, idx) => <li key={idx}>{error}</li>)}
                 </ul>
                 <label>

@@ -151,3 +151,18 @@
 .review-text{
     padding-top: 10px;
 }
+
+.delete-detail-button{
+    width: 80px;
+    height: 20px;
+    border-radius: 10px;
+    margin-left: 10px;
+    /* margin-top: 10px; */
+    /* margin-bottom: 20px; */
+    color: white;
+    background-color: rgba(220, 16, 98);
+    border: none;
+    font-size: 10px;
+    cursor: pointer;
+
+}
