@@ -40,7 +40,7 @@
 }
 
 .Right-Container{
-    
+
 
     padding: 24px;
     height: 190px;
@@ -101,6 +101,8 @@
     margin-top: 10px;
     padding-top: 20px;
     border-top: 1px solid rgba(0,0,0,0.1);
+    font-size: 13px;
+    font-weight: 600;
 }
 
 .spot-detail-review-container{
@@ -123,4 +125,26 @@
 
 .review-link:hover{
     font-weight: bold;
+}
+
+.review-group{
+    display: flex;
+    flex-direction: row;
+    font-family: helvetica;
+    font-size: 13px;
+}
+
+.review-name{
+    display: flex;
+    flex-direction: column;
+    padding-left: 10px;
+    font-weight: 600;
+}
+
+.review-date{
+    color: gray;
+    font-weight: normal;
+}
+.review-text{
+    padding-top: 10px;
 }
