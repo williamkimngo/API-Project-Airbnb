@@ -1,4 +1,8 @@
-.Owner-spot-container h1 {
+.Owner-spot-container{
+    padding-top: 75px;
+}
+
+ h1 {
     font-family: helvetica;
     font-size: 30px;
     padding-top: 20px;
@@ -30,7 +34,18 @@
     background-color: rgba(220, 16, 98);
     border: none;
     font-size: 16px;
-    font-family: helvetica
+    cursor: pointer;
+}
+
+.link{
+    padding-left: 10px;
+}
+
+.review{
+    padding-top: 10px;
+}
+.del-button{
+    border-bottom: 1px solid rgba(0,0,0,0.5);
 }
 
 .current-reviews {
@@ -40,6 +55,7 @@
     flex-direction: column;
     justify-content: space-between;
     list-style: none;
+
 }
 
 .Spot-card-owner {

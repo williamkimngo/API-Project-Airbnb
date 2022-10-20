@@ -7,6 +7,7 @@
     width: 320px;
     height: auto;
     margin: auto;
+    padding-top: 75px;
  }
 
  .review-header {
@@ -35,7 +36,7 @@
 
  .review-form-container textarea {
     width: 320px;
-    height: 52px;
+    height: 150px;
     border: 1px solid rgba(0, 0, 0, 0.4);
     border-radius: 10px;
     font-family: 'Helvetica';

@@ -2,18 +2,23 @@
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
     margin: 0px;
     width: 100%;
+
  }
 
  .nav-list {
-    position: relative;
+    position: fixed;
     list-style: none;
+    background-color: white;
     display: flex;
     justify-content: space-between;
     height: 80px;
+    width: 100%;
     margin: 0px;
     padding: 0 40px;
+    top: 0;
     align-items: center;
     box-sizing: border-box;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
  }
 
  .right-nav-items {
