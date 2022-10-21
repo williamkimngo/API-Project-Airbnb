@@ -29,12 +29,8 @@ const CreateSpotForm = () => {
       if(errors.length > 0) {
          return
       }
-      if (!img.includes('.com') && !img.includes('.jpg') && !img.includes('.png') && !img.includes('.jpeg')) {
-         errors.push('please provide a valid image URL!')
-      }
-      if (img === "" || img === null) {
-         errors.push('imgUrl cannot be empty')
-      }
+      if (!/^https?:\/\/.+\.(jpg|jpeg|png|JPG|JPEG|PNG)$/.test(img)) errors.push('Image must be a proper link')
+
       setValidationsErrors(errors)
       setErrors([]);
       const payload = {
