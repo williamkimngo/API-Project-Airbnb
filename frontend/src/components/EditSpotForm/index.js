@@ -72,7 +72,7 @@ const EditSpotForm = () => {
          }
          });
 
-        if(editedSpot && !errors.length){
+        if(editedSpot){
             history.push('/current')
         }
     }
@@ -81,8 +81,8 @@ const EditSpotForm = () => {
       <div className="Edit-Spot-Container">
         <form className='Edit-Spot-Form' onSubmit={handleSubmit}>
         <h2>Edit a Spot</h2>
-        <ul>
-        {errors.map((error, idx) => <li key={idx}>{error}</li>)}
+        <ul className="error">
+        {errors?.map((error, idx) => <li key={idx}>{error}</li>)}
         </ul>
         <label><div className="title">
          Address

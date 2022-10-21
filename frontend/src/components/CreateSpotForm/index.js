@@ -24,14 +24,11 @@ const CreateSpotForm = () => {
 
    const handleSubmit = async (e) => {
       e.preventDefault()
-      // setHasSubmit(true)
-      // if (validationErrors.length) {
-      //    return
-      // }
-      // setErrors([])
-      // setValidationsErrors([])
 
       let errors = []
+      if(errors.length > 0) {
+         return
+      }
       if (!img.includes('.com') && !img.includes('.jpg') && !img.includes('.png') && !img.includes('.jpeg')) {
          errors.push('please provide a valid image URL!')
       }
@@ -53,19 +50,24 @@ const CreateSpotForm = () => {
          url: img,
          preview: true
       }
+      // console.log("DATAERRORS before CREATION",data.errors)
+      console.log("ERRORS BEFORE SUBMIT", errors)
       // if(img === "" || img === null){
       //    validationErrors = ["ImageURL is required."]
       // }
       // console.log("PAYLOADSPOT!", payload)
-      let createdSpot = {}
-      if (!validationErrors.length) {
+      let createdSpot ={}
+      console.log("VALIDATIONERORRRRER", validationErrors)
+
          createdSpot = await dispatch(actionAddSpot(payload))
             .catch(async (res) => {
                const data = await res.json();
+               console.log("DATA~!!!!", data)
+               console.log("DATAERRORS AFTER CREATION",data.errors)
                if (data && data.errors) setErrors(data.errors);
             })
-      };
 
+      console.log("ERROR AFTER CREATE", errors)
 
       // console.log("VALIDATION ERROR!!!!", validationErrors)
       // console.log("PAYLOAD!!!!", payloadImg)
@@ -73,7 +75,8 @@ const CreateSpotForm = () => {
       // console.log("CREATEDSPOTID!!!!", createdSpot.id)
 
       if (createdSpot) {
-         let newImg = await dispatch(actionAddImageUrl(payloadImg, createdSpot.id)).catch(async (res) => {
+         let newImg = await dispatch(actionAddImageUrl(payloadImg, createdSpot.id))
+         .catch(async (res) => {
             const data = await res.json();
             if (data && data.errors) setErrors(data.errors)
          })
@@ -84,7 +87,9 @@ const CreateSpotForm = () => {
          history.push('/current');
       }
    }
+
    let allErrors = [...errors, ...validationErrors]
+   console.log("ALLLTHEERRORS!", allErrors)
    return (
       <div className="Create-Spot-Form-container">
          <form className="form-wrap" onSubmit={handleSubmit}>
@@ -92,7 +97,7 @@ const CreateSpotForm = () => {
             {!sessionUser && <span className="no-user-error">Please login or signup to host your Stadium.</span>}
 
             <ul className="error-list">
-               {allErrors.map((error, idx) => <li key={idx}>{error}</li>)}
+               {allErrors?.map((error, idx) => <li key={idx}>{error}</li>)}
             </ul>
 
             <label>
@@ -174,6 +179,7 @@ const CreateSpotForm = () => {
                   type='text'
                   value={img}
                   onChange={e => setImg(e.target.value)}
+                  required
                />
             </label>
 

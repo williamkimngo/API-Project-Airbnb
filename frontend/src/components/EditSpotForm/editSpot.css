@@ -62,3 +62,7 @@
 .title {
     color: rgba(123, 103, 103, 0.6)
 }
+
+.error {
+    color: red;
+}
