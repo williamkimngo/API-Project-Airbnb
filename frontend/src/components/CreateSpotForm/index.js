@@ -8,6 +8,7 @@ import './createForm.css'
 const CreateSpotForm = () => {
    const dispatch = useDispatch()
    const history = useHistory()
+
    const sessionUser = useSelector(state => state.session.user)
    const [address, setAddress] = useState('')
    const [city, setCity] = useState("");
@@ -17,24 +18,34 @@ const CreateSpotForm = () => {
    const [description, setDescription] = useState("");
    const [price, setPrice] = useState(0);
    const [img, setImg] = useState("")
+   // const [hasSubmit, setHasSubmit] = useState("")
    const [errors, setErrors] = useState([]);
-   const [validationErrors, setValidationErrors] = useState([]);
+   const [validationErrors, setValidationsErrors] = useState([])
 
    const handleSubmit = async (e) => {
-      console.log("IMAGWEEEE", img)
       e.preventDefault()
-      if (validationErrors.length) {
-         return
-      }
-      setErrors([]);
-      setValidationErrors([]);
-      const payload = {
+      // setHasSubmit(true)
+      // if (validationErrors.length) {
+      //    return
+      // }
+      // setErrors([])
+      // setValidationsErrors([])
 
+      let errors = []
+      if (!img.includes('.com') && !img.includes('.jpg') && !img.includes('.png') && !img.includes('.jpeg')) {
+         errors.push('please provide a valid image URL!')
+      }
+      if (img === "" || img === null) {
+         errors.push('imgUrl cannot be empty')
+      }
+      setValidationsErrors(errors)
+      setErrors([]);
+      const payload = {
+         name,
          address,
          city,
          state,
          country,
-         name,
          description,
          price
       }
@@ -42,13 +53,21 @@ const CreateSpotForm = () => {
          url: img,
          preview: true
       }
+      // if(img === "" || img === null){
+      //    validationErrors = ["ImageURL is required."]
+      // }
       // console.log("PAYLOADSPOT!", payload)
-      let createdSpot = await dispatch(actionAddSpot(payload))
-         .catch(async (res) => {
-            const data = await res.json();
-            if (data && data.errors) setErrors(data.errors);
+      let createdSpot = {}
+      if (!validationErrors.length) {
+         createdSpot = await dispatch(actionAddSpot(payload))
+            .catch(async (res) => {
+               const data = await res.json();
+               if (data && data.errors) setErrors(data.errors);
+            })
+      };
 
-         });
+
+      // console.log("VALIDATION ERROR!!!!", validationErrors)
       // console.log("PAYLOAD!!!!", payloadImg)
       // console.log("CREATESDSPOT", createdSpot)
       // console.log("CREATEDSPOTID!!!!", createdSpot.id)
@@ -65,14 +84,27 @@ const CreateSpotForm = () => {
          history.push('/current');
       }
    }
+   let allErrors = [...errors, ...validationErrors]
    return (
       <div className="Create-Spot-Form-container">
          <form className="form-wrap" onSubmit={handleSubmit}>
             <h2>Create a Spot</h2>
             {!sessionUser && <span className="no-user-error">Please login or signup to host your Stadium.</span>}
+      
             <ul className="error-list">
-               {errors.map((error, idx) => <li key={idx}>{error}</li>)}
+               {allErrors.map((error, idx) => <li key={idx}>{error}</li>)}
             </ul>
+
+            <label>
+
+               <input
+                  placeholder="Name"
+                  type='text'
+                  value={name}
+                  onChange={e => setName(e.target.value)}
+
+               />
+            </label>
             <label>
 
                <input
@@ -113,16 +145,7 @@ const CreateSpotForm = () => {
 
                />
             </label>
-            <label>
 
-               <input
-                  placeholder="Name"
-                  type='text'
-                  value={name}
-                  onChange={e => setName(e.target.value)}
-
-               />
-            </label>
 
             <label>
 

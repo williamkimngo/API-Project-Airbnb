@@ -43,8 +43,8 @@ const SpotDetail = () => {
     }
     let avgRatingTwoDec;
     // console.log(currentSpot.avgStarRating.toString().split(""))
-    if(currentSpot.avgStarRating === 0){
-        avgRatingTwoDec = "No Reviews present for this listing"
+    if(!currentSpot.avgStarRating){
+        avgRatingTwoDec = "0"
     } else if(Number.isInteger(currentSpot.avgStarRating)){
         avgRatingTwoDec = `${currentSpot.avgStarRating}.0`
     } else if(currentSpot?.avgStarRating?.toString().split("").slice(2).length === 1){
@@ -53,6 +53,22 @@ const SpotDetail = () => {
     } else {
         avgRatingTwoDec = parseFloat(currentSpot.avgStarRating).toFixed(2)
     }
+
+    let currentSpotPrice
+
+    if(Number.isInteger(currentSpot.price)){
+        currentSpotPrice = `${currentSpot.price}.00`
+    } else {
+    currentSpotPrice  = parseFloat(currentSpot.price).toFixed(2)
+    }
+    let pricePerNight = parseFloat(currentSpot.price * 3).toFixed(2)
+    let cleaningPrice = parseFloat(currentSpot.price / 5).toFixed(2)
+    let servicePrice = parseFloat(currentSpot.price / 3).toFixed(2)
+    let finalPrice = ((currentSpot.price * 3) + (currentSpot.price / 5) + (currentSpot.price / 3))
+    let finalPriceParse = parseFloat(finalPrice).toFixed(2)
+
+
+
     // <div className='review-name'>{review?.createdAt.slice(0, 9)}</div>
     return (
         <div className="Spot-Detail-container">
@@ -111,21 +127,21 @@ const SpotDetail = () => {
             <div>
                 <div className="price-line-container">
                     <div>
-                        <div className="left-price">${currentSpot.price} x3 nights</div>
+                        <div className="left-price">${currentSpotPrice} x3 nights</div>
                     </div>
-                    <div className="right-price">${currentSpot.price * 3}</div>
+                    <div className="right-price">${(pricePerNight)}</div>
                 </div>
                 <div className="price-line-container">
                     <div className="left-price">Cleaning Fee</div>
-                    <div className="right-price">${currentSpot.price / 5}</div>
+                    <div className="right-price">${(cleaningPrice)}</div>
                 </div>
                 <div className="price-line-container">
                     <div className="left-price">Service Fee</div>
-                    <div className="right-price">${currentSpot.price / 10}</div>
+                    <div className="right-price">${(servicePrice)}</div>
                 </div>
                 <div className="total-price-line-container">
                     <div>Total before taxes</div>
-                    <div>${(currentSpot.price * 3) + (currentSpot.price / 5) + (currentSpot.price / 10)}</div>
+                    <div>${(finalPriceParse)}</div>
                 </div>
 
                 </div>
@@ -142,14 +158,14 @@ const SpotDetail = () => {
                 </h2>
                 </div>
                 <div className="review-link">
-                {allowCreate && <NavLink to={`/spots/${spotId}/reviews/new`}> Leave a Review</NavLink>}</div>
+                {allowCreate && <NavLink className="leave-review" to={`/spots/${spotId}/reviews/new`}><div className="review-leave">Leave a Review</div> </NavLink>}</div>
                 {spotReview.map(review => (
                     <div className='single-review-container' key={review.id}>
 
                         <div className="review-group"><i className="fas fa-user-circle" />
                         <div className="review-name">{review?.User?.firstName}
-                        <div className="review-date"> {review?.createdAt.slice(0,7)}
-                        {review.userId === sessionUser.id ?
+                        <div className="review-date"> {review?.createdAt.slice(0,7)}{}
+                        {review?.userId === sessionUser?.id ?
                             <button className="delete-detail-button" onClick={() => (dispatch(actionDeleteReview(review.id)), dispatch(getOneSpot(spotId)))} > Delete Review</button>:null
                     }
                         </div></div>

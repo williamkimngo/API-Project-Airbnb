@@ -14,10 +14,13 @@
 
 .info-name{
     font-weight: bold;
+
 }
 
 .info{
     padding-left: 10px;
+    border-bottom: 1px solid rgba(0,0,0,0.2);
+
 }
 
 .current-listings {
@@ -31,13 +34,13 @@
 .delete-button {
     width: 150px;
     height: 20px;
-    border-radius: 10px;
+    border-radius: 7px;
     margin-top: 10px;
     margin-bottom: 20px;
     color: white;
     background-color: rgba(220, 16, 98);
     border: none;
-    font-size: 16px;
+    font-size: 15px;
     cursor: pointer;
 }
 
