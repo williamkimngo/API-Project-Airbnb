@@ -16,7 +16,7 @@ const CreateSpotForm = () => {
    const [country, setCountry] = useState("");
    const [name, setName] = useState("");
    const [description, setDescription] = useState("");
-   const [price, setPrice] = useState(0);
+   const [price, setPrice] = useState("");
    const [img, setImg] = useState("")
    // const [hasSubmit, setHasSubmit] = useState("")
    const [errors, setErrors] = useState([]);
@@ -90,7 +90,7 @@ const CreateSpotForm = () => {
          <form className="form-wrap" onSubmit={handleSubmit}>
             <h2>Create a Spot</h2>
             {!sessionUser && <span className="no-user-error">Please login or signup to host your Stadium.</span>}
-      
+
             <ul className="error-list">
                {allErrors.map((error, idx) => <li key={idx}>{error}</li>)}
             </ul>
@@ -154,7 +154,7 @@ const CreateSpotForm = () => {
                   type='text'
                   value={description}
                   onChange={e => setDescription(e.target.value)}
-
+                  style= {{resize: "none"}}
                />
             </label>
 
@@ -164,7 +164,7 @@ const CreateSpotForm = () => {
                   placeholder="Price"
                   type='number'
                   value={price}
-                  onChange={e => setPrice(Number(e.target.value))}
+                  onChange={e => setPrice(e.target.value)}
 
                />
             </label>
