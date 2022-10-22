@@ -44,8 +44,7 @@
 }
 
 .Right-Container{
-
-
+    margin-top: 65px;
     padding: 24px;
     height: 190px;
     display: flex;
@@ -126,6 +125,7 @@
 }
 .review-leave{
     width: 109px;
+    height: 23px;
     margin-left: 10px;
     border-radius: 8px;
     /* margin-top: 10px; */
@@ -133,7 +133,8 @@
     background-color: rgba(220, 16, 98);
     border: none;
     padding-left: 10px;
-    padding-top: 1px;
+    padding-top: 6px;
+    padding-bottom: -1px;
     font-size: 14px;
     cursor: pointer;
     color: white;

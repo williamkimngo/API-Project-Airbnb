@@ -68,7 +68,6 @@ const SpotDetail = () => {
     let finalPriceParse = parseFloat(finalPrice).toFixed(2)
 
 
-
     // <div className='review-name'>{review?.createdAt.slice(0, 9)}</div>
     return (
         <div className="Spot-Detail-container">
@@ -116,7 +115,7 @@ const SpotDetail = () => {
             <div className="spot-detail-price-container">
                 <span>
                     <span className="spot-detail-price">${currentSpot.price}</span>
-                    <span className="per-night">per night</span>
+                    <span className="per-night"> night</span>
                 </span>
                 <span className="price-with-review-top-right">
                     <span id='next-to-right'> &#9733; </span>
@@ -151,10 +150,8 @@ const SpotDetail = () => {
 
             <div className="spot-detail-review-container">
                 <h2>
-                <span> &#9733; </span>
-                <span> {avgRatingTwoDec} </span>
-                <span> · </span>
-                <span> {currentSpot.numReviews} reviews </span>
+                <span>  </span>
+                <span> &#9733; {avgRatingTwoDec} · {currentSpot.numReviews} reviews </span>
                 </h2>
                 </div>
                 <div className="review-link">
@@ -164,7 +161,7 @@ const SpotDetail = () => {
 
                         <div className="review-group"><i className="fas fa-user-circle" />
                         <div className="review-name">{review?.User?.firstName}
-                        <div className="review-date"> {review?.createdAt.slice(0,7)}{}
+                        <div className="review-date"> {review?.createdAt.slice(0,7)}
                         {review?.userId === sessionUser?.id ?
                             <button className="delete-detail-button" onClick={() => (dispatch(actionDeleteReview(review.id)), dispatch(getOneSpot(spotId)))} > Delete Review</button>:null
                     }
