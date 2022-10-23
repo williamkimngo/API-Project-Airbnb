@@ -14,10 +14,16 @@ const validateSpot = [
         .exists({ checkFalsy: true })
         .notEmpty()
         .withMessage('Street address is required.'),
+        check('address')
+        .isLength({ min: 1, max: 50 })
+        .withMessage('Stress address must be less than 50 characters'),
     check('city')
         .exists({ checkFalsy: true })
         .notEmpty()
         .withMessage('City is required.'),
+        check('city')
+        .isLength({ min: 1, max: 50 })
+        .withMessage('City must be less than 50 characters'),
     check('city')
     .isAlpha('en-US', { ignore: ' ' })
     .withMessage('City cannot be a number'),
@@ -25,6 +31,9 @@ const validateSpot = [
         .exists({ checkFalsy: true })
         .notEmpty()
         .withMessage('State is required.'),
+        check('state')
+        .isLength({ min: 1, max: 50 })
+        .withMessage('State must be less than 50 characters'),
     check('state')
         .isAlpha('en-US', { ignore: ' ' })
         .withMessage('State cannot be a number.'),
@@ -32,6 +41,9 @@ const validateSpot = [
         .exists({ checkFalsy: true })
         .notEmpty()
         .withMessage('Country is required.'),
+        check('country')
+        .isLength({ min: 1, max: 50 })
+        .withMessage('Country must be less than 50 characters'),
     check('country')
      .isAlpha('en-US', { ignore: ' ' })
      .withMessage('Country cannot be a number.'),
