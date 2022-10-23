@@ -1,9 +1,6 @@
 # BallBnB ![image](https://raw.githubusercontent.com/williamkimngo/API-Project-Airbnb/main/assets/ballbnb3.png)
 
 ***
-### AirBnB Clone
-
-![image](https://i.imgur.com/NCMG97L.png)
 
 BallBnB is a full stack application clone, inspired by [AirBnB](https://www.airbnb.com/). BallBnB can be used to discover Football Stadiums or Basketball Arenas that are availiable as rentals across the United States of America for any event. This application is ideal for those planning large-scale events.
 
@@ -48,3 +45,22 @@ Database:
 HOSTING:
 
 ![Heroku](https://img.shields.io/badge/heroku-%23430098.svg?style=for-the-badge&logo=heroku&logoColor=white)
+
+# Getting Started
+
+## Instructions on how to run this website locally
+-Git Clone Repo
+-Run npm install in both frontend and backend directory
+-run npm start in your backend directory
+-run npm start in your frontend directory, which will populate a new tab in your browser in localhost:3000, which will allow you to have full access to the website features. The website will not work unless BOTH backend and frontend are both running at the same time. 
+
+
+## Landing Page
+
+***
+
+You can access the Login Page and Sign up page at the top right corner. The site also has a Demo User for you to login with to have access to all the features to check the website.
+
+![image](https://i.imgur.com/NCMG97L.png)
+
+## Getting Started
