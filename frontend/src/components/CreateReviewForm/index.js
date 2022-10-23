@@ -41,7 +41,7 @@ const CreateReviewForm = () => {
         <div>
             <form className="review-form-container" onSubmit={handleSubmit}>
                 <div className="review-header">
-                <h2>Create a Review</h2>
+                <h2>Please let us know about your experience! </h2>
                 </div>
                 <ul className="error-list">
                 {errors.map((error, idx) => <li key={idx}>{error}</li>)}

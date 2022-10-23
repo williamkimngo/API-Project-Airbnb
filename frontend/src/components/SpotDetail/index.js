@@ -54,18 +54,15 @@ const SpotDetail = () => {
         avgRatingTwoDec = parseFloat(currentSpot.avgStarRating).toFixed(2)
     }
 
-    let currentSpotPrice
+    // let currentSpotPrice
 
-    if(Number.isInteger(currentSpot.price)){
-        currentSpotPrice = `${currentSpot.price}.00`
-    } else {
-    currentSpotPrice  = parseFloat(currentSpot.price).toFixed(2)
-    }
-    let pricePerNight = parseFloat(currentSpot.price * 3).toFixed(2)
-    let cleaningPrice = parseFloat(currentSpot.price / 5).toFixed(2)
-    let servicePrice = parseFloat(currentSpot.price / 3).toFixed(2)
+    // if(Number.isInteger(currentSpot.price)){
+    //     currentSpotPrice = `${currentSpot.price}.00`
+    // } else {
+    // currentSpotPrice  = parseFloat(currentSpot.price).toFixed(2)
+    // }
     let finalPrice = ((currentSpot.price * 3) + (currentSpot.price / 5) + (currentSpot.price / 3))
-    let finalPriceParse = parseFloat(finalPrice).toFixed(2)
+
 
 
     // <div className='review-name'>{review?.createdAt.slice(0, 9)}</div>
@@ -126,21 +123,21 @@ const SpotDetail = () => {
             <div>
                 <div className="price-line-container">
                     <div>
-                        <div className="left-price">${currentSpotPrice} x3 nights</div>
+                        <div className="left-price">${currentSpot.price} x3 nights</div>
                     </div>
-                    <div className="right-price">${(pricePerNight)}</div>
+                    <div className="right-price">${Math.round(currentSpot.price * 3)}</div>
                 </div>
                 <div className="price-line-container">
                     <div className="left-price">Cleaning Fee</div>
-                    <div className="right-price">${(cleaningPrice)}</div>
+                    <div className="right-price">${Math.round(currentSpot.price /3)}</div>
                 </div>
                 <div className="price-line-container">
                     <div className="left-price">Service Fee</div>
-                    <div className="right-price">${(servicePrice)}</div>
+                    <div className="right-price">${Math.round(currentSpot.price / 2) }</div>
                 </div>
                 <div className="total-price-line-container">
                     <div>Total before taxes</div>
-                    <div>${(finalPriceParse)}</div>
+                    <div>${Math.round(finalPrice)}</div>
                 </div>
 
                 </div>
