@@ -19,6 +19,8 @@ function NoUserButton({ user }) {
 
     const closeMenu = () => {
       setShowMenu(false);
+
+
     };
 
     document.addEventListener('click', closeMenu);
@@ -33,13 +35,12 @@ function NoUserButton({ user }) {
         <i className="fas fa-user-circle" />
       </button>
       {showMenu && (
-        <ul className="profile-dropdown-nouser">
+        <ul className="profile-dropdown-no-user">
          <li>
          <LoginFormModal />
          </li>
 
          <li>
-            {/* <NavLink className="account-button" to="/signup">Sign Up</NavLink> */}
             <SignUpModal />
          </li>
 
