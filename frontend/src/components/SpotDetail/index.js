@@ -163,7 +163,7 @@ const SpotDetail = () => {
                         <div className="review-name">{review?.User?.firstName}
                         <div className="review-date"> {review?.createdAt.slice(0,7)}
                         {review?.userId === sessionUser?.id ?
-                            <button className="delete-detail-button" onClick={() => (dispatch(actionDeleteReview(review.id)), dispatch(getOneSpot(spotId)))} > Delete Review</button>:null
+                            <button className="delete-detail-button" onClick={async () => {await dispatch(actionDeleteReview(review.id)); await dispatch(getOneSpot(spotId))}} > Delete Review</button>:null
                     }
                         </div></div>
                         </div>

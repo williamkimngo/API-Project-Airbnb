@@ -57,3 +57,7 @@
     list-style: none;
     color: red;
 }
+
+.no-user-error {
+    color: red;
+}

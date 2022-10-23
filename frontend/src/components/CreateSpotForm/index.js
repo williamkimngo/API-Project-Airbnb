@@ -47,13 +47,13 @@ const CreateSpotForm = () => {
          preview: true
       }
       // console.log("DATAERRORS before CREATION",data.errors)
-      console.log("ERRORS BEFORE SUBMIT", errors)
+      // console.log("ERRORS BEFORE SUBMIT", errors)
       // if(img === "" || img === null){
       //    validationErrors = ["ImageURL is required."]
       // }
       // console.log("PAYLOADSPOT!", payload)
       let createdSpot ={}
-      console.log("VALIDATIONERORRRRER", validationErrors)
+      // console.log("VALIDATIONERORRRRER", validationErrors)
 
          createdSpot = await dispatch(actionAddSpot(payload))
             .catch(async (res) => {
@@ -63,7 +63,7 @@ const CreateSpotForm = () => {
                if (data && data.errors) setErrors(data.errors);
             })
 
-      console.log("ERROR AFTER CREATE", errors)
+      // console.log("ERROR AFTER CREATE", errors)
 
       // console.log("VALIDATION ERROR!!!!", validationErrors)
       // console.log("PAYLOAD!!!!", payloadImg)
@@ -85,12 +85,12 @@ const CreateSpotForm = () => {
    }
 
    let allErrors = [...errors, ...validationErrors]
-   console.log("ALLLTHEERRORS!", allErrors)
+   // console.log("ALLLTHEERRORS!", allErrors)
    return (
       <div className="Create-Spot-Form-container">
          <form className="form-wrap" onSubmit={handleSubmit}>
-            <h2>Create a Spot</h2>
-            {!sessionUser && <span className="no-user-error">Please login or signup to host your Stadium.</span>}
+            <h2>Create Your Listing</h2>
+            {!sessionUser && <span className="no-user-error">Please login or signup to host your Stadium/Arena.</span>}
 
             <ul className="error-list">
                {allErrors?.map((error, idx) => <li key={idx}>{error}</li>)}
