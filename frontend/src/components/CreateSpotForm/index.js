@@ -54,7 +54,7 @@ const CreateSpotForm = () => {
       // console.log("PAYLOADSPOT!", payload)
       let createdSpot ={}
       // console.log("VALIDATIONERORRRRER", validationErrors)
-
+      if (!errors.length){
          createdSpot = await dispatch(actionAddSpot(payload))
             .catch(async (res) => {
                const data = await res.json();
@@ -62,6 +62,7 @@ const CreateSpotForm = () => {
                console.log("DATAERRORS AFTER CREATION",data.errors)
                if (data && data.errors) setErrors(data.errors);
             })
+         }
 
       // console.log("ERROR AFTER CREATE", errors)
 
@@ -70,7 +71,7 @@ const CreateSpotForm = () => {
       // console.log("CREATESDSPOT", createdSpot)
       // console.log("CREATEDSPOTID!!!!", createdSpot.id)
 
-      if (createdSpot) {
+      if (createdSpot && !errors.length) {
          let newImg = await dispatch(actionAddImageUrl(payloadImg, createdSpot.id))
          .catch(async (res) => {
             const data = await res.json();
@@ -155,7 +156,7 @@ const CreateSpotForm = () => {
                   type='text'
                   value={description}
                   onChange={e => setDescription(e.target.value)}
-                  style= {{resize: "none"}}
+                  style= {{resize: "none", fontFamily: "Helvetica"}}
                />
             </label>
 
