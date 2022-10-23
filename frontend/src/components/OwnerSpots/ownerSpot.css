@@ -4,6 +4,7 @@
     flex-direction: column;
     align-items: center;
     box-sizing: border-box;
+    align-self: center;
 }
 
  h1 {
@@ -87,13 +88,15 @@ h2 {
     transform: translate(-50%, -50%); */
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    /* justify-content: flex-start; */
+    align-self: flex-start;
 
 
 }
 
 .Spot-card-owner {
     padding: 13px;
+
 
 }
 
