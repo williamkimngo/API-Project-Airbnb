@@ -55,9 +55,9 @@ HOSTING:
 
 -Run npm start in your backend directory
 
--Run npm start in your frontend directory, which will populate a new tab in your browser in localhost:3000, which will allow you to have full access to the website features. 
+-Run npm start in your frontend directory, which will populate a new tab in your browser in localhost:3000, which will allow you to have full access to the website features.
 
--The website will not function unless BOTH backend and frontend are both running at the same time. 
+-The website will not function unless BOTH backend and frontend are both running at the same time.
 
 
 ## Landing Page
@@ -68,4 +68,3 @@ You can access the Login Page and Sign up page at the top right corner. The site
 
 ![image](https://i.imgur.com/NCMG97L.png)
 
-## Getting Started
