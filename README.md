@@ -62,36 +62,29 @@ HOSTING:
 
 ## Landing Page
 
-***
-
 You can access the Login Page and Sign up page at the top right corner as well as creating a listing by clicking "Become a Host" as long as you are logged in as a User. The site also has a Demo User for you to login with to have access to all the features to check the website. This page will also show you all the current listings availiable on the website.
 
 ![image](https://i.imgur.com/NCMG97L.png)
 
 ## Spot Detail Page
 
-***
+
 
 This page will show you all the details associated to the specific spot. If you are not the owner of the spot, you are able to add a review to the spot.
 
 ![image](https://i.imgur.com/MAlVUw5.png)
 
 
-
 ## Account Page
 
-***
 
 This page will show all your current listings and reviews that you have made on this website. You are able to edit/delete your listings as well deleting your review. In order to access your account page, there is a dropdown menu located in the top right corner.
 
 ![image](https://i.imgur.com/mZiwvWt.png)
 
 
-***
-
 ## Hosting a Spot
 
-***
 
 This page will allow you to create a listing, as long as your are signed in as a user.
 
@@ -102,6 +95,5 @@ This page will allow you to create a listing, as long as your are signed in as a
 
 ## Contact
 
-***
 
 If you have any questions or concerns about my project or any other projects that I may be working on, please contact me at Williamkimngo@gmail.com.
