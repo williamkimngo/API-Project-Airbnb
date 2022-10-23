@@ -50,9 +50,14 @@ HOSTING:
 
 ## Instructions on how to run this website locally
 -Git Clone Repo
+
 -Run npm install in both frontend and backend directory
--run npm start in your backend directory
--run npm start in your frontend directory, which will populate a new tab in your browser in localhost:3000, which will allow you to have full access to the website features. The website will not work unless BOTH backend and frontend are both running at the same time. 
+
+-Run npm start in your backend directory
+
+-Run npm start in your frontend directory, which will populate a new tab in your browser in localhost:3000, which will allow you to have full access to the website features. 
+
+-The website will not function unless BOTH backend and frontend are both running at the same time. 
 
 
 ## Landing Page
