@@ -105,7 +105,7 @@ const reviewsReducer = (state = initialState, action) => {
       }
 
       case GET_USER_REVIEW: {
-         const userState = {...state, user: {...state.user}};
+         const userState = {...state, user: {}};
          action.reviews.Reviews.forEach(review => (userState.user[review.id] = review));
          return userState;
       }
