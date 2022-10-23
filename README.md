@@ -68,3 +68,8 @@ You can access the Login Page and Sign up page at the top right corner. The site
 
 ![image](https://i.imgur.com/NCMG97L.png)
 
+## Contact
+
+***
+
+If you have any questions or concerns about my project or any other projects that I may be working on, please contact me at Williamkimngo@gmail.com.
