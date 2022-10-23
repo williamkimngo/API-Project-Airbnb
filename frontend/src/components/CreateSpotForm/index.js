@@ -29,7 +29,7 @@ const CreateSpotForm = () => {
       if(errors.length > 0) {
          return
       }
-      if (!/^https?:\/\/.+\.(jpg|jpeg|png|JPG|JPEG|PNG)$/.test(img)) errors.push('Image must be a proper link that starts with https:// and ends with jpg, jpeg, png')
+      if (!/^https?:\/\/.+\.(jpg|jpeg|png|JPG|JPEG|PNG|gif)$/.test(img)) errors.push('Image must be a proper link that starts with https:// and ends with jpg, jpeg, png')
 
       setValidationsErrors(errors)
       setErrors([]);
