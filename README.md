@@ -3,7 +3,7 @@
 ***
 ### AirBnB Clone
 
-[](https://i.imgur.com/NCMG97L.png)
+![image](https://i.imgur.com/NCMG97L.png)
 
 BallBnB is a full stack application clone, inspired by [AirBnB](https://www.airbnb.com/). BallBnB can be used to discover Football Stadiums or Basketball Arenas that are availiable as rentals across the United States of America for any event. This application is ideal for those planning large-scale events.
 
