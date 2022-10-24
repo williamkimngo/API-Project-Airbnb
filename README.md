@@ -53,7 +53,10 @@ HOSTING:
 
 -Run npm install in the root directory.
 
--Run 'npx dotenv sequelize-cli db:migrate' and 'npx dotenv sequelize-cli db:seed:all' in the backend directory.
+-Run the following code in your backend directory: 
+
+```npx dotenv sequelize-cli db:migrate```
+```npx dotenv sequelize-cli db:seed:all```
 
 -Run npm start in your backend directory.
 
