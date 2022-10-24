@@ -1,30 +1,35 @@
 import React, { useState } from "react";
 import * as sessionActions from "../../store/session";
 import { useDispatch, useSelector } from "react-redux";
-import {Redirect} from 'react-router-dom'
+import {Redirect, useHistory} from 'react-router-dom'
 import './LoginForm.css'
 
-function LoginForm() {
+function LoginForm({setLogin}) {
   const dispatch = useDispatch();
   const sessionUser = useSelector(state => state.session.user)
   const [credential, setCredential] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState([]);
+  const history = useHistory()
 
 
   if(sessionUser) return (
     <Redirect to="/" />
   );
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setErrors([]);
-    return dispatch(sessionActions.login({ credential, password })).catch(
+    let loggedUser = await dispatch(sessionActions.login({ credential, password })).catch(
       async (res) => {
         const data = await res.json();
         if (data && data.errors) setErrors(data.errors);
       }
     );
+    if(loggedUser?.id){
+      history.push('/');
+      setLogin(false)
+    }
   };
 
   return (
@@ -60,10 +65,10 @@ function LoginForm() {
       </label>
       <button className="log-in-button" type="submit">Log In</button>
       <button className="Demo-user-button"
-      onClick={() => dispatch(sessionActions.login({
+      onClick={() => (dispatch(sessionActions.login({
         credential: "Demo-lition",
         password: "password"
-      }))}
+      })), setLogin(false))}
     >
       Demo User
       </button>

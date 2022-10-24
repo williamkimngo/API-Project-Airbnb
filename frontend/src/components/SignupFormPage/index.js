@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Redirect } from "react-router-dom";
+import { Redirect, useHistory } from "react-router-dom";
 import * as sessionActions from "../../store/session";
 import './SignupForm.css';
 
-function SignupFormPage() {
+function SignupFormPage({setShowSignup}) {
   const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.session.user);
   const [email, setEmail] = useState("");
@@ -14,20 +14,34 @@ function SignupFormPage() {
   const [lastName, setLastName] = useState("")
   const [confirmPassword, setConfirmPassword] = useState("");
   const [errors, setErrors] = useState([]);
+  const history = useHistory()
 
   if (sessionUser) return <Redirect to="/" />;
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
     if (password === confirmPassword) {
       setErrors([]);
-      return dispatch(sessionActions.signup({ email, firstName, lastName, username, password }))
+      let signedUser = await dispatch(sessionActions.signup({ email, firstName, lastName, username, password }))
         .catch(async (res) => {
           const data = await res.json();
-          if (data && data.errors) setErrors(data.errors);
+          if (data && data.errors) {
+            console.log("ERROR SIGNING UP", Array.isArray(data.errors))
+            console.log("DATA ERRORS", data)
+            setErrors(Object.values(data.errors));
+            console.log("ERROR after setERROR", errors)
+
+          }
+
         });
-    }
+
+        if(signedUser?.id){
+          history.push('/')
+          setShowSignup(false)
+        }
+    } else {
     return setErrors(['Confirm Password field must be the same as the Password field']);
+    }
   };
 
   return (
@@ -38,7 +52,7 @@ function SignupFormPage() {
       <form onClick={(e) => e.stopPropagation()} onSubmit={handleSubmit} className='signup-form-wrapper'>
         <h2>Welcome to Ballbnb</h2>
         <ul className="error-list">
-          {errors.map((error, idx) => <li key={idx}>{error}</li>)}
+          {errors?.map((error, idx) => <li key={idx}>{error}</li>)}
         </ul>
         <label>
           <input
