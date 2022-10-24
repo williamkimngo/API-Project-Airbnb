@@ -51,9 +51,9 @@ HOSTING:
 ## Instructions on how to run this website locally
 -Git Clone Repo
 
--Run npm install in both frontend and backend directory.
+-Run npm install in the root directory.
 
--Run npm run dbms to migrate and seed existing database.
+-Run 'npx dotenv sequelize-cli db:migrate' and 'npx dotenv sequelize-cli db:seed:all' in the backend directory.
 
 -Run npm start in your backend directory.
 
