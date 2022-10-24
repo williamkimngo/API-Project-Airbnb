@@ -9,12 +9,13 @@ import './Navigation.css';
 function Navigation({ isLoaded }){
   const sessionUser = useSelector(state => state.session.user);
 
-  const [signup, setShowSignUp] = useState(false)
-  const [login, setLogin] = useState(false)
+  // const [signup, setShowSignUp] = useState(false)
+  // const [login, setLogin] = useState(false)
 
   let sessionLinks;
   if (sessionUser) {
     sessionLinks = (
+
       <ProfileButton user={sessionUser} />
     );
   } else {
