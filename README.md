@@ -53,6 +53,8 @@ HOSTING:
 
 -Run npm install in the root directory.
 
+-Create a .env file in the root of your backend directory to replicate the env.example file. 
+
 -Run the following code in your backend directory: 
 
 ```npx dotenv sequelize-cli db:migrate```
