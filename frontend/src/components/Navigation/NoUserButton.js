@@ -5,7 +5,7 @@ import React, { useState, useEffect } from "react";
 import LoginFormModal from "../LoginFormModal";
 import SignUpModal from "../SignupFormPage/SignUpModal";
 
-function NoUserButton({ user }) {
+function NoUserButton({ user }) { //pass setlogin and setshowsingup as props
 //   const dispatch = useDispatch();
   const [showMenu, setShowMenu] = useState(false);
 

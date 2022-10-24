@@ -84,6 +84,17 @@ const EditSpotForm = () => {
         <ul className="error">
         {errors?.map((error, idx) => <li key={idx}>{error}</li>)}
         </ul>
+        
+        <label><div  className="title">
+           Name</div>
+           <input
+           type='text'
+           value={name}
+           onChange={(e) => setName(e.target.value)}
+
+           />
+        </label>
+
         <label><div className="title">
          Address
         </div>
@@ -127,15 +138,7 @@ const EditSpotForm = () => {
            />
         </label>
 
-        <label><div  className="title">
-           Name</div>
-           <input
-           type='text'
-           value={name}
-           onChange={(e) => setName(e.target.value)}
 
-           />
-        </label>
 
         <label><div className="title">
            Description</div>

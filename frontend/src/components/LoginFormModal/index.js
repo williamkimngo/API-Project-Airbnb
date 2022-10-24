@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Modal } from '../../context/Modal';
 import LoginForm from './LoginForm';
 
-function LoginFormModal() {
+function LoginFormModal() { //pass in setlogin and login as prop
   const [showModal, setShowModal] = useState(false);
 
   return (
