@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
-// import { useDispatch } from 'react-redux';
-// import { Link, NavLink } from "react-router-dom";
-// import * as sessionActions from '../../store/session';
+import { useDispatch } from 'react-redux';
+import { Link, NavLink } from "react-router-dom";
+import * as sessionActions from '../../store/session';
 import LoginFormModal from "../LoginFormModal";
 import SignUpModal from "../SignupFormPage/SignUpModal";
 
-function NoUserButton({ user }) { //pass setlogin and setshowsingup as props
-//   const dispatch = useDispatch();
+function NoUserButton({ user, setShowSignup, setLogin }) { //pass setlogin and setshowsingup as props
+  const dispatch = useDispatch();
   const [showMenu, setShowMenu] = useState(false);
 
   const openMenu = () => {
@@ -37,11 +37,13 @@ function NoUserButton({ user }) { //pass setlogin and setshowsingup as props
       {showMenu && (
         <ul className="profile-dropdown-no-user">
          <li>
-         <LoginFormModal />
+        
+         <button className="login-button" onClick={() => setLogin(true)}>Log In</button>
          </li>
 
          <li>
-            <SignUpModal />
+
+            <button className="account-button" onClick={() => setShowSignup(true)}>Sign Up</button>
          </li>
 
         </ul>

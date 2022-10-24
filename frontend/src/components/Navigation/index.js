@@ -5,22 +5,26 @@ import ProfileButton from './ProfileButton';
 import LoginFormModal from '../LoginFormModal';
 import NoUserButton from './NoUserButton';
 import './Navigation.css';
+import SignUpFormModal from '../SignupFormPage/SignUpModal';
 
 function Navigation({ isLoaded }){
   const sessionUser = useSelector(state => state.session.user);
 
-  // const [signup, setShowSignUp] = useState(false)
-  // const [login, setLogin] = useState(false)
+  const [signup, setShowSignup] = useState(false)
+  const [login, setLogin] = useState(false)
 
   let sessionLinks;
   if (sessionUser) {
     sessionLinks = (
-
       <ProfileButton user={sessionUser} />
+
     );
   } else {
     sessionLinks = (
-      <NoUserButton/>
+      <div className='navContent'>
+
+      <NoUserButton setShowSignup={setShowSignup} setLogin={setLogin}/>
+    </div >
     );
   }
 
@@ -37,7 +41,8 @@ function Navigation({ isLoaded }){
           <li>
             <NavLink className="host-spot" to='/spots/new'>Become a Host</NavLink>
           </li>
-
+          {signup && <SignUpFormModal setShowSignup={setShowSignup} signup={signup} />}
+          {login && <LoginFormModal setLogin={setLogin} login={login} />}
           <li>
             {isLoaded && sessionLinks}
           </li>
