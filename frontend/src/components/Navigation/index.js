@@ -6,6 +6,7 @@ import LoginFormModal from '../LoginFormModal';
 import NoUserButton from './NoUserButton';
 import './Navigation.css';
 import SignUpFormModal from '../SignupFormPage/SignUpModal';
+import SearchBar from './SearchBar';
 
 function Navigation({ isLoaded }){
   const sessionUser = useSelector(state => state.session.user);
@@ -29,26 +30,31 @@ function Navigation({ isLoaded }){
   }
 
   return (
-    <div className='nav-bar'>
-    <ul className="nav-list">
-      <li>
+    <>
+    <nav className='nav-bar'>
+      <div className='navigation-outer'>
+    <div className="nav-list">
+      {/* <div> */}
         <NavLink exact to="/">
           <img src='https://i.imgur.com/pcQ7lcp.png' alt='logo' className='home-logo'></img>
           </NavLink>
-          </li>
+          <SearchBar/>
+          {/* </div> */}
 
           <div className='right-nav-items'>
-          <li>
+          <div>
             <NavLink className="host-spot" to='/spots/new'>Become a Host</NavLink>
-          </li>
+          </div>
           {signup && <SignUpFormModal setShowSignup={setShowSignup} signup={signup} />}
           {login && <LoginFormModal setLogin={setLogin} login={login} />}
-          <li>
+          <div>
             {isLoaded && sessionLinks}
-          </li>
+          </div>
         </div>
-      </ul>
-    </div>
+      </div>
+      </div>
+    </nav>
+    </>
   );
 }
 

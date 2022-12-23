@@ -1,12 +1,14 @@
 .nav-bar {
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-    margin: 0px;
-    width: 100%;
-
+    height: 90px;
+ }
+ .navigation-outer {
+   display: flex;
+   justify-content: center;
  }
 
  .nav-list {
-    position: fixed;
+    /* position: fixed;
     list-style: none;
     background-color: white;
     display: flex;
@@ -18,7 +20,12 @@
     top: 0;
     align-items: center;
     box-sizing: border-box;
-    border-bottom: 1px solid rgba(0,0,0,0.1);
+    border-bottom: 1px solid rgba(0,0,0,0.1); */
+    display: flex;
+  justify-content: space-between;
+  padding: 1rem 1rem 1.3rem;
+  width: 100%;
+  list-style: none;
  }
 
  .right-nav-items {
@@ -181,4 +188,10 @@
  .dropdown-button:hover,
  .logout-button:hover {
     cursor: pointer;
+ }
+
+ @media screen and (max-width: 700px) {
+   .nav-list {
+     width: 34%;
+   }
  }
