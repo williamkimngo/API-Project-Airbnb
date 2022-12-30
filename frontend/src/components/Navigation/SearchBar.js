@@ -62,27 +62,27 @@ function SearchBar() {
           {showDestinations && (
             <div className="where-dropdown">
               <div className="where-dropdown-header">Popular Searches</div>
-              <div className="where-selection" onClick={() => { setDestination("Indonesia"); history.push(`/search/indonesia/${guests}`) }}>
+              <div className="where-selection" onClick={() => { setDestination("California"); history.push(`/search/indonesia/${guests}`) }}>
                 <img className='dropdown-clock' src={clock}></img>
                 <div className="where-destination-outer">
-                  <div className="where-destination-header">Indonesia · Stays</div>
+                  <div className="where-destination-header">California · Stays</div>
                   <div className="where-destination-date">Any week</div>
                 </div>
               </div>
-              <div className="where-selection" onClick={() => { setDestination("Thailand"); history.push(`/search/thailand/${guests}`) }}>
+              <div className="where-selection" onClick={() => { setDestination("Florida"); history.push(`/search/thailand/${guests}`) }}>
                 <img className='dropdown-clock' src={clock}></img>
                 <div className="where-destination-outer">
-                  <div className="where-destination-header">Thailand · Stays</div>
+                  <div className="where-destination-header">Florida · Stays</div>
                   <div className="where-destination-date">Any week</div>
                 </div>
               </div>
-              <div className="where-selection" onClick={() => { setDestination("Mexico"); history.push(`/search/mexico/${guests}`) }}>
+              {/* <div className="where-selection" onClick={() => { setDestination("Mexico"); history.push(`/search/mexico/${guests}`) }}>
                 <img className='dropdown-clock' src={clock}></img>
                 <div className="where-destination-outer">
                   <div className="where-destination-header">Mexico · Stays</div>
                   <div className="where-destination-date">Any week</div>
                 </div>
-              </div>
+              </div> */}
             </div>
           )}
         </div>
