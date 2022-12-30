@@ -34,12 +34,12 @@ function Navigation({ isLoaded }){
     <nav className='nav-bar'>
       <div className='navigation-outer'>
     <div className="nav-list">
-      {/* <div> */}
+
         <NavLink exact to="/">
           <img src='https://i.imgur.com/pcQ7lcp.png' alt='logo' className='home-logo'></img>
           </NavLink>
           <SearchBar/>
-          {/* </div> */}
+         
 
           <div className='right-nav-items'>
           <div>
