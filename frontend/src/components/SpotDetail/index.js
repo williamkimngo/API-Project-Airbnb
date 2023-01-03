@@ -4,11 +4,83 @@ import { useParams, NavLink } from "react-router-dom"
 import { actionGetSpotReview, actionDeleteReview } from "../../store/reviews"
 import { getOneSpot } from "../../store/spots"
 import './spotId.css';
+import { getAllbookings } from "../../store/bookings"
+import { DateRange } from 'react-data-range'
+import 'react-date-range/dist/styles.css'; // main style file
+import 'react-date-range/dist/theme/default.css'; // theme css file
 
 const SpotDetail = () => {
     const dispatch = useDispatch()
     const { spotId } = useParams()
     const sessionUser = useSelector(state => state.session.user)
+    const users = useSelector(state => state.users)
+    const [confirmDelete, setConfirmDelete] = useState(false);
+  const currRoomBookings = useSelector(getAllbookings)
+  const [selectDate, setSelectDate] = useState(false)
+  const today = new Date()
+  const tomorrow = new Date()
+  const nextDay = new Date()
+  tomorrow.setHours(tomorrow.getHours() + 7)
+  nextDay.setHours(nextDay.getHours() + 31)
+
+  const [checkIn, setCheckIn] = useState(tomorrow)
+  const [checkOut, setCheckOut] = useState(nextDay)
+  const [dates, setDates] = useState([
+    {
+      startDate: tomorrow,
+      endDate: nextDay,
+      key: 'selection'
+    }
+  ])
+  useEffect(() => {
+    if (dates[0].startDate !== tomorrow) {
+      setCheckIn(dates[0].startDate.toISOString().slice(0, 10))
+      setCheckOut(dates[0].endDate.toISOString().slice(0, 10))
+    }
+  }, [dates])
+
+  useEffect(() => {
+    if (checkIn !== today) {
+      setDates([
+        {
+          startDate: new Date(checkIn),
+          endDate: new Date(checkOut),
+          key: 'selection'
+        }
+      ])
+    }
+
+  }, [selectDate])
+
+  useEffect(() => {
+    dispatch(getAllbookings(roomId))
+    getBookedDates()
+  }, [roomId])
+
+  const allStartDates = currRoomBookings.map(bookings => bookings.startDate)
+  const allEndDates = currRoomBookings.map(bookings => bookings.endDate)
+
+  const getDays = (start, end) => {
+    for (var betweenDates = [], date = new Date(start); date <= new Date(end); date.setDate(date.getDate() + 1)) {
+      betweenDates.push(new Date(date));
+    }
+    return betweenDates;
+  };
+
+  const getBookedDates = () => {
+    let i = 0
+    let bookedDates = []
+    while (i < allStartDates.length) {
+      let allDates = getDays(new Date(allStartDates[i]), new Date(allEndDates[i]));
+      allDates.map((date) => date.toISOString().slice(0, 10)).join("")
+      bookedDates.push(...allDates)
+      i++
+    }
+    return bookedDates
+  }
+
+  const [page, setPage] = useState(1)
+
     let currentSpot = useSelector(state => state.spots.specificSpot)
     let avgRatingSpot = useSelector(state => state.spots.specificSpot.avgStarRating)
     // let spotRating = useSelector(state => state.specificSpot.avg)
