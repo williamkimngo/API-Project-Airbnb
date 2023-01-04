@@ -207,7 +207,7 @@ router.get('/:id', async (req, res) => {
             model: SpotImage,
             attributes: ["id", "url", "preview"]
         },
-        { model: User, attributes: ["id", "firstName", "lastName"], as: "Owner" }]
+        { model: User, attributes: ["id", "firstName", "lastName", "profile_url"], as: "Owner" }]
     })
     if (!spot) {
         res.status(404)

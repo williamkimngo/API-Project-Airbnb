@@ -10,6 +10,7 @@ import 'react-date-range/dist/styles.css'; // main style file
 import 'react-date-range/dist/theme/default.css'; // theme css file
 import { actionDeleteSpot, getCurrentUserSpots, getSpots } from "../../store/spots"
 import { Modal } from "../../context/Modal";
+import { listAllUsers } from "../../store/users";
 
 
 const SpotDetail = () => {
@@ -27,6 +28,7 @@ const SpotDetail = () => {
     const nextDay = new Date()
     tomorrow.setHours(tomorrow.getHours() + 7)
     nextDay.setHours(nextDay.getHours() + 31)
+
 
     const [checkIn, setCheckIn] = useState(tomorrow)
     const [checkOut, setCheckOut] = useState(nextDay)
@@ -87,6 +89,8 @@ const SpotDetail = () => {
     const [page, setPage] = useState(1)
 
     let currentSpot = useSelector(state => state.spots.specificSpot)
+    // console.log(currentSpot.Owner.profile_url, "HELLO????")
+    console.log(currentSpot?.Owner?.profile_url, "HELLO???????")
 
     // console.log(currentSpot.ownerId, "CURRSPOT???")
     let avgRatingSpot = useSelector(state => state.spots.specificSpot.avgStarRating)
@@ -102,6 +106,7 @@ const SpotDetail = () => {
     useEffect(() => {
         dispatch(getOneSpot(spotId))
         dispatch(listRoombookings(spotId))
+        dispatch(listAllUsers())
         dispatch(actionGetSpotReview(spotId))
         document.documentElement.scrollTop = 0;
 
@@ -189,7 +194,7 @@ const SpotDetail = () => {
                 <span>  Superhost </span>
                 <span> · </span>
                 <span className="location">{currentSpot.city}, {currentSpot.state}, {currentSpot.country}</span>
-            </div>
+
             <div className="session-user-buttons">
                   {sessionUser ?
                     <>
@@ -209,15 +214,79 @@ const SpotDetail = () => {
                         </div>}
                     </> : <></>}
                 </div>
+                </div>
             </div>
-            <div className="img-container">
+            {/* <div className="img-container">
 
                 <img className="first-img" src={currentSpot?.SpotImages[0].url} alt='SpotImage' />
+            </div> */}
+            <div className="outer-room-images">
+              <div className="room-images">
+                <div className="left-image-div">
+                  {currentSpot?.SpotImages &&
+                    <img src={currentSpot?.SpotImages[0]?.url} alt="exterior" className="main-image"></img>}
+                </div>
+                <div className="right-image-div">
+                  {currentSpot?.SpotImages?.map((image, i) => {
+                    if (i > 0)
+                      return (
+                        <div className="side-image-div" key={image.url}>
+                          <img src={`${image?.url}`} alt="interior" className={`side-images side-images${i}`}></img>
+                        </div>
+                      )
+                  })}
+                </div>
+              </div>
             </div>
 
             <div className="big-middle-div">
-                <div className="Spot-detail-description-container">
+            <div className="default-description">
+              <div className="room-info-general">
+                <div className="room-info-left">
+                  <div className="room-info-header">{currentSpot.name} hosted by {currentSpot.Owner?.firstName}</div>
+                </div>
+                <div className="room-info-right">
+                  <img src={currentSpot?.Owner?.profile_url} className='room-owner-img'></img>
+                </div>
+                <div className="extra-info">
+                        <div>
+
+                            <div className="info-title">🚪Self Check in
+                                <p>Check yourself in with the lockbox.</p>
+                            </div>
+
+                        </div>
+                        <div>
+                            <div className="info-title"> 🎖️{currentSpot.Owner.firstName} is a Superhost
+                                <p>Superhosts are experienced, highly rated hosts who are committed to providing great stays for guests.</p>
+                            </div>
+
+                        </div>
+                        <div className="info-title">📆 Free Cancellation within 48 hours of your expected arrival</div>
+                    </div>
+              </div>
+              <div className="room-description">{currentSpot?.description}</div>
+              <div className="room-calendar">
+                <div className="calendar-header">Select Travel Dates</div>
+                <DateRange
+                  ranges={dates}
+                  editableDateInputs={false}
+                  moveRangeOnFirstSelection={false}
+                  rangeColors={['black']}
+                  onChange={(e) => setDates([e.selection])}
+                  showDateDisplay={false}
+                  months={2}
+                  minDate={new Date()}
+                  direction={"horizontal"}
+                  disabledDates={getBookedDates()}
+                />
+              </div>
+            </div>
+                {/* <div className="Spot-detail-description-container">
                     <h2 className="spot-detail-name">{currentSpot.name} hosted by {currentSpot.Owner?.firstName}</h2>
+                    <div className="room-info-right">
+                  <img src={currentSpot?.Owner?.profile_url} className='room-owner-img'></img>
+                </div>
                     <div className="extra-info">
                         <div>
 
@@ -235,7 +304,7 @@ const SpotDetail = () => {
                         <div className="info-title">📆 Free Cancellation within 48 hours of your expected arrival</div>
                     </div>
                     <p className="spot-detail-description-left">{currentSpot.description}</p>
-                </div>
+                </div> */}
                 <div className="Right-Container">
                     <div className="spot-detail-price-container">
                         <span>

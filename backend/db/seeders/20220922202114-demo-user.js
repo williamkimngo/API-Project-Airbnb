@@ -9,7 +9,8 @@ module.exports = {
         username: 'Demo-lition',
         firstName: 'Kobe',
         lastName: "Bryant",
-        hashedPassword: bcrypt.hashSync('password')
+        hashedPassword: bcrypt.hashSync('password'),
+        profile_url: "https://i.imgur.com/HG7RLd9.png"
 
       },
       {
@@ -17,28 +18,32 @@ module.exports = {
         username: 'FakeUser1',
         firstName: "Lebron",
         lastName: "James",
-        hashedPassword: bcrypt.hashSync('password2')
+        hashedPassword: bcrypt.hashSync('password2'),
+        profile_url: "https://i.imgur.com/fjpZVyf.jpg"
       },
       {
         email: 'user2@user.io',
         username: 'FakeUser2',
         firstName: "Steph",
         lastName: "Curry",
-        hashedPassword: bcrypt.hashSync('password3')
+        hashedPassword: bcrypt.hashSync('password3'),
+        profile_url: "https://i.imgur.com/fBxjSTA.jpg"
       },
       {
         email: 'user3@user.io',
         username: 'FakeUser3',
         firstName: "Tom",
         lastName: "Brady",
-        hashedPassword: bcrypt.hashSync('password3')
+        hashedPassword: bcrypt.hashSync('password3'),
+        profile_url: "https://i.imgur.com/aA206ly.png"
       },
       {
         email: 'user4@user.io',
         username: 'FakeUser4',
         firstName: "Jalen",
         lastName: "Hurts",
-        hashedPassword: bcrypt.hashSync("password4")
+        hashedPassword: bcrypt.hashSync("password4"),
+        profile_url: "https://i.imgur.com/CYgjFlM.png"
       }
 
     ], {});

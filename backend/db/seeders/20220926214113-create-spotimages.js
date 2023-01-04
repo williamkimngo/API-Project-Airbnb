@@ -9,6 +9,26 @@ module.exports = {
         preview: true
       },
       {
+        spotId: 1,
+        url: "https://i.imgur.com/UyQNCi9.jpg",
+        preview: true
+      },
+      {
+        spotId: 1,
+        url: "https://i.imgur.com/c2X1Ecd.png",
+        preview: true
+      },
+      {
+        spotId: 1,
+        url: "https://i.imgur.com/C0EHDNJ.jpg",
+        preview: true
+      },
+      {
+        spotId: 1,
+        url: "https://i.imgur.com/chIxjYd.jpg",
+        preview: true
+      },
+      {
         spotId: 2,
         url: "https://i.imgur.com/iH1M6AG.png",
         preview: false

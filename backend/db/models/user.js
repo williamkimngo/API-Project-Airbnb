@@ -47,9 +47,10 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      User.hasMany(models.Spot, {foreignKey: "ownerId"})
-      User.hasMany(models.Booking, {foreignKey: "userId"})
-      User.hasMany(models.Review, {foreignKey: 'userId'})
+      User.hasMany(models.Spot, {foreignKey: "ownerId", onDelete: 'CASCADE', hooks: true})
+      User.hasMany(models.Booking, {foreignKey: "userId", onDelete: 'CASCADE', hooks: true})
+      User.hasMany(models.Review, {foreignKey: 'userId', onDelete: 'CASCADE', hooks: true})
+      // User.hasMany(models.Image, { foreignKey: 'userId', onDelete: 'CASCADE', hooks: true })
     }
   }
   User.init({
@@ -85,8 +86,10 @@ module.exports = (sequelize, DataTypes) => {
       validate: {
         len: [60, 60]
       }
-    }
-
+    },
+    profile_url: {
+      type: DataTypes.TEXT
+    },
 
   }, {
     sequelize,
