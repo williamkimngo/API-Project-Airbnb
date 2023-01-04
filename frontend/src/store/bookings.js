@@ -37,7 +37,8 @@ export const listRoombookings = (spotId) => async (dispatch) => {
   const response = await csrfFetch(`/api/spots/${spotId}/bookings`);
   if (response.ok) {
     const bookingObj = await response.json();
-    dispatch(listbookings(bookingObj.bookings))
+    console.log(bookingObj, "BOOKINGOBJ")
+    dispatch(listbookings(bookingObj.Bookings))
   }
   return response;
 }
@@ -46,7 +47,7 @@ export const listAllbookings = () => async (dispatch) => {
   const response = await csrfFetch(`/api/bookings`)
   if (response.ok) {
     const bookings = await response.json()
-    dispatch(findbookings(bookings.bookings))
+    dispatch(findbookings(bookings.Bookings))
   }
   return response;
 }
