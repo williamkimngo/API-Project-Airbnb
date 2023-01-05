@@ -1,16 +1,17 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams, useHistory } from "react-router-dom";
-import { actionCreateReview, actionGetSpotReview } from "../../store/reviews"
+import { actionCreateReview, actionGetSpotReview, updateReview } from "../../store/reviews"
 import { getOneSpot } from "../../store/spots";
 import './CreateReview.css'
 
 const CreateReview = ({ setShowReview, editReview, setEditReview, reviewId }) => {
-  let { roomId } = useParams()
+  let { spotId } = useParams()
+  spotId = Number(spotId)
   const dispatch = useDispatch()
   const sessionUser = useSelector(state => state.session.user);
   const reviews = useSelector(state => state.reviews)
-  const [userId, serUserId] = useState(sessionUser?.id)
+  const [userId, setUserId] = useState(sessionUser?.id)
   const [stars, setStars] = useState(0)
   const [review, setReview] = useState("")
   const [ratedStar1, setRatedStar1] = useState(false)
@@ -73,11 +74,12 @@ const CreateReview = ({ setShowReview, editReview, setEditReview, reviewId }) =>
     if (editReview) {
 
       const reviewData = {
-        reviewId,
         userId,
+        spotId,
         stars,
         review
       }
+      // console.log(reviewData, "REVIEWDATA??????")
 
       const editReviewResponse = await dispatch(updateReview(reviewData))
         .catch(async (res) => {
@@ -88,7 +90,7 @@ const CreateReview = ({ setShowReview, editReview, setEditReview, reviewId }) =>
         })
 
       if (editReviewResponse) {
-        dispatch(findRoomById(roomId))
+        dispatch(getOneSpot(spotId))
         setEditReview(false)
         setShowReview(false)
       }
@@ -97,21 +99,22 @@ const CreateReview = ({ setShowReview, editReview, setEditReview, reviewId }) =>
 
       const reviewData = {
         userId,
-        roomId,
+        spotId,
         stars,
         review
       }
+      console.log(reviewData, "REVIEWDATA??????")
 
-      const reviewResponse = await dispatch(addNewReview(reviewData))
-        .catch(async (res) => {
-          const data = await res.json();
+      const reviewResponse = await dispatch(actionCreateReview(reviewData))
+        .catch(async (data) => {
+          // const data = await res.json();
           if (data && data.errors) {
             setErrors(Object.values(data.errors))
           }
         })
 
       if (reviewResponse) {
-        dispatch(findRoomById(roomId))
+        dispatch(getOneSpot(spotId))
         setShowReview(false)
       }
     }

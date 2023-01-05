@@ -12,6 +12,8 @@ import { actionDeleteSpot, getCurrentUserSpots, getSpots } from "../../store/spo
 import { Modal } from "../../context/Modal";
 import { listAllUsers } from "../../store/users";
 import ReserveRoom from "../ReserveRoom"
+import Reviews from "../Reviews"
+import Maps from "../Maps"
 
 
 const SpotDetail = () => {
@@ -21,14 +23,15 @@ const SpotDetail = () => {
     const sessionUser = useSelector(state => state.session.user)
     const [confirmDelete, setConfirmDelete] = useState(false);
     const currRoomBookings = useSelector(getAllbookings)
-    console.log(currRoomBookings, "HELLO?")
+    // console.log(currRoomBookings, "HELLO?")
     const [selectDate, setSelectDate] = useState(false)
-    let currentSpot = useSelector(state => state.spots.specificSpot)
+    const currentSpot = useSelector(state => state.spots.specificSpot)
     const today = new Date()
     const tomorrow = new Date()
     const nextDay = new Date()
     tomorrow.setHours(tomorrow.getHours() + 7)
     nextDay.setHours(nextDay.getHours() + 31)
+    console.log(currentSpot, "CURRSPOT?????")
 
 
     const [checkIn, setCheckIn] = useState(tomorrow)
@@ -95,69 +98,18 @@ const SpotDetail = () => {
     if (wholeNumbers.includes(avgStarRating)) avgStarRating = avgStarRating.toString() + ".0"
 
 
-
-    // console.log(currentSpot.Owner.profile_url, "HELLO????")
-    // console.log(currentSpot?.Owner?.profile_url, "HELLO???????")
-
-    // console.log(currentSpot.ownerId, "CURRSPOT???")
-    let avgRatingSpot = useSelector(state => state.spots.specificSpot.avgStarRating)
-    // let spotRating = useSelector(state => state.specificSpot.avg)
-    // console.log(currentSpot)
-    // let currentSpotArr = Object.values(currentSpot)
-
-    // console.log("CURRRENT SPOT!!!!!!", currentSpot)
     const spotReviewObj = useSelector(state => (state.reviews.spot))
     const spotReviewsArr = Object.values(spotReviewObj)
-    console.log(spotReviewsArr, "BLAH@")
-    // let imgSpot = useSelector(state => state.spots.allSpots[spotId])
+
     useEffect(() => {
         dispatch(getOneSpot(spotId))
         dispatch(listRoombookings(spotId))
-        dispatch(listAllUsers())
         dispatch(actionGetSpotReview(spotId))
         document.documentElement.scrollTop = 0;
 
-    }, [dispatch, spotId, avgRatingSpot])
+    }, [dispatch])
 
-    let spotReview = Object.values(spotReviewObj)
 
-    if (!currentSpot || !spotReview) {
-        return null
-    }
-
-    let allowCreate = false
-    if (sessionUser) {
-        let ownerReview = spotReview.find(review => review.userId === sessionUser.id)
-        if ((sessionUser.id !== currentSpot.ownerId) && !ownerReview) {
-            allowCreate = true
-        }
-    }
-    // console.log("IMAGEPLS!!!!", currentSpot.SpotImages)
-    // let extraImagesArr = specificSpot.SpotImages?.slice(1);
-    if (!(Object.values(currentSpot).length)) {
-        return null
-    }
-    let avgRatingTwoDec;
-    // console.log(currentSpot.avgStarRating.toString().split(""))
-    if (!currentSpot.avgStarRating) {
-        avgRatingTwoDec = "0"
-    } else if (Number.isInteger(currentSpot.avgStarRating)) {
-        avgRatingTwoDec = `${currentSpot.avgStarRating}.0`
-    } else if (currentSpot?.avgStarRating?.toString().split("").slice(2).length === 1) {
-        // let ratingArray = currentSpot.avgStarRating.toString().split("")
-        avgRatingTwoDec = currentSpot.avgStarRating
-    } else {
-        avgRatingTwoDec = parseFloat(currentSpot.avgStarRating).toFixed(2)
-    }
-
-    // let currentSpotPrice
-
-    // if(Number.isInteger(currentSpot.price)){
-    //     currentSpotPrice = `${currentSpot.price}.00`
-    // } else {
-    // currentSpotPrice  = parseFloat(currentSpot.price).toFixed(2)
-    // }
-    let finalPrice = ((currentSpot.price * 3) + (currentSpot.price / 5) + (currentSpot.price / 3))
 
 
     const returnToListing = () => {
@@ -182,7 +134,6 @@ const SpotDetail = () => {
         }
       }
 
-    // <div className='review-name'>{review?.createdAt.slice(0, 9)}</div>
     return (
         <div className="Spot-Detail-container">
             <div className="main-header">
@@ -191,7 +142,7 @@ const SpotDetail = () => {
             </div>
             <div className="title-container">
                 <span> &#9733; </span>
-                <span className="rating"> {avgRatingTwoDec} </span>
+                <span className="rating"> {avgStarRating} </span>
                 <span> · </span>
                 <span className="room-reviews" onClick={() => { document.getElementsByClassName('review-link')[0].scrollIntoView() }}>{`${spotReviewsArr?.length ? spotReviewsArr?.length : 0} reviews`}
                     {/* {currentSpot.numReviews} reviews */}
@@ -264,7 +215,7 @@ const SpotDetail = () => {
 
                         </div>
                         <div>
-                            <div className="info-title"> 🎖️{currentSpot.Owner.firstName} is a Superhost
+                            <div className="info-title"> 🎖️{currentSpot?.Owner?.firstName} is a Superhost
                                 <p>Superhosts are experienced, highly rated hosts who are committed to providing great stays for guests.</p>
                             </div>
 
@@ -325,15 +276,17 @@ const SpotDetail = () => {
                     </div>
                 </div> */}
             </div>
+            <Reviews currentSpot={currentSpot} avgStarRating={avgStarRating} spotId={spotId}/>
+            <Maps currentSpot={currentSpot} />
 
 
-            <div className="spot-detail-review-container">
+            {/* <div className="spot-detail-review-container">
                 <h2>
                     <span>  </span>
                     <span> &#9733; {avgRatingTwoDec} · {currentSpot.numReviews} reviews </span>
                 </h2>
-            </div>
-            <div className="review-link">
+            </div> */}
+            {/* <div className="review-link">
                 {allowCreate && <NavLink className="leave-review" to={`/spots/${spotId}/reviews/new`}><div className="review-leave">Leave a Review</div> </NavLink>}</div>
             {spotReview.map(review => (
                 <div className='single-review-container' key={review.id}>
@@ -349,7 +302,7 @@ const SpotDetail = () => {
                     <div className='review-text'>{review.review}</div>
                     <div>{review.stars} &#9733;</div>
                 </div>
-            ))}
+            ))} */}
 
         </div>
     )

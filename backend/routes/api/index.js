@@ -7,6 +7,7 @@ const reviewsRouter = require('./review.js')
 const bookingsRouter = require('./booking.js')
 const spotimagesRouter = require('./spotimage.js')
 const reviewimagesRouter = require('./reviewimage.js')
+const mapsRouter = require('./maps.js')
 const { requireAuth } = require('../../utils/auth.js');
 
 router.get('/test', requireAuth, (req, res) => {
@@ -26,6 +27,8 @@ router.use('/bookings', bookingsRouter)
 router.use('/spot-images', spotimagesRouter)
 
 router.use('/review-images', reviewimagesRouter)
+
+router.use('/maps', mapsRouter)
 
 // router.use('/spots', spotsRouter)
 

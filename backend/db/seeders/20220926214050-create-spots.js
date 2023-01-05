@@ -10,7 +10,7 @@ module.exports = {
         state: "California",
         country: "United States",
         lat: 34.04,
-        lng: 118.26,
+        lng: -118.26,
         name: "Crypto.com Arena",
         description: "Crypto.com Arena is a multi-purpose arena in Downtown Los Angeles. Adjacent to the L.A. Live development, it is located next to the Los Angeles Convention Center complex along Figueroa Street.",
         price: 2000
@@ -70,7 +70,7 @@ module.exports = {
         state: "California",
         country: "United States",
         lat: 33.95,
-        lng: 118.34,
+        lng: -118.34,
         name: "The Kia Forum",
         description: "Kia Forum is a multi-purpose indoor arena in Inglewood, California, United States, adjacent to Los Angeles",
         price: 1500

@@ -153,7 +153,7 @@ const ReserveRoom = ({ spotId, avgStarRating, checkIn, setCheckIn, checkOut, set
                     <div className="total-fees">
                         <div className="top-fees">
                             <div className="fee-label">
-                                <div className="each-fee">{`$${currentSpot?.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} x ${numDays}`} {numDays > 1 ? "nights" : "night"}</div>
+                                <div className="each-fee">{`$${currentSpot?.price?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} x ${numDays}`} {numDays > 1 ? "nights" : "night"}</div>
                                 <div className="each-fee">Cleaning Fee</div>
                                 <div className="each-fee">Service Fee</div>
                             </div>
