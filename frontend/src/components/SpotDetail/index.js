@@ -11,6 +11,7 @@ import 'react-date-range/dist/theme/default.css'; // theme css file
 import { actionDeleteSpot, getCurrentUserSpots, getSpots } from "../../store/spots"
 import { Modal } from "../../context/Modal";
 import { listAllUsers } from "../../store/users";
+import ReserveRoom from "../ReserveRoom"
 
 
 const SpotDetail = () => {
@@ -18,11 +19,11 @@ const SpotDetail = () => {
     const history = useHistory()
     const { spotId } = useParams()
     const sessionUser = useSelector(state => state.session.user)
-    const users = useSelector(state => state.users)
     const [confirmDelete, setConfirmDelete] = useState(false);
     const currRoomBookings = useSelector(getAllbookings)
     console.log(currRoomBookings, "HELLO?")
     const [selectDate, setSelectDate] = useState(false)
+    let currentSpot = useSelector(state => state.spots.specificSpot)
     const today = new Date()
     const tomorrow = new Date()
     const nextDay = new Date()
@@ -87,10 +88,16 @@ const SpotDetail = () => {
     }
 
     const [page, setPage] = useState(1)
+    let avgStarRating = currentSpot?.avgStarRating;
+    avgStarRating = Math.round(avgStarRating * 100) / 100
 
-    let currentSpot = useSelector(state => state.spots.specificSpot)
+    const wholeNumbers = [1, 2, 3, 4, 5]
+    if (wholeNumbers.includes(avgStarRating)) avgStarRating = avgStarRating.toString() + ".0"
+
+
+
     // console.log(currentSpot.Owner.profile_url, "HELLO????")
-    console.log(currentSpot?.Owner?.profile_url, "HELLO???????")
+    // console.log(currentSpot?.Owner?.profile_url, "HELLO???????")
 
     // console.log(currentSpot.ownerId, "CURRSPOT???")
     let avgRatingSpot = useSelector(state => state.spots.specificSpot.avgStarRating)
@@ -282,30 +289,8 @@ const SpotDetail = () => {
                 />
               </div>
             </div>
-                {/* <div className="Spot-detail-description-container">
-                    <h2 className="spot-detail-name">{currentSpot.name} hosted by {currentSpot.Owner?.firstName}</h2>
-                    <div className="room-info-right">
-                  <img src={currentSpot?.Owner?.profile_url} className='room-owner-img'></img>
-                </div>
-                    <div className="extra-info">
-                        <div>
-
-                            <div className="info-title">🚪Self Check in
-                                <p>Check yourself in with the lockbox.</p>
-                            </div>
-
-                        </div>
-                        <div>
-                            <div className="info-title"> 🎖️{currentSpot.Owner.firstName} is a Superhost
-                                <p>Superhosts are experienced, highly rated hosts who are committed to providing great stays for guests.</p>
-                            </div>
-
-                        </div>
-                        <div className="info-title">📆 Free Cancellation within 48 hours of your expected arrival</div>
-                    </div>
-                    <p className="spot-detail-description-left">{currentSpot.description}</p>
-                </div> */}
-                <div className="Right-Container">
+            <ReserveRoom spotId={spotId} avgStarRating={avgStarRating} checkIn={checkIn} setCheckIn={setCheckIn} checkOut={checkOut} setCheckOut={setCheckOut} selectDate={selectDate} setSelectDate={setSelectDate} />
+                {/* <div className="Right-Container">
                     <div className="spot-detail-price-container">
                         <span>
                             <span className="spot-detail-price">${currentSpot.price}</span>
@@ -338,7 +323,7 @@ const SpotDetail = () => {
                         </div>
 
                     </div>
-                </div>
+                </div> */}
             </div>
 
 
