@@ -22,7 +22,7 @@ module.exports = {
         state: "Ohio",
         country: "United States",
         lat: 41.50,
-        lng: 81.69,
+        lng: -81.69,
         name: "Rocket Mortgage FieldHouse",
         description: "Rocket Mortgage FieldHouse is a multi-purpose arena in Cleveland, Ohio. The building is the home of the Cleveland Cavaliers of the National Basketball Association.",
         price: 5000
@@ -34,7 +34,7 @@ module.exports = {
         state: "California",
         country: "United States",
         lat: 37.77,
-        lng: 122.39,
+        lng: -122.39,
         name: "Chase Center",
         description: "Chase Center is an indoor arena in the Mission Bay neighborhood of San Francisco, California. The building is the home venue for the Golden State Warriors of the National Basketball Association.",
         price: 3000
@@ -46,7 +46,7 @@ module.exports = {
         state: "Florida",
         country: "United States",
         lat: 27.97,
-        lng: 82.50,
+        lng: -82.50,
         name: "Raymond James Stadium",
         description: "Raymond James Stadium is a multi-purpose stadium in Tampa, Florida that opened in 1998 and is home to the Tampa Bay Buccaneers of the National Football League",
         price: 1500
@@ -58,7 +58,7 @@ module.exports = {
         state: "Pennsylvania",
         country: "United States",
         lat: 39.90,
-        lng: 75.17,
+        lng: -75.17,
         name: "Lincoln Financial Field",
         description: "Chase Center is an indoor arena in the Mission Bay neighborhood of San Francisco, California. The building is the home venue for the Golden State Warriors of the National Basketball Association.",
         price: 2500
@@ -82,7 +82,7 @@ module.exports = {
         state: "Florida",
         country: "United States",
         lat: 25.78,
-        lng: 80.18,
+        lng: -80.18,
         name: "FTX Arena",
         description: "The FTX Arena is a multi-purpose arena located in Miami, Florida, along Biscayne Bay",
         price: 1800
@@ -94,7 +94,7 @@ module.exports = {
         state: "California",
         country: "United States",
         lat: 37.75,
-        lng: 122.20,
+        lng: -122.20,
         name: "Oracle Arena",
         description: "Oracle Arena is an indoor arena located in Oakland, California, United States",
         price: 1800
@@ -106,7 +106,7 @@ module.exports = {
         state: "Massachusetts",
         country: "United States",
         lat: 42.09,
-        lng: 71.26,
+        lng: -71.26,
         name: "Gillette Stadium",
         description: "Gillette Stadium is a multi-purpose stadium located in the town of Foxborough, Massachusetts, which is 22 miles southwest of downtown Boston. It serves as the home stadium for the New England Patriots. ",
         price: 1400
@@ -118,7 +118,7 @@ module.exports = {
         state: "Oklahoma",
         country: "United States",
         lat: 35.20,
-        lng: 97.44,
+        lng: -97.44,
         name: "Oklahoma Memorial Stadium",
         description: "Oklahoma Memorial Stadium is the football stadium on the campus of the University of Oklahoma in Norman, Oklahoma. It serves as the home of the Oklahoma Sooners football team. ",
         price: 1100
