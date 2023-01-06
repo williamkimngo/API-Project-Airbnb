@@ -14,6 +14,7 @@ import { listAllUsers } from "../../store/users";
 import ReserveRoom from "../ReserveRoom"
 import Reviews from "../Reviews"
 import Maps from "../Maps"
+import EditSpotForm from "../EditSpotForm"
 
 
 const SpotDetail = () => {
@@ -114,196 +115,141 @@ const SpotDetail = () => {
 
     const returnToListing = () => {
         setPage(1)
-      }
+    }
 
-      const handleEdit = (e) => {
+    const handleEdit = (e) => {
         e.preventDefault()
         setPage(2)
-      }
+    }
 
-      const handleConfirmDelete = () => {
+    const handleConfirmDelete = () => {
         setConfirmDelete(true)
-      }
+    }
 
-      const handleDelete = async (e) => {
+    const handleDelete = async (e) => {
         e.preventDefault()
         const deleteResponse = await dispatch(actionDeleteSpot(spotId))
 
         if (deleteResponse) {
-          history.push('/spots')
+            history.push('/spots')
         }
-      }
+    }
 
     return (
         <div className="Spot-Detail-container">
-            <div className="main-header">
-            <div className="header">
-                <h1>{currentSpot.name}</h1>
-            </div>
-            <div className="title-container">
-                <span> &#9733; </span>
-                <span className="rating"> {avgStarRating} </span>
-                <span> · </span>
-                <span className="room-reviews" onClick={() => { document.getElementsByClassName('reviews')[0].scrollIntoView() }}>{`${spotReviewsArr?.length ? spotReviewsArr?.length : 0} reviews`}
-                    {/* {currentSpot.numReviews} reviews */}
-                 </span>
-                <span> · </span>
-                <span> 🎖️ </span>
-                <span>  Superhost </span>
-                <span> · </span>
-                <span className="location">{currentSpot.city}, {currentSpot.state}, {currentSpot.country}</span>
+            {page === 1 &&
+                <div>
+                    <div className="main-header">
+                        <div className="header">
+                            <h1>{currentSpot.name}</h1>
+                        </div>
+                        <div className="title-container">
+                            <span> &#9733; </span>
+                            <span className="rating"> {avgStarRating} </span>
+                            <span> · </span>
+                            <span className="room-reviews" onClick={() => { document.getElementsByClassName('reviews')[0].scrollIntoView() }}>{`${spotReviewsArr?.length ? spotReviewsArr?.length : 0} reviews`}
+                                {/* {currentSpot.numReviews} reviews */}
+                            </span>
+                            <span> · </span>
+                            <span> 🎖️ </span>
+                            <span>  Superhost </span>
+                            <span> · </span>
+                            <span className="location">{currentSpot.city}, {currentSpot.state}, {currentSpot.country}</span>
 
-            <div className="session-user-buttons">
-                  {sessionUser ?
-                    <>
-                      {sessionUser?.id === currentSpot?.ownerId &&
-                        <div>
-                          <button onClick={handleEdit} className="edit-listing-button">Edit</button>
-                          <button onClick={handleConfirmDelete} className="delete-listing-button">Delete</button>
-                          {confirmDelete &&
-                            <Modal onClose={() => setConfirmDelete(false)}>
-                              <div className="delete-confirmation-modal">
-                                Permanently remove listing?
-                                <div className="delete-confirmation-button-outer">
-                                  <button onClick={handleDelete} className='delete-confirm-button'>Delete</button>
-                                </div>
-                              </div>
-                            </Modal>}
-                        </div>}
-                    </> : <></>}
-                </div>
-                </div>
-            </div>
-            {/* <div className="img-container">
+                            <div className="session-user-buttons">
+                                {sessionUser ?
+                                    <>
+                                        {sessionUser?.id === currentSpot?.ownerId &&
+                                            <div>
+                                                <button onClick={handleEdit} className="edit-listing-button">Edit</button>
+                                                <button onClick={handleConfirmDelete} className="delete-listing-button">Delete</button>
+                                                {confirmDelete &&
+                                                    <Modal onClose={() => setConfirmDelete(false)}>
+                                                        <div className="delete-confirmation-modal">
+                                                            Permanently remove listing?
+                                                            <div className="delete-confirmation-button-outer">
+                                                                <button onClick={handleDelete} className='delete-confirm-button'>Delete</button>
+                                                            </div>
+                                                        </div>
+                                                    </Modal>}
+                                            </div>}
+                                    </> : <></>}
+                            </div>
+                        </div>
+                    </div>
+                    {/* <div className="img-container">
 
                 <img className="first-img" src={currentSpot?.SpotImages[0].url} alt='SpotImage' />
             </div> */}
-            <div className="outer-room-images">
-              <div className="room-images">
-                <div className="left-image-div">
-                  {currentSpot?.SpotImages &&
-                    <img src={currentSpot?.SpotImages[0]?.url} alt="exterior" className="main-image"></img>}
-                </div>
-                <div className="right-image-div">
-                  {currentSpot?.SpotImages?.map((image, i) => {
-                    if (i > 0)
-                      return (
-                        <div className="side-image-div" key={image.url}>
-                          <img src={`${image?.url}`} alt="interior" className={`side-images side-images${i}`}></img>
-                        </div>
-                      )
-                  })}
-                </div>
-              </div>
-            </div>
-
-            <div className="big-middle-div">
-            <div className="default-description">
-              <div className="room-info-general">
-                <div className="room-info-left">
-                  <div className="room-info-header">{currentSpot.name} hosted by {currentSpot.Owner?.firstName}</div>
-                </div>
-                <div className="room-info-right">
-                  <img src={currentSpot?.Owner?.profile_url} className='room-owner-img'></img>
-                </div>
-                <div className="extra-info">
-                        <div>
-
-                            <div className="info-title">🚪Self Check in
-                                <p>Check yourself in with the lockbox.</p>
+                    <div className="outer-room-images">
+                        <div className="room-images">
+                            <div className="left-image-div">
+                                {currentSpot?.SpotImages &&
+                                    <img src={currentSpot?.SpotImages[0]?.url} alt="exterior" className="main-image"></img>}
                             </div>
-
-                        </div>
-                        <div>
-                            <div className="info-title"> 🎖️{currentSpot?.Owner?.firstName} is a Superhost
-                                <p>Superhosts are experienced, highly rated hosts who are committed to providing great stays for guests.</p>
+                            <div className="right-image-div">
+                                {currentSpot?.SpotImages?.map((image, i) => {
+                                    if (i > 0)
+                                        return (
+                                            <div className="side-image-div" key={image.url}>
+                                                <img src={`${image?.url}`} alt="interior" className={`side-images side-images${i}`}></img>
+                                            </div>
+                                        )
+                                })}
                             </div>
-
                         </div>
-                        <div className="info-title">📆 Free Cancellation within 48 hours of your expected arrival</div>
-                    </div>
-              </div>
-              <div className="room-description">{currentSpot?.description}</div>
-              <div className="room-calendar">
-                <div className="calendar-header">Select Travel Dates</div>
-                <DateRange
-                  ranges={dates}
-                  editableDateInputs={false}
-                  moveRangeOnFirstSelection={false}
-                  rangeColors={['black']}
-                  onChange={(e) => setDates([e.selection])}
-                  showDateDisplay={false}
-                  months={2}
-                  minDate={new Date()}
-                  direction={"horizontal"}
-                  disabledDates={getBookedDates()}
-                />
-              </div>
-            </div>
-            <ReserveRoom spotId={spotId} avgStarRating={avgStarRating} checkIn={checkIn} setCheckIn={setCheckIn} checkOut={checkOut} setCheckOut={setCheckOut} selectDate={selectDate} setSelectDate={setSelectDate} />
-                {/* <div className="Right-Container">
-                    <div className="spot-detail-price-container">
-                        <span>
-                            <span className="spot-detail-price">${currentSpot.price}</span>
-                            <span className="per-night"> night</span>
-                        </span>
-                        <span className="price-with-review-top-right">
-                            <span id='next-to-right'> &#9733; </span>
-                            <span> {avgRatingTwoDec} · {currentSpot.numReviews} reviews</span>
-                        </span>
                     </div>
 
-                    <div>
-                        <div className="price-line-container">
-                            <div>
-                                <div className="left-price">${currentSpot.price} x3 nights</div>
+                    <div className="big-middle-div">
+                        <div className="default-description">
+                            <div className="room-info-general">
+                                <div className="room-info-left">
+                                    <div className="room-info-header">{currentSpot.name} hosted by {currentSpot.Owner?.firstName}</div>
+                                </div>
+                                <div className="room-info-right">
+                                    <img src={currentSpot?.Owner?.profile_url} className='room-owner-img'></img>
+                                </div>
+                                <div className="extra-info">
+                                    <div>
+
+                                        <div className="info-title">🚪Self Check in
+                                            <p>Check yourself in with the lockbox.</p>
+                                        </div>
+
+                                    </div>
+                                    <div>
+                                        <div className="info-title"> 🎖️{currentSpot?.Owner?.firstName} is a Superhost
+                                            <p>Superhosts are experienced, highly rated hosts who are committed to providing great stays for guests.</p>
+                                        </div>
+
+                                    </div>
+                                    <div className="info-title">📆 Free Cancellation within 48 hours of your expected arrival</div>
+                                </div>
                             </div>
-                            <div className="right-price">${Math.round(currentSpot.price * 3)}</div>
+                            <div className="room-description">{currentSpot?.description}</div>
+                            <div className="room-calendar">
+                                <div className="calendar-header">Select Travel Dates</div>
+                                <DateRange
+                                    ranges={dates}
+                                    editableDateInputs={false}
+                                    moveRangeOnFirstSelection={false}
+                                    rangeColors={['black']}
+                                    onChange={(e) => setDates([e.selection])}
+                                    showDateDisplay={false}
+                                    months={2}
+                                    minDate={new Date()}
+                                    direction={"horizontal"}
+                                    disabledDates={getBookedDates()}
+                                />
+                            </div>
                         </div>
-                        <div className="price-line-container">
-                            <div className="left-price">Cleaning Fee</div>
-                            <div className="right-price">${Math.round(currentSpot.price / 3)}</div>
-                        </div>
-                        <div className="price-line-container">
-                            <div className="left-price">Service Fee</div>
-                            <div className="right-price">${Math.round(currentSpot.price / 2)}</div>
-                        </div>
-                        <div className="total-price-line-container">
-                            <div>Total before taxes</div>
-                            <div>${Math.round(finalPrice)}</div>
-                        </div>
-
+                        <ReserveRoom spotId={spotId} avgStarRating={avgStarRating} checkIn={checkIn} setCheckIn={setCheckIn} checkOut={checkOut} setCheckOut={setCheckOut} selectDate={selectDate} setSelectDate={setSelectDate} />
                     </div>
-                </div> */}
-            </div>
-            <Reviews currentSpot={currentSpot} avgStarRating={avgStarRating} spotId={spotId}/>
-            <Maps currentSpot={currentSpot} />
-
-
-            {/* <div className="spot-detail-review-container">
-                <h2>
-                    <span>  </span>
-                    <span> &#9733; {avgRatingTwoDec} · {currentSpot.numReviews} reviews </span>
-                </h2>
-            </div> */}
-            {/* <div className="review-link">
-                {allowCreate && <NavLink className="leave-review" to={`/spots/${spotId}/reviews/new`}><div className="review-leave">Leave a Review</div> </NavLink>}</div>
-            {spotReview.map(review => (
-                <div className='single-review-container' key={review.id}>
-
-                    <div className="review-group"><i className="fas fa-user-circle" />
-                        <div className="review-name">{review?.User?.firstName}
-                            <div className="review-date"> {review?.createdAt.slice(0, 7)}
-                                {review?.userId === sessionUser?.id ?
-                                    <button className="delete-detail-button" onClick={async () => { await dispatch(actionDeleteReview(review.id)); await dispatch(getOneSpot(spotId)) }} > Delete Review</button> : null
-                                }
-                            </div></div>
-                    </div>
-                    <div className='review-text'>{review.review}</div>
-                    <div>{review.stars} &#9733;</div>
+                    <Reviews currentSpot={currentSpot} avgStarRating={avgStarRating} spotId={spotId} />
+                    <Maps currentSpot={currentSpot} />
                 </div>
-            ))} */}
-
+            }
+            {page === 2 && <EditSpotForm listingId={spotId} returnToListing={returnToListing} />}
         </div>
     )
 
