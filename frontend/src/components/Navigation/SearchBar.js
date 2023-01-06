@@ -76,13 +76,6 @@ function SearchBar() {
                   <div className="where-destination-date">Any week</div>
                 </div>
               </div>
-              {/* <div className="where-selection" onClick={() => { setDestination("Mexico"); history.push(`/search/mexico/${guests}`) }}>
-                <img className='dropdown-clock' src={clock}></img>
-                <div className="where-destination-outer">
-                  <div className="where-destination-header">Mexico · Stays</div>
-                  <div className="where-destination-date">Any week</div>
-                </div>
-              </div> */}
             </div>
           )}
         </div>
