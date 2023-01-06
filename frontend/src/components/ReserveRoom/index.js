@@ -8,6 +8,10 @@ import LoginForm from "../LoginFormModal/LoginForm";
 
 const ReserveRoom = ({ spotId, avgStarRating, checkIn, setCheckIn, checkOut, setCheckOut, selectDate, setSelectDate }) => {
     const currentSpot = useSelector(state => state.spots.specificSpot)
+    const currentSpotArr = Object.values(currentSpot)
+    const spotReviewObj = useSelector(state => (state.reviews.spot))
+    const spotReviewsArr = Object.values(spotReviewObj)
+    console.log(spotReviewsArr, "REVIEEW???")
     const sessionUser = useSelector(state => state.session.user);
     const dispatch = useDispatch()
     const history = useHistory()
@@ -83,10 +87,10 @@ const ReserveRoom = ({ spotId, avgStarRating, checkIn, setCheckIn, checkOut, set
                         <div className="reserve-price">{`$${currentSpot?.price?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`}</div>
                         <span>night</span>
                         <span className="reserve-rating">
-                            <i className="fa-solid fa-star smaller"></i>
+                            <i className="fa-solid fa-star smaller">&nbsp;</i>
                             {avgStarRating}</span>
-                        <span className="span-separator-smaller">·</span>
-                        <span className="reserve-review" onClick={() => { document.getElementById('reviews').scrollIntoView() }}>{`${currentSpot?.Reviews ? currentSpot.Reviews.length : 0} reviews`}</span>
+                        <span className="span-separator-smaller">·&nbsp;&nbsp; </span>
+                        <span className="reserve-review" onClick={() => { document.getElementById('reviews').scrollIntoView() }}>{`${spotReviewsArr ? spotReviewsArr?.length : 0} reviews`}</span>
                     </div>
                     <div>
                         <div className="reservation-dates">

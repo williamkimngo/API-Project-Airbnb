@@ -15,7 +15,11 @@
       margin: 0 13%;
     }
   }
-
+  .room-reviews {
+    font-weight: 500;
+    text-decoration: underline;
+    cursor: pointer;
+  }
   @media screen and (max-width: 1600px) {
     .outer-top-content {
       margin: 0 9.8%;

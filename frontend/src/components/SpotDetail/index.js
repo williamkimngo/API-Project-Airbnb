@@ -144,7 +144,7 @@ const SpotDetail = () => {
                 <span> &#9733; </span>
                 <span className="rating"> {avgStarRating} </span>
                 <span> · </span>
-                <span className="room-reviews" onClick={() => { document.getElementsByClassName('review-link')[0].scrollIntoView() }}>{`${spotReviewsArr?.length ? spotReviewsArr?.length : 0} reviews`}
+                <span className="room-reviews" onClick={() => { document.getElementsByClassName('reviews')[0].scrollIntoView() }}>{`${spotReviewsArr?.length ? spotReviewsArr?.length : 0} reviews`}
                     {/* {currentSpot.numReviews} reviews */}
                  </span>
                 <span> · </span>
