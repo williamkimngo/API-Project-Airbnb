@@ -11,6 +11,7 @@ import SpotDetail from "./components/SpotDetail";
 import OwnerSpots from "./components/OwnerSpots";
 import { getSpots } from "./store/spots";
 import CreateReviewForm from "./components/CreateReviewForm";
+import UserReservations from "./components/UserBookings";
 
 function App() {
   const dispatch = useDispatch();
@@ -29,6 +30,7 @@ function App() {
             <SignupFormPage />
           </Route>
           <Route path={'/spots/new'} component={CreateSpotForm}/>
+          <Route path={'/bookings'} exact component={UserReservations}/>
           <Route path={'/'} exact component={AllSpots}/>
           <Route path={'/spots'} exact component={AllSpots}/>
           <Route path={'/spots/:spotId'} exact component={SpotDetail}/>

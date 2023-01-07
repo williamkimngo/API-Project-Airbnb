@@ -50,20 +50,20 @@ router.get('/current', requireAuth, async(req, res, next) => {
         }
     })
 
-    for (const booking of currentBooking) {
-        const img = await SpotImage.findOne({
-            where: {
-                spotId: booking.spotId,
-                preview: true
-            },
-            attributes: ['url'],
-            raw: true
-        })
-        let currentImg = booking.toJSON()
-        currentImg.Spot.previewImage = img.url
-        userBooking.push(currentImg)
-    }
-    res.json({Bookings: userBooking})
+    // for (const booking of currentBooking) {
+    //     const img = await SpotImage.findOne({
+    //         where: {
+    //             spotId: booking.spotId,
+    //             preview: true
+    //         },
+    //         attributes: ['url'],
+    //         raw: true
+    //     })
+    //     let currentImg = booking.toJSON()
+    //     currentImg.Spot.previewImage = img.url
+    //     userBooking.push(currentImg)
+    // }
+    res.json({Bookings: currentBooking})
 
 })
 

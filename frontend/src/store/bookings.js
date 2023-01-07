@@ -37,16 +37,17 @@ export const listRoombookings = (spotId) => async (dispatch) => {
   const response = await csrfFetch(`/api/spots/${spotId}/bookings`);
   if (response.ok) {
     const bookingObj = await response.json();
-    console.log(bookingObj, "BOOKINGOBJ")
+    // console.log(bookingObj, "BOOKINGOBJ")
     dispatch(listbookings(bookingObj.Bookings))
   }
   return response;
 }
 
 export const listAllbookings = () => async (dispatch) => {
-  const response = await csrfFetch(`/api/bookings`)
+  const response = await csrfFetch(`/api/bookings/current`)
   if (response.ok) {
     const bookings = await response.json()
+    console.log(bookings, "THUNK")
     dispatch(findbookings(bookings.Bookings))
   }
   return response;
@@ -95,31 +96,31 @@ export const removebooking = (bookingId) => async (dispatch) => {
   // return;
 }
 
-const initialState = {}
+const initialState = {spotBooking: {}, userBooking: {}}
 const bookingReducer = (state = initialState, action) => {
-  let newState = {}
+  let newState = {...state}
   switch (action.type) {
     case LIST_bookings: {
-      action.bookings.map(booking => newState[booking.id] = booking)
+      action.bookings.map(booking => newState.spotBooking[booking.spotId] = booking)
       return newState;
     }
     case FIND_bookings: {
-      action.bookings.map(booking => newState[booking.id] = booking)
+      action.bookings.map(booking => newState.userBooking[booking.spotId] = booking)
       return newState;
     }
     case CREATE_bookings: {
       newState = { ...state }
-      newState[action.newbooking.id] = action.newbooking;
+      newState.userBooking[action.newbooking.id] = action.newbooking;
       return newState;
     }
     case EDIT_bookings: {
       newState = { ...state }
-      newState[action.booking.id] = action.booking;
+      newState.userBooking[action.booking.id] = action.booking;
       return newState;
     }
     case DELETE_bookings: {
       newState = { ...state }
-      delete newState[action.bookingId]
+      delete newState.userBooking[action.bookingId]
       return newState;
     }
     default:

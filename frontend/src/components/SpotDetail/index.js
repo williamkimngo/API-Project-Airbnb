@@ -32,7 +32,7 @@ const SpotDetail = () => {
     const nextDay = new Date()
     tomorrow.setHours(tomorrow.getHours() + 7)
     nextDay.setHours(nextDay.getHours() + 31)
-    console.log(currentSpot, "CURRSPOT?????")
+    // console.log(currentSpot, "CURRSPOT?????")
 
 
     const [checkIn, setCheckIn] = useState(tomorrow)
