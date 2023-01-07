@@ -5,16 +5,20 @@ import { listAllbookings } from "../../store/bookings";
 import { getAllbookings } from "../../store/bookings";
 import { removebooking } from "../../store/bookings";
 import { updatebooking } from "../../store/bookings";
+import { listAllUsers } from "../../store/users";
 import "./UserBookings.css"
 
 const UserReservations = () => {
     const sessionUser = useSelector(state => state.session.user);
     const users = useSelector(state => state.users)
     const dispatch = useDispatch()
-    const allSpot = useSelector(state => state.spots.allSpots)
-    const allSpotArr = Object.values(allSpot)
-    console.log(allSpot, "ALLSPOT?")
-    console.log(allSpotArr, "ALLSPOT2")
+    // const allSpot = useSelector(state => state.spots.allSpots)
+    // const allSpotArr = Object.values(allSpot)
+    // console.log(allSpot, "ALLSPOT?")
+    // console.log(allSpotArr, "ALLSPOT2")
+    const userSpot = useSelector(state => state.bookings.userBooking)
+    const userSpotArr = Object.values(userSpot)
+    console.log(userSpot)
 
     const allReservations = useSelector(getAllbookings)
     console.log(allReservations, "BOOKING?")
@@ -34,9 +38,9 @@ const UserReservations = () => {
     tomorrow.setHours(tomorrow.getHours() + 7)
     nextDay.setHours(nextDay.getHours() + 31)
 
-    const reservationsPerRoom = allSpotArr.filter(reservation => reservation.id === spotId && sessionUser.id !== reservation.userId)
+    const reservationsPerRoom = userSpotArr.filter(reservation => reservation.id === spotId && sessionUser.id !== reservation.userId)
     console.log(reservationsPerRoom, "PERROOM")
-    const trips = allSpotArr.filter(reservation => sessionUser.id === reservation.userId)
+    const trips = userSpotArr.filter(reservation => sessionUser.id === reservation.userId)
     const futureTrips = trips.filter(trip => new Date() <= new Date(trip.endDate)).sort((a, b) => new Date(a.startDate) - new Date(b.startDate))
     console.log(futureTrips, "FUTURETRIPS?")
     const pastTrips = trips.filter(trip => new Date() > new Date(trip.endDate)).sort((a, b) => new Date(b.startDate) - new Date(a.startDate))
@@ -49,7 +53,7 @@ const UserReservations = () => {
     useEffect(() => {
 
       dispatch(listAllbookings())
-    //   dispatch(listAllUsers())
+      dispatch(listAllUsers())
 
       const errors = []
 
@@ -167,8 +171,8 @@ const UserReservations = () => {
                           <div className="left-res-inner">
                             <div className="top-left-res-content">
                               <div className="top-left-name">
-                                <div className="reservation-listing-name">{reservation?.Room?.name}</div>
-                                <div className="reservations-hosted-by">{reservation?.Room?.type} hosted by {users[reservation?.Room?.ownerId]?.firstName}</div>
+                                <div className="reservation-listing-name">{reservation?.Spot?.name}</div>
+                                <div className="reservations-hosted-by">Hosted by {users[reservation?.Spot?.ownerId]?.firstName}</div>
                               </div>
                             </div>
                             <div className="bottom-left-res-content">
