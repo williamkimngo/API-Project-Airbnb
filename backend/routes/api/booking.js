@@ -46,7 +46,13 @@ router.get('/current', requireAuth, async(req, res, next) => {
             model: Spot,
             attributes: {
                 exclude: ["description", "createdAt", "updatedAt"]
-            }
+            },
+            include:
+                {
+                    model: SpotImage,
+                    attributes: ['url']
+                }
+            
         }
     })
 
@@ -63,7 +69,7 @@ router.get('/current', requireAuth, async(req, res, next) => {
     //     currentImg.Spot.previewImage = img.url
     //     userBooking.push(currentImg)
     // }
-    res.json({Bookings: currentBooking})
+    res.json({"Bookings": currentBooking})
 
 })
 

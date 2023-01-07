@@ -124,7 +124,6 @@ const UserReservations = () => {
 
     return (
       <div className="trips-outer">
-        <div>hello?</div>
         <div className="trips-nav-main">
           {/* <Navigation isLoaded={isLoaded} /> */}
         </div>
@@ -194,16 +193,16 @@ const UserReservations = () => {
                                 </div>
                               </div>
                               <div className="bottom-location">
-                                <div className="res-address">{reservation?.Room?.address}</div>
-                                <div className="res-city-state">{`${reservation?.Room?.city}, ${reservation?.Room?.state}`}</div>
-                                <div className="res-country">{reservation?.Room?.country}</div>
+                                <div className="res-address">{reservation?.Spot?.address}</div>
+                                <div className="res-city-state">{`${reservation?.Spot?.city}, ${reservation?.Spot?.state}`}</div>
+                                <div className="res-country">{reservation?.Spot?.country}</div>
                               </div>
                             </div>
                           </div>
                         </div>
                         <div className="right-res-content">
-                          <Link to={`/rooms/${reservation.spotId}`}>
-                            <img className="res-img" src={`${reservation?.Room?.images[0]?.url}`}></img>
+                          <Link to={`/spots/${reservation.spotId}`}>
+                            <img className="res-img" src={`${reservation?.Spot?.SpotImages[0]?.url}`}></img>
                           </Link>
                         </div>
                       </div>
@@ -272,13 +271,13 @@ const UserReservations = () => {
                   return (
                     <div className="past-outer-main">
                       <div className="past-left-content">
-                        <Link to={`/rooms/${reservation.spotId}`}>
-                          <img className="past-res-img" src={`${reservation?.Room?.images[0]?.url}`}></img>
+                        <Link to={`/spots/${reservation.spotId}`}>
+                          <img className="past-res-img" src={`${reservation?.Spot?.SpotImages[1]?.url}`}></img>
                         </Link>
                       </div>
                       <div className="past-right-content">
-                        <div className="past-res-city-state">{`${reservation?.Room?.city}, ${reservation?.Room?.state}`}</div>
-                        <div className="past-res-hosted-by">Hosted by {users[reservation?.Room?.ownerId]?.firstName}</div>
+                        <div className="past-res-city-state">{`${reservation?.Spot?.city}, ${reservation?.Spot?.state}`}</div>
+                        <div className="past-res-hosted-by">Hosted by {users[reservation?.Spot?.ownerId]?.firstName}</div>
                         <div className="past-bottom-dates">
                           {startMonth === endMonth ? <div className="past-res-month-day">
                             <span className="past-month-res">{startMonth} {startDay}-{endDay}, {endYear} </span>

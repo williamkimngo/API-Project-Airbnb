@@ -80,27 +80,12 @@ module.exports = {
       },
       {
         spotId: 4,
-        url: "https://i.imgur.com/FAU1S9x.png",
-        preview: true
-      },
-      {
-        spotId: 4,
         url: "https://i.imgur.com/Dl2W35V.jpg",
         preview: true
       },
       {
         spotId: 4,
         url: "https://i.imgur.com/oUSgVzg.jpg",
-        preview: true
-      },
-      {
-        spotId: 4,
-        url: "https://i.imgur.com/FAU1S9x.png",
-        preview: true
-      },
-      {
-        spotId: 4,
-        url: "https://i.imgur.com/FAU1S9x.png",
         preview: true
       },
       {

@@ -108,11 +108,11 @@ const bookingReducer = (state = initialState, action) => {
       action.bookings.map(booking => newState.userBooking[booking.spotId] = booking)
       return newState;
     }
-    case CREATE_bookings: {
-      newState = { ...state }
-      newState.userBooking[action.newbooking.id] = action.newbooking;
-      return newState;
-    }
+    // case CREATE_bookings: {
+    //   newState = { ...state }
+    //   newState.userBooking[action.newbooking.id] = action.newbooking;
+    //   return newState;
+    // }
     case EDIT_bookings: {
       newState = { ...state }
       newState.userBooking[action.booking.id] = action.booking;
