@@ -1,6 +1,7 @@
 .search-google-map-outer {
   height: 103vh;
   margin-bottom: 60px;
+  width: 100vh;
 }
 
 .selected-room-info {

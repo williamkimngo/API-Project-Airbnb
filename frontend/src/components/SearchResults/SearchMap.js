@@ -10,7 +10,6 @@ import selectedPriceMarker from './selected-price-marker.png'
 
 const SearchMap = ({ searchRooms }) => {
   let { destination } = useParams()
-  let { guests } = useParams()
   const dispatch = useDispatch()
   const APIKey = useSelector(state => state.map.APIKey)
   const [map, setMap] = useState(null)
@@ -23,7 +22,7 @@ const SearchMap = ({ searchRooms }) => {
 
   useEffect(() => {
     dispatch(getAPIKey())
-
+    // console.log(searchRooms, "MAPSEARCH???")
     if (searchRooms.length > 0) {
 
       const allLats = searchRooms?.map((room) => room.lat)
@@ -44,12 +43,12 @@ const SearchMap = ({ searchRooms }) => {
     if (searchRooms?.length > 15) {
       setZoom(2)
     } else {
-      setZoom(5)
+      setZoom(7)
     }
 
-    if (destination === 'indonesia') setZoom(9)
+    if (destination === 'california') setZoom(7)
 
-  }, [destination, guests])
+  }, [destination])
 
   // useEffect(() => {
   //   if (map) {
@@ -65,7 +64,7 @@ const SearchMap = ({ searchRooms }) => {
   // }, [map]);
 
   const { isLoaded } = useJsApiLoader({
-    googleMapsApiKey: APIKey,
+    googleMapsApiKey: process.env.REACT_APP_MAPS_KEY,
     id: 'google-maps-script'
   })
 
@@ -92,7 +91,6 @@ const SearchMap = ({ searchRooms }) => {
     <div className='search-google-map-outer'>
       {isLoaded &&
         (<GoogleMap
-          // onLoad={onLoad}
           mapContainerStyle={containerStyle}
           center={center}
           zoom={zoom}
@@ -109,7 +107,9 @@ const SearchMap = ({ searchRooms }) => {
             // }
           }}
         >
+
           {searchRooms.map((room) => {
+            {console.log(room, "SELECTED????")}
             return (
               <>
                 <Marker
@@ -138,8 +138,10 @@ const SearchMap = ({ searchRooms }) => {
               onCloseClick={() => { setSelected({}); setSelectedId(0) }}
             >
               <div className='selected-room-info'>
-                <Link to={`/rooms/${selected?.id}`}>
-                  <img src={selected?.images[0]?.url} className='selected-room-img'></img>
+
+                <Link to={`/spots/${selected?.id}`}>
+                  {console.log(selected, "SELECTED??")}
+                  <img src={selected?.previewImage} className='selected-room-img'></img>
                 </Link>
                 <div>
                   <div className='selected-room-name'>{selected?.name}</div>

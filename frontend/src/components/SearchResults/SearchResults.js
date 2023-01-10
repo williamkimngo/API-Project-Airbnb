@@ -11,25 +11,25 @@ function SearchResults() {
 
   const dispatch = useDispatch()
   const allSpot = useSelector(state => state.spots.allSpots)
-  console.log(allSpot, "SPOT?")
+  // console.log(allSpot, "SPOT?")
   const allSpotArr = Object.values(allSpot)
 
   useEffect(() => {
     dispatch(getSpots())
-  }, dispatch)
+  }, [])
 
   const searchRooms = allSpotArr.filter(room => {
     destination = destination.toLowerCase()
     return room.city.toLowerCase().includes(destination) || room.state.toLowerCase().includes(destination) || room.country.toLowerCase().includes(destination)
   })
-  console.log(searchRooms, "SEARCH???")
+  // console.log(searchRooms, "SEARCH???")
   return (
     <>
       <div className="search-rooms-main">
         <div className="search-rooms-left">
           {searchRooms.length > 0 ? <>
             {searchRooms?.map((room, i) => {
-             
+
                 // let sum = 0;
                 // const reviews = room
                 return (
