@@ -43,7 +43,7 @@ function SearchBar() {
     if (!destination) return
 
     e.preventDefault()
-    history.push(`/search/${destination}/${guests}`)
+    history.push(`/search/${destination}`)
   }
 
   return (
@@ -62,14 +62,14 @@ function SearchBar() {
           {showDestinations && (
             <div className="where-dropdown">
               <div className="where-dropdown-header">Popular Searches</div>
-              <div className="where-selection" onClick={() => { setDestination("California"); history.push(`/search/indonesia/${guests}`) }}>
+              <div className="where-selection" onClick={() => { setDestination("California"); history.push(`/search/California`) }}>
                 <img className='dropdown-clock' src={clock}></img>
                 <div className="where-destination-outer">
                   <div className="where-destination-header">California · Stays</div>
                   <div className="where-destination-date">Any week</div>
                 </div>
               </div>
-              <div className="where-selection" onClick={() => { setDestination("Florida"); history.push(`/search/thailand/${guests}`) }}>
+              <div className="where-selection" onClick={() => { setDestination("Florida"); history.push(`/search/Florida`) }}>
                 <img className='dropdown-clock' src={clock}></img>
                 <div className="where-destination-outer">
                   <div className="where-destination-header">Florida · Stays</div>
@@ -98,14 +98,6 @@ function SearchBar() {
             value={new Date(checkOut).toISOString().slice(0, 10)}
             onChange={(e) => setCheckOut(new Date(e.target.value).toISOString().slice(0, 10))}
           />
-        </div>
-        <div className="searchBar-outer searchBar-hidden">
-          <label className="searchBar-label">Who</label>
-          <div className="searchBar-guests-outer">
-            <button type='button' onClick={() => { if (guests > 0) setGuests(guests - 1) }} disabled={guests === 0} className='searchBar-guests-minus'>-</button>
-            {guests}
-            <button type='button' onClick={() => setGuests(guests + 1)} disabled={guests === 16} className='searchBar-guests-plus'>+</button>
-          </div>
         </div>
         <div>
           <button type='submit' className='searchBar-button'><img src={searchIcon} className='searchBar-glass' alt='search'></img></button>

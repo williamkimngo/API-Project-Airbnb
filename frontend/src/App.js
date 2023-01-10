@@ -12,6 +12,7 @@ import OwnerSpots from "./components/OwnerSpots";
 import { getSpots } from "./store/spots";
 import CreateReviewForm from "./components/CreateReviewForm";
 import UserReservations from "./components/UserBookings";
+import SearchResults from "./components/SearchResults/SearchResults";
 
 function App() {
   const dispatch = useDispatch();
@@ -34,6 +35,7 @@ function App() {
           <Route path={'/'} exact component={AllSpots}/>
           <Route path={'/spots'} exact component={AllSpots}/>
           <Route path={'/spots/:spotId'} exact component={SpotDetail}/>
+          <Route path={'/search/:destination'} exact component={SearchResults}/>
           <Route path={'/current'} exact component={OwnerSpots}/>
           <Route path={'/spots/:spotId/edit'} component={EditSpotForm}/>
           <Route path={'/spots/:spotId/reviews/new'}component={CreateReviewForm}/>
