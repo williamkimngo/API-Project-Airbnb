@@ -18,6 +18,8 @@ const CreateSpotForm = () => {
    const [description, setDescription] = useState("");
    const [price, setPrice] = useState("");
    const [img, setImg] = useState("")
+   const [lat, setLat] = useState("")
+   const [lng, setLng] = useState("")
    // const [hasSubmit, setHasSubmit] = useState("")
    const [errors, setErrors] = useState([]);
    const [validationErrors, setValidationsErrors] = useState([])
