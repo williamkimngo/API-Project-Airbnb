@@ -66,24 +66,20 @@ export const getOneSpot = (spotId) => async dispatch => {
     const res = await csrfFetch(`/api/spots/${spotId}`)
     if(res.ok){
         const currentSpot = await res.json()
-        // console.log(currentSpot, "THUNKSPOT?????")
         dispatch(loadOneSpot(currentSpot))
         return res
     }
 }
 
 export const actionAddSpot = (data) => async dispatch => {
-    // console.log("DATATHUNKADD", data)
     const res = await csrfFetch('/api/spots', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify(data)
     })
-    // console.log("RESADDTHUNK", res)
     if(res.ok){
 
         const newSpot = await res.json()
-        // console.log("NEWSPOTADD", newSpot)
         dispatch(addSpot(newSpot))
         return newSpot
     }
