@@ -39,7 +39,7 @@ function Navigation({ isLoaded }){
           <img src='https://i.imgur.com/pcQ7lcp.png' alt='logo' className='home-logo'></img>
           </NavLink>
           <SearchBar/>
-         
+
 
           <div className='right-nav-items'>
           <div>
@@ -47,7 +47,7 @@ function Navigation({ isLoaded }){
           </div>
           {signup && <SignUpFormModal setShowSignup={setShowSignup} signup={signup} />}
           {login && <LoginFormModal setLogin={setLogin} login={login} />}
-          <div>
+          <div className='button-profile'>
             {isLoaded && sessionLinks}
           </div>
         </div>
