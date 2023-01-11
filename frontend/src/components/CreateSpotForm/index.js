@@ -50,14 +50,8 @@ const CreateSpotForm = () => {
          url: img,
          preview: true
       }
-      // console.log("DATAERRORS before CREATION",data.errors)
-      // console.log("ERRORS BEFORE SUBMIT", errors)
-      // if(img === "" || img === null){
-      //    validationErrors = ["ImageURL is required."]
-      // }
-      // console.log("PAYLOADSPOT!", payload)
+
       let createdSpot ={}
-      // console.log("VALIDATIONERORRRRER", validationErrors)
       if (!errors.length){
          createdSpot = await dispatch(actionAddSpot(payload))
             .catch(async (res) => {

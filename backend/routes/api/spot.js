@@ -304,7 +304,7 @@ router.get('/', async (req, res, next) => {
             raw: true
         })
         let allSpot = spot.toJSON()
-      
+
         allSpot.avgRating = (Number(avg[0].average))
         allSpot.previewImage = image.length > 0 ? image[0].url : ""
         allSpots.push(allSpot)
@@ -316,7 +316,6 @@ router.get('/', async (req, res, next) => {
 //Create Spot
 router.post('/', validateSpot, requireAuth, async (req, res, next) => {
     const { address, city, state, country, lat, lng, name, description, price } = req.body
-    console.log("MADE IT HERE***********************")
     const newSpot = await Spot.create({
         ownerId: req.user.id,
         address,
