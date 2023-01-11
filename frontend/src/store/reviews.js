@@ -57,7 +57,7 @@ export const actionCreateReview = (data) => async dispatch => {
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify(data)
    });
-   // console.log("RESTHUNKCREATE", res)
+
 
    if(res.ok){
       const newReview = await res.json();

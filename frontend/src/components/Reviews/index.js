@@ -47,7 +47,7 @@ const Reviews = ({ currentSpot, spotId, avgStarRating }) => {
         setConfirmDelete(false)
       }
     }
-    // console.log(allReview, "BLAH!!!??!?!?!?!")
+
 
     return (
       <>
@@ -67,7 +67,7 @@ const Reviews = ({ currentSpot, spotId, avgStarRating }) => {
               let date = new Date(review?.createdAt)
               const month = date.toLocaleString('default', { month: 'long' })
               const year = date.getFullYear()
-            //   {console.log(review, "REVIEWINSIDE")}
+
               return (
                 <div className="reviews-outer" key={i}>
                   <div className="reviews-upper">

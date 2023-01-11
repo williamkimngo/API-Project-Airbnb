@@ -12,16 +12,13 @@ const UserReservations = () => {
     const sessionUser = useSelector(state => state.session.user);
     const users = useSelector(state => state.users)
     const dispatch = useDispatch()
-    // const allSpot = useSelector(state => state.spots.allSpots)
-    // const allSpotArr = Object.values(allSpot)
-    // console.log(allSpot, "ALLSPOT?")
-    // console.log(allSpotArr, "ALLSPOT2")
+
     const userSpot = useSelector(state => state.bookings.userBooking)
     const userSpotArr = Object.values(userSpot)
-    console.log(userSpot)
+
 
     const allReservations = useSelector(getAllbookings)
-    console.log(allReservations, "BOOKING?")
+
     const [bookingId, setbookingId] = useState()
     const [spotId, setspotId] = useState()
     const [checkIn, setCheckIn] = useState(new Date().toISOString().slice(0, 10))
@@ -39,10 +36,10 @@ const UserReservations = () => {
     nextDay.setHours(nextDay.getHours() + 31)
 
     const reservationsPerRoom = userSpotArr.filter(reservation => reservation.id === spotId && sessionUser.id !== reservation.userId)
-    console.log(reservationsPerRoom, "PERROOM")
+
     const trips = userSpotArr.filter(reservation => sessionUser.id === reservation.userId)
     const futureTrips = trips.filter(trip => new Date() <= new Date(trip.endDate)).sort((a, b) => new Date(a.startDate) - new Date(b.startDate))
-    console.log(futureTrips, "FUTURETRIPS?")
+
     const pastTrips = trips.filter(trip => new Date() > new Date(trip.endDate)).sort((a, b) => new Date(b.startDate) - new Date(a.startDate))
 
     const allStartDates = reservationsPerRoom.map(reservation => reservation.startDate)
@@ -165,7 +162,7 @@ const UserReservations = () => {
                   return (
                     <div className="outer-main">
                       <div key={reservation.id} className="main-reservation-content">
-                        {console.log(reservation, "RESERVEID?")}
+                     
                         <div className="left-res-content">
                           <div className="left-res-inner">
                             <div className="top-left-res-content">

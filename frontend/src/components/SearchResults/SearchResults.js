@@ -11,7 +11,7 @@ function SearchResults() {
 
   const dispatch = useDispatch()
   const allSpot = useSelector(state => state.spots.allSpots)
-  // console.log(allSpot, "SPOT?")
+
   const allSpotArr = Object.values(allSpot)
 
   useEffect(() => {
@@ -22,7 +22,7 @@ function SearchResults() {
     destination = destination.toLowerCase()
     return room.city.toLowerCase().includes(destination) || room.state.toLowerCase().includes(destination) || room.country.toLowerCase().includes(destination)
   })
-  // console.log(searchRooms, "SEARCH???")
+
   return (
     <>
       <div className="search-rooms-main">

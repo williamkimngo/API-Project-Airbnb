@@ -22,7 +22,7 @@ const SearchMap = ({ searchRooms }) => {
 
   useEffect(() => {
     dispatch(getAPIKey())
-    // console.log(searchRooms, "MAPSEARCH???")
+
     if (searchRooms.length > 0) {
 
       const allLats = searchRooms?.map((room) => room.lat)
@@ -109,7 +109,7 @@ const SearchMap = ({ searchRooms }) => {
         >
 
           {searchRooms.map((room) => {
-            {console.log(room, "SELECTED????")}
+
             return (
               <>
                 <Marker
@@ -140,7 +140,7 @@ const SearchMap = ({ searchRooms }) => {
               <div className='selected-room-info'>
 
                 <Link to={`/spots/${selected?.id}`}>
-                  {console.log(selected, "SELECTED??")}
+
                   <img src={selected?.previewImage} className='selected-room-img'></img>
                 </Link>
                 <div>

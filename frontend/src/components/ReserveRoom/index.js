@@ -11,7 +11,7 @@ const ReserveRoom = ({ spotId, avgStarRating, checkIn, setCheckIn, checkOut, set
     const currentSpotArr = Object.values(currentSpot)
     const spotReviewObj = useSelector(state => (state.reviews.spot))
     const spotReviewsArr = Object.values(spotReviewObj)
-    // console.log(spotReviewsArr, "REVIEEW???")
+
     const sessionUser = useSelector(state => state.session.user);
     const dispatch = useDispatch()
     const history = useHistory()

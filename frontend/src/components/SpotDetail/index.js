@@ -24,7 +24,7 @@ const SpotDetail = () => {
     const sessionUser = useSelector(state => state.session.user)
     const [confirmDelete, setConfirmDelete] = useState(false);
     const currRoomBookings = useSelector(getAllbookings)
-    // console.log(currRoomBookings, "HELLO?")
+
     const [selectDate, setSelectDate] = useState(false)
     const currentSpot = useSelector(state => state.spots.specificSpot)
     const today = new Date()
@@ -32,7 +32,7 @@ const SpotDetail = () => {
     const nextDay = new Date()
     tomorrow.setHours(tomorrow.getHours() + 7)
     nextDay.setHours(nextDay.getHours() + 31)
-    // console.log(currentSpot, "CURRSPOT?????")
+   
 
 
     const [checkIn, setCheckIn] = useState(tomorrow)

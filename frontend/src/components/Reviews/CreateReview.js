@@ -79,7 +79,7 @@ const CreateReview = ({ setShowReview, editReview, setEditReview, reviewId }) =>
         stars,
         review
       }
-      // console.log(reviewData, "REVIEWDATA??????")
+
 
       const editReviewResponse = await dispatch(updateReview(reviewData))
         .catch(async (res) => {
@@ -103,7 +103,6 @@ const CreateReview = ({ setShowReview, editReview, setEditReview, reviewId }) =>
         stars,
         review
       }
-      console.log(reviewData, "REVIEWDATA??????")
 
       const reviewResponse = await dispatch(actionCreateReview(reviewData))
         .catch(async (data) => {

@@ -3,8 +3,7 @@ import './spotCard.css'
 
 const SpotCard = (spot) => {
     const { id, city, state, name, price, avgRating, previewImage } = spot.spot;
-    // console.log("++++",spot.spot)
-    // console.log('!!!!!!!!!!!!!!spotcard',id)
+
     if (!spot) { return null }
 
     let twoDecAvgRating
