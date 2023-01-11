@@ -12,6 +12,7 @@ const EditSpotForm = ({listingId, returnToListing}) => {
    // console.log(listingId, "LISTING")
    const [spotId, setSpotId] = useState(listingId)
   const [ownerId, setOwnerId] = useState(currentSpot.Owner.id)
+  // console.log(currentSpot, "CURSPOT?")
   const [address, setAddress] = useState(currentSpot.address)
   const [city, setCity] = useState(currentSpot.city)
   const [state, setState] = useState(currentSpot.state)

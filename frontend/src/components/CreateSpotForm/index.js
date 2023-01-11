@@ -42,7 +42,9 @@ const CreateSpotForm = () => {
          state,
          country,
          description,
-         price
+         price,
+         lng,
+         lat,
       }
       const payloadImg = {
          url: img,
@@ -60,18 +62,12 @@ const CreateSpotForm = () => {
          createdSpot = await dispatch(actionAddSpot(payload))
             .catch(async (res) => {
                const data = await res.json();
-               console.log("DATA~!!!!", data)
-               console.log("DATAERRORS AFTER CREATION",data.errors)
+
                if (data && data.errors) setErrors(data.errors);
             })
          }
 
-      // console.log("ERROR AFTER CREATE", errors)
 
-      // console.log("VALIDATION ERROR!!!!", validationErrors)
-      // console.log("PAYLOAD!!!!", payloadImg)
-      // console.log("CREATESDSPOT", createdSpot)
-      // console.log("CREATEDSPOTID!!!!", createdSpot.id)
 
       if (createdSpot && !errors.length) {
          let newImg = await dispatch(actionAddImageUrl(payloadImg, createdSpot.id))
@@ -88,7 +84,7 @@ const CreateSpotForm = () => {
    }
 
    let allErrors = [...errors, ...validationErrors]
-   // console.log("ALLLTHEERRORS!", allErrors)
+
    return (
       <div className="Create-Spot-Form-container">
          <form className="form-wrap" onSubmit={handleSubmit}>
@@ -169,6 +165,26 @@ const CreateSpotForm = () => {
                   type='number'
                   value={price}
                   onChange={e => setPrice(e.target.value)}
+
+               />
+            </label>
+            <label>
+
+               <input
+                  placeholder="Latitude"
+                  type='text'
+                  value={lat}
+                  onChange={e => setLat(e.target.value)}
+
+               />
+            </label>
+            <label>
+
+               <input
+                  placeholder="Longitude"
+                  type='text'
+                  value={lng}
+                  onChange={e => setLng(e.target.value)}
 
                />
             </label>
