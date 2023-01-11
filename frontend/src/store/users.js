@@ -13,7 +13,6 @@ export const listAllUsers = () => async (dispatch) => {
   const response = await csrfFetch(`/api/users`);
   if (response.ok) {
     const usersObj = await response.json();
-    console.log(usersObj, "USERS?????")
     dispatch(getUsers(usersObj.users))
   }
   return response;

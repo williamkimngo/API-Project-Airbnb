@@ -64,7 +64,6 @@ const ReserveRoom = ({ spotId, avgStarRating, checkIn, setCheckIn, checkOut, set
             }
         }
 
-        // console.log(reservationData)
 
         dispatch(bookNewbooking(reservationData))
             .then(() => { history.push("/bookings") })
