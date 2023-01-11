@@ -52,7 +52,7 @@ router.get('/current', requireAuth, async(req, res, next) => {
                     model: SpotImage,
                     attributes: ['url']
                 }
-            
+
         }
     })
 
@@ -80,7 +80,6 @@ router.put('/:bookingId', requireAuth, async(req, res, next) => {
     const currentStartDate = new Date(startDate).getTime()
 
     const currentBooking = await Booking.findByPk(req.params.bookingId) //return object
-    console.log(currentBooking)
     if (!currentBooking){
         res.status(404)
         res.json({
@@ -88,8 +87,6 @@ router.put('/:bookingId', requireAuth, async(req, res, next) => {
             "statusCode": 404
           })
     }
-    console.log(currentEndDate)
-    console.log(currentStartDate)
     if((currentEndDate <= currentStartDate)){
         res.status(400)
         res.json({

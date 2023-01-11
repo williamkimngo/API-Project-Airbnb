@@ -8,11 +8,10 @@ const EditSpotForm = ({listingId, returnToListing}) => {
    const currentSpot = useSelector(state => state.spots.specificSpot)
    const currentSpotArr = Object.values(currentSpot)
    console.log(currentSpot, "OBJECT?")
-   // console.log(currentSpotArr[3], "EDIT")
-   // console.log(listingId, "LISTING")
+
    const [spotId, setSpotId] = useState(listingId)
   const [ownerId, setOwnerId] = useState(currentSpot.Owner.id)
-  // console.log(currentSpot, "CURSPOT?")
+
   const [address, setAddress] = useState(currentSpot.address)
   const [city, setCity] = useState(currentSpot.city)
   const [state, setState] = useState(currentSpot.state)

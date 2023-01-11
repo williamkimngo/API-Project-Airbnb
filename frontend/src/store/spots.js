@@ -125,17 +125,14 @@ export const getCurrentUserSpots = () => async dispatch => {
 }
 
 export const actionAddImageUrl = (data, id) => async (dispatch) => {
-    // console.log("DATAimgurl!!!!", data)
     const res = await csrfFetch(`/api/spots/${id}/images`, {
        method: 'POST',
        headers: {'Content-Type': 'application/json'},
        body: JSON.stringify(data)
     });
-    // console.log("RESPONSEimgURL!!!!", res)
     if(res.ok){
        const img = await res.json();
        dispatch(addImageUrl(id, data));
-    //    console.log("IMGGGGGGGGG", img)
     }
 }
 
