@@ -86,7 +86,6 @@ export const actionAddSpot = (data) => async dispatch => {
 }
 
 export const actionUpdateSpot = (data, spotId) => async dispatch => {
-    console.log(data, "DATA")
     const res = await csrfFetch(`/api/spots/${data.spotId}`, {
         method: 'PUT',
         headers: {'Content-Type': 'application/json'},
@@ -113,9 +112,7 @@ export const getCurrentUserSpots = () => async dispatch => {
     const res = await csrfFetch (`/api/spots/current`)
     if(res.ok){
         const userSpot = await res.json()
-        // console.log("USERSPOT!!!!!!!!", userSpot)
         dispatch(loadCurrentUserSpot(userSpot))
-        // console.log("USERSPOT!!!!!!!!", userSpot)
         return userSpot
     }
 }
