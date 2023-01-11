@@ -13,6 +13,7 @@ import { getSpots } from "./store/spots";
 import CreateReviewForm from "./components/CreateReviewForm";
 import UserReservations from "./components/UserBookings";
 import SearchResults from "./components/SearchResults/SearchResults";
+import Footer from "./components/Navigation/Footer";
 
 function App() {
   const dispatch = useDispatch();
@@ -41,6 +42,7 @@ function App() {
           <Route path={'/spots/:spotId/reviews/new'}component={CreateReviewForm}/>
         </Switch>
       )}
+      <Footer />
     </>
   );
 }
