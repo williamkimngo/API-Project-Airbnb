@@ -42,6 +42,9 @@ function ProfileButton({ user }) {
           <li>{user.username}</li>
           <li>{user.email}</li>
           <li className="dropdown-button border">
+            <Link className='account-button' to='/bookings'>Bookings</Link>
+          </li>
+          <li className="dropdown-button border">
             <Link className='account-button' to='/current'>Account</Link>
           </li>
           <li className="dropdown-button">

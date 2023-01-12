@@ -94,7 +94,7 @@
     max-width: 180px;
     flex-basis: content;
     width: 180px;
-    height: 150px;
+    height: 190px;
     list-style: none;
     background-color: white;
     border: 1px solid rgba(0, 0, 0, 0.1);
@@ -154,8 +154,8 @@
 
  .profile-dropdown-no-user {
     position: absolute;
-    right: 40px;
-    top: 70px;
+    /* right: 40px; */
+    top: 30px;
     width: 175px;
     height: 75px;
     list-style: none;
